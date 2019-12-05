@@ -1,0 +1,1 @@
+﻿Die CSV-Datei sollte folgendermaßen aufgebaut sein: Zeitstempel,Paketlänge,Protokoll-Identifier,Protokoll-Identifier,Protokoll-Identifier,Protokoll-Identifier

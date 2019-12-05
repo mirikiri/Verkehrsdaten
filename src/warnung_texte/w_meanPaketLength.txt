@@ -1,0 +1,1 @@
+﻿Die mittlere Paketlänge muss nicht immer einer tatsächlich vorkommenden Paketlänge entsprechen. Vor allem Jumbo-Pakete, die bis zu 64.000 Byte lang sein können, verzerren den Mittelwert stark.

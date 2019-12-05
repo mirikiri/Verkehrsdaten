@@ -1,0 +1,1 @@
+﻿Die mittlere Ankunftsrate über eine längere Messung ist eine Mittelung und kann Spitzen, sogenannte Bursts, in der Messung nicht widerspiegeln. Gerade bei den Bursts ist die Gefahr für Paketverlust oder längere Wartezeiten am wahrscheinlichsten.

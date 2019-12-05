@@ -1,0 +1,1092 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<TabPane fx:id="rootTabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller_Window.MessungWindowVC">
+  <tabs>
+      <Tab text="Statistik">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" spacing="3.0">
+                           <children>
+                              <FlowPane prefWidth="200.0">
+                                 <children>
+                                    <Label styleClass="double-underline" stylesheets="@../CSS/MessungWindow_statistik.css" text="Allgemein:" />
+                                 </children>
+                              </FlowPane>
+                              <FlowPane prefWidth="200.0">
+                                 <children>
+                                    <Label text="Dateiname: " />
+                                    <Label fx:id="stat_filename" text="Label" />
+                                 </children>
+                              </FlowPane>
+                              <FlowPane hgap="3.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="Dauer der Messung:" />
+                                    <Label fx:id="stat_duration" text="Label" />
+                                    <Label text="s" />
+                                 </children>
+                              </FlowPane>
+                              <FlowPane prefWidth="200.0">
+                                 <children>
+                                    <Label text="Pakete insgesamt: " />
+                                    <Label fx:id="stat_totalPakets" text="Label" />
+                                 </children>
+                              </FlowPane>
+                              <FlowPane hgap="3.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="-davon UDP: " />
+                                    <Label fx:id="stat_UDPtotal" text="Label" />
+                                    <Label stylesheets="@../CSS/MessungWindow_statistik.css" text="Pakete" />
+                                    <Label stylesheets="@../CSS/MessungWindow_statistik.css" text="≙" />
+                                    <Label fx:id="stat_UDPprozent" text="Label" />
+                                    <Label text="\% aller Pakete" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
+                              </FlowPane>
+                              <FlowPane hgap="3.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="-davon TCP: " />
+                                    <Label fx:id="stat_TCPtotal" text="Label" />
+                                    <Label stylesheets="@../CSS/MessungWindow_statistik.css" text="Pakete" />
+                                    <Label stylesheets="@../CSS/MessungWindow_statistik.css" text="≙" />
+                                    <Label fx:id="stat_TCPprozent" text="Label" />
+                                    <Label text="\% aller Pakete" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
+                              </FlowPane>
+                              <FlowPane hgap="3.0" layoutX="25.0" layoutY="119.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="-davon weder UDP noch TCP: " />
+                                    <Label fx:id="stat_andereTotal" text="Label" />
+                                    <Label stylesheets="@../CSS/MessungWindow_statistik.css" text="Pakete" />
+                                    <Label stylesheets="@../CSS/MessungWindow_statistik.css" text="≙" />
+                                    <Label fx:id="stat_andereProzent" text="Label" />
+                                    <Label text="\% aller Pakete" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
+                              </FlowPane>
+                              <FlowPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <PieChart fx:id="paketPieChart" />
+                                 </children>
+                              </FlowPane>
+                              <Separator prefWidth="200.0" />
+                              <FlowPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label styleClass="double-underline" stylesheets="@../CSS/MessungWindow_statistik.css" text="Ankunftsrate" />
+                                 </children>
+                              </FlowPane>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox prefHeight="200.0">
+                                       <children>
+                                          <FlowPane hgap="3.0" prefHeight="200.0">
+                                             <children>
+                                                <Label text="Intervall 0.01 s" underline="true" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="λ_min:" />
+                                                <Label fx:id="stat_arrival_001min" text="Label" />
+                                                <Label text="Pakete / Intervall" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="λ_max:" />
+                                                <Label fx:id="stat_arrival_001max" text="Label" />
+                                                <Label text="Pakete / Intervall" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="λ_mean:" />
+                                                <Label fx:id="stat_arrival_001mean" text="Label" />
+                                                <Label text="Pakete / Intervall" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="λ_max ist" />
+                                                <Label fx:id="stat_arrival_001percent" text="Label" />
+                                                <Label text="\% größer als λ_mean" />
+                                             </children>
+                                          </FlowPane>
+                                       </children>
+                                    </VBox>
+                                    <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                    <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0">
+                                       <children>
+                                          <FlowPane hgap="3.0" prefHeight="200.0">
+                                             <children>
+                                                <Label text="Intervall 0.1 s" underline="true" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="λ_min:" />
+                                                <Label fx:id="stat_arrival_01min" text="Label" />
+                                                <Label text="Pakete / Intervall" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="λ_max:" />
+                                                <Label fx:id="stat_arrival_01max" text="Label" />
+                                                <Label text="Pakete / Intervall" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="λ_mean:" />
+                                                <Label fx:id="stat_arrival_01mean" text="Label" />
+                                                <Label text="Pakete / Intervall" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="λ_max ist" />
+                                                <Label fx:id="stat_arrival_01percent" text="Label" />
+                                                <Label text="\% größer als λ_mean" />
+                                             </children>
+                                          </FlowPane>
+                                       </children>
+                                    </VBox>
+                                    <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                    <VBox prefHeight="200.0">
+                                       <children>
+                                          <FlowPane hgap="3.0" prefHeight="200.0">
+                                             <children>
+                                                <Label text="Intervall 1 s" underline="true" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="λ_min:" />
+                                                <Label fx:id="stat_arrival_1min" text="Label" />
+                                                <Label text="Pakete / Intervall" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="λ_max:" />
+                                                <Label fx:id="stat_arrival_1max" text="Label" />
+                                                <Label text="Pakete / Intervall" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="λ_mean:" />
+                                                <Label fx:id="stat_arrival_1mean" text="Label" />
+                                                <Label text="Pakete / Intervall" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="λ_max ist" />
+                                                <Label fx:id="stat_arrival_1percent" text="Label" />
+                                                <Label text="\% größer als λ_mean" />
+                                             </children>
+                                          </FlowPane>
+                                       </children>
+                                    </VBox>
+                                    <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                    <VBox prefHeight="200.0">
+                                       <children>
+                                          <FlowPane hgap="3.0" prefHeight="200.0">
+                                             <children>
+                                                <Label text="Intervall 10 s" underline="true" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="λ_min:" />
+                                                <Label fx:id="stat_arrival_10min" text="Label" />
+                                                <Label text="Pakete / Intervall" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="λ_max:" />
+                                                <Label fx:id="stat_arrival_10max" text="Label" />
+                                                <Label text="Pakete / Intervall" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="λ_mean:" />
+                                                <Label fx:id="stat_arrival_10mean" text="Label" />
+                                                <Label text="Pakete / Intervall" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="λ_max ist" />
+                                                <Label fx:id="stat_arrival_10percent" text="Label" />
+                                                <Label text="\% größer als λ_mean" />
+                                             </children>
+                                          </FlowPane>
+                                       </children>
+                                    </VBox>
+                                    <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                    <VBox prefHeight="200.0">
+                                       <children>
+                                          <FlowPane hgap="3.0" prefHeight="200.0">
+                                             <children>
+                                                <Label text="Intervall 60 s" underline="true" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="λ_min:" />
+                                                <Label fx:id="stat_arrival_60min" text="Label" />
+                                                <Label text="Pakete / Intervall" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="λ_max:" />
+                                                <Label fx:id="stat_arrival_60max" text="Label" />
+                                                <Label text="Pakete / Intervall" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="λ_mean:" />
+                                                <Label fx:id="stat_arrival_60mean" text="Label" />
+                                                <Label text="Pakete / Intervall" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="λ_max ist" />
+                                                <Label fx:id="stat_arrival_60percent" text="Label" />
+                                                <Label text="\% größer als λ_mean" />
+                                             </children>
+                                          </FlowPane>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <Separator prefWidth="200.0" />
+                              <FlowPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label styleClass="double-underline" stylesheets="@../CSS/MessungWindow_statistik.css" text="Paketlänge" />
+                                 </children>
+                              </FlowPane>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox prefHeight="200.0">
+                                       <children>
+                                          <FlowPane hgap="3.0" prefHeight="200.0">
+                                             <children>
+                                                <Label text="UDP" underline="true" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="kleinste Paketlänge:" />
+                                                <Label fx:id="stat_paketlengthUDPmin" text="Label" />
+                                                <Label text="Byte" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="größte Paketlänge:" />
+                                                <Label fx:id="stat_paketlengthUDPmax" text="Label" />
+                                                <Label text="Byte" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="Ø Paketlänge:" />
+                                                <Label fx:id="stat_paketlengthUDPmean" text="Label" />
+                                                <Label text="Byte" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="häufigste Paketlänge:" />
+                                                <Label fx:id="stat_paketlengthUDPmostUsed" text="Label" />
+                                                <Label text="Byte mit" />
+                                                <Label fx:id="stat_paketlengthUDPmostUsedNumber" text="Label" />
+                                                <Label text="Paketen (" />
+                                                <Label fx:id="stat_paketlengthUDPmostUsedPercent" text="Label" />
+                                                <Label text="\%)" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label fx:id="stat_paketlengthUDPjumboNumber" text="Label" />
+                                                <Label text="Pakete sind größer als 1560 Byte (" />
+                                                <Label fx:id="stat_paketlengthUDPjumbopercent" text="Label" />
+                                                <Label text="\% aller Pakete)" />
+                                             </children>
+                                          </FlowPane>
+                                       </children>
+                                    </VBox>
+                                    <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                    <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0">
+                                       <children>
+                                          <FlowPane hgap="3.0" prefHeight="200.0">
+                                             <children>
+                                                <Label text="TCP" underline="true" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="kleinste Paketlänge:" />
+                                                <Label fx:id="stat_paketlengthTCPmin" text="Label" />
+                                                <Label text="Byte" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="größte Paketlänge:" />
+                                                <Label fx:id="stat_paketlengthTCPmax" text="Label" />
+                                                <Label text="Byte" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="Ø Paketlänge:" />
+                                                <Label fx:id="stat_paketlengthTCPmean" text="Label" />
+                                                <Label text="Byte" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="häufigste Paketlänge:" />
+                                                <Label fx:id="stat_paketlengthTCPmostUsed" text="Label" />
+                                                <Label text="Byte mit" />
+                                                <Label fx:id="stat_paketlengthTCPmostUsedNumber" text="Label" />
+                                                <Label text="Paketen (" />
+                                                <Label fx:id="stat_paketlengthTCPmostUsedPercent" text="Label" />
+                                                <Label text="\%)" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label fx:id="stat_paketlengthTCPjumboNumber" text="Label" />
+                                                <Label text="Pakete sind größer als 1560 Byte (" />
+                                                <Label fx:id="stat_paketlengthTCPjumbopercent" text="Label" />
+                                                <Label text="\% aller Pakete)" />
+                                             </children>
+                                          </FlowPane>
+                                       </children>
+                                    </VBox>
+                                    <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                    <VBox layoutX="189.0" layoutY="10.0" prefHeight="200.0">
+                                       <children>
+                                          <FlowPane hgap="3.0" prefHeight="200.0">
+                                             <children>
+                                                <Label text="Andere" underline="true" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="kleinste Paketlänge:" />
+                                                <Label fx:id="stat_paketlengthOthermin" text="Label" />
+                                                <Label text="Byte" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="größte Paketlänge:" />
+                                                <Label fx:id="stat_paketlengthOthermax" text="Label" />
+                                                <Label text="Byte" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="Ø Paketlänge:" />
+                                                <Label fx:id="stat_paketlengthOthermean" text="Label" />
+                                                <Label text="Byte" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="häufigste Paketlänge:" />
+                                                <Label fx:id="stat_paketlengthOthermostUsed" text="Label" />
+                                                <Label text="Byte mit" />
+                                                <Label fx:id="stat_paketlengthOthermostUsedNumber" text="Label" />
+                                                <Label text="Paketen (" />
+                                                <Label fx:id="stat_paketlengthOthermostUsedPercent" text="Label" />
+                                                <Label text="\%)" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label fx:id="stat_paketlengthOtherjumboNumber" text="Label" />
+                                                <Label text="Pakete sind größer als 1560 Byte (" />
+                                                <Label fx:id="stat_paketlengthOtherjumbopercent" text="Label" />
+                                                <Label text="\% aller Pakete)" />
+                                             </children>
+                                          </FlowPane>
+                                       </children>
+                                    </VBox>
+                                    <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                    <VBox layoutX="368.0" layoutY="10.0" prefHeight="200.0">
+                                       <children>
+                                          <FlowPane hgap="3.0" prefHeight="200.0">
+                                             <children>
+                                                <Label text="Gesamt" underline="true" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="kleinste Paketlänge:" />
+                                                <Label fx:id="stat_paketlengthTotalmin" text="Label" />
+                                                <Label text="Byte" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="größte Paketlänge:" />
+                                                <Label fx:id="stat_paketlengthTotalmax" text="Label" />
+                                                <Label text="Byte" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="Ø Paketlänge:" />
+                                                <Label fx:id="stat_paketlengthTotalmean" text="Label" />
+                                                <Label text="Byte" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="häufigste Paketlänge:" />
+                                                <Label fx:id="stat_paketlengthTotalmostUsed" text="Label" />
+                                                <Label text="Byte mit" />
+                                                <Label fx:id="stat_paketlengthTotalmostUsedNumber" text="Label" />
+                                                <Label text="Paketen (" />
+                                                <Label fx:id="stat_paketlengthTotalmostUsedPercent" text="Label" />
+                                                <Label text="\%)" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label fx:id="stat_paketlengthTotaljumboNumber" text="Label" />
+                                                <Label text="Pakete sind größer als 1560 Byte (" />
+                                                <Label fx:id="stat_paketlengthTotaljumbopercent" text="Label" />
+                                                <Label text="\% aller Pakete)" />
+                                             </children>
+                                          </FlowPane>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <Separator prefWidth="200.0" />
+                              <FlowPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label styleClass="double-underline" stylesheets="@../CSS/MessungWindow_statistik.css" text="Bytes" />
+                                 </children>
+                              </FlowPane>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox prefHeight="200.0">
+                                       <children>
+                                          <FlowPane prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="UDP" underline="true" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="insgesamt" />
+                                                <Label fx:id="stat_bytesTotalUdp" text="Label" />
+                                                <Label text="Byte" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="Ø" />
+                                                <Label fx:id="stat_byteskByteUdp" text="Label" />
+                                                <Label text="kByte / s" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="Ø" />
+                                                <Label fx:id="stat_byteskBitUdp" text="Label" />
+                                                <Label text="kBits / s" />
+                                             </children>
+                                          </FlowPane>
+                                       </children>
+                                    </VBox>
+                                    <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                    <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0">
+                                       <children>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="TCP" underline="true" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="insgesamt" />
+                                                <Label fx:id="stat_bytesTotalTcp" text="Label" />
+                                                <Label text="Byte" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="Ø" />
+                                                <Label fx:id="stat_byteskByteTcp" text="Label" />
+                                                <Label text="kByte / s" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="Ø" />
+                                                <Label fx:id="stat_byteskBitTcp" text="Label" />
+                                                <Label text="kBits / s" />
+                                             </children>
+                                          </FlowPane>
+                                       </children>
+                                    </VBox>
+                                    <Separator layoutX="155.0" layoutY="10.0" orientation="VERTICAL" prefHeight="200.0" />
+                                    <VBox layoutX="110.0" layoutY="10.0" prefHeight="200.0">
+                                       <children>
+                                          <FlowPane prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="Andere" underline="true" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="insgesamt" />
+                                                <Label fx:id="stat_bytesTotalOthers" text="Label" />
+                                                <Label text="Byte" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="Ø" />
+                                                <Label fx:id="stat_byteskByteOthers" text="Label" />
+                                                <Label text="kByte / s" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="Ø" />
+                                                <Label fx:id="stat_byteskBitOthers" text="Label" />
+                                                <Label text="kBits / s" />
+                                             </children>
+                                          </FlowPane>
+                                       </children>
+                                    </VBox>
+                                    <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                    <VBox layoutX="210.0" layoutY="10.0" prefHeight="200.0">
+                                       <children>
+                                          <FlowPane prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="Gesamt" underline="true" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="insgesamt" />
+                                                <Label fx:id="stat_bytesTotalGesamt" text="Label" />
+                                                <Label text="Byte" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="Ø" />
+                                                <Label fx:id="stat_byteskByteGesamt" text="Label" />
+                                                <Label text="kByte / s" />
+                                             </children>
+                                          </FlowPane>
+                                          <FlowPane hgap="3.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="Ø" />
+                                                <Label fx:id="stat_byteskBitGesamt" text="Label" />
+                                                <Label text="kBits / s" />
+                                             </children>
+                                          </FlowPane>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+    <Tab fx:id="zeitintervall0" text="0.01 s">
+      <content>
+        <AnchorPane fx:id="z0_Anchor" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <BorderPane layoutX="200.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <center>
+                        <LineChart fx:id="z0_chart" createSymbols="false" legendVisible="false" title="Paketankunftsrate im Zeitintervall 0.01 s" BorderPane.alignment="CENTER">
+                          <xAxis>
+                            <NumberAxis label="t [s]" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="λ [1/s]" side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                     </center>
+                     <left>
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="TOP_LEFT">
+                           <items>
+                              <Label alignment="TOP_LEFT" prefHeight="17.0" prefWidth="150.0" text="Zeit [s]    Paketanzahl" />
+                              <ListView fx:id="z0_pakets" prefWidth="150.0" />
+                           </items>
+                        </SplitPane>
+                     </left>
+                     <right>
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                          <items>
+                              <Label alignment="TOP_LEFT" prefHeight="17.0" prefWidth="150.0" text="Methode      Hurst-Wert" />
+                              <ListView fx:id="z0_hurst" prefHeight="200.0" prefWidth="150.0" />
+                          </items>
+                        </SplitPane>
+                     </right>
+                  </BorderPane>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab fx:id="zeitintervall1" text="0.1 s">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <center>
+                        <LineChart fx:id="z1_chart" createSymbols="false" legendVisible="false" title="Paketankunftsrate im Zeitintervall 0.1 s" BorderPane.alignment="CENTER">
+                          <xAxis>
+                            <NumberAxis label="t [s]" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="λ [1/s]" side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                     </center>
+                     <left>
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                           <items>
+                              <Label prefHeight="17.0" prefWidth="150.0" text="Zeit [s]    Paketanzahl" />
+                              <ListView fx:id="z1_pakets" prefHeight="200.0" prefWidth="200.0" />
+                           </items>
+                        </SplitPane>
+                     </left>
+                     <right>
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                          <items>
+                              <Label prefWidth="150.0" text="Methode      Hurst-Wert" />
+                              <ListView fx:id="z1_hurst" prefHeight="200.0" prefWidth="150.0" />
+                          </items>
+                        </SplitPane>
+                     </right>
+                  </BorderPane>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab fx:id="zeitintervall2" text="1 s">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <center>
+                        <LineChart fx:id="z2_chart" createSymbols="false" legendVisible="false" title="Paketankunftsrate im Zeitintervall 1 s" BorderPane.alignment="CENTER">
+                           <xAxis>
+                              <NumberAxis label="t [s]" side="BOTTOM" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis label="λ [1/s]" side="LEFT" />
+                           </yAxis>
+                        </LineChart>
+                     </center>
+                     <left>
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                           <items>
+                              <Label prefWidth="150.0" text="Zeit [s]    Paketanzahl" />
+                              <ListView fx:id="z2_pakets" prefHeight="200.0" prefWidth="200.0" />
+                           </items>
+                        </SplitPane>
+                     </left>
+                     <right>
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                          <items>
+                              <Label prefWidth="150.0" text="Methode      Hurst-Wert" />
+                              <ListView fx:id="z2_hurst" prefHeight="200.0" prefWidth="150.0" />
+                          </items>
+                        </SplitPane>
+                     </right>
+                  </BorderPane>
+               </children></AnchorPane>
+        </content>
+      </Tab>
+      <Tab fx:id="zeitintervall3" text="10 s">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <center>
+                        <LineChart fx:id="z3_chart" createSymbols="false" legendVisible="false" title="Paketankunftsrate im Zeitintervall 10 s" BorderPane.alignment="CENTER">
+                           <xAxis>
+                              <NumberAxis label="t [s]" side="BOTTOM" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis label="λ [1/s]" side="LEFT" />
+                           </yAxis>
+                        </LineChart>
+                     </center>
+                     <left>
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                           <items>
+                              <Label prefWidth="150.0" text="Zeit [s]    Paketanzahl" />
+                              <ListView fx:id="z3_pakets" prefHeight="200.0" prefWidth="200.0" />
+                           </items>
+                        </SplitPane>
+                     </left>
+                     <right>
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                          <items>
+                              <Label prefWidth="150.0" text="Methode      Hurst-Wert" />
+                              <ListView fx:id="z3_hurst" prefHeight="200.0" prefWidth="150.0" />
+                          </items>
+                        </SplitPane>
+                     </right>
+                  </BorderPane>
+               </children></AnchorPane>
+        </content>
+      </Tab>
+      <Tab fx:id="zeitintervall4" text="60 s">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <center>
+                        <LineChart fx:id="z4_chart" createSymbols="false" legendVisible="false" title="Paketankunftsrate im Zeitintervall 60 s" BorderPane.alignment="CENTER">
+                           <xAxis>
+                              <NumberAxis label="t [s]" side="BOTTOM" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis label="λ [1/s]" side="LEFT" />
+                           </yAxis>
+                        </LineChart>
+                     </center>
+                     <left>
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                          <items>
+                              <Label prefWidth="150.0" text="Zeit [s]    Paketanzahl" />
+                              <ListView fx:id="z4_pakets" prefHeight="200.0" prefWidth="200.0" />
+                          </items>
+                        </SplitPane>
+                     </left>
+                     <right>
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                          <items>
+                              <Label prefWidth="150.0" text="Methode      Hurst-Wert" />
+                              <ListView fx:id="z4_hurst" prefHeight="200.0" prefWidth="150.0" />
+                          </items>
+                        </SplitPane>
+                     </right>
+                  </BorderPane>
+               </children></AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="udp - Paketlänge">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <center>
+                        <LineChart fx:id="paket_length_chart_udp" animated="false" createSymbols="false" legendVisible="false" title="Histogramm Paketlänge UDP" BorderPane.alignment="CENTER">
+                          <xAxis>
+                            <NumberAxis label="Paketlänge [Byte]" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="Anzahl" side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                     </center>
+                     <left>
+                        <SplitPane dividerPositions="0.14634146341463414" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                          <items>
+                              <VBox prefWidth="158.0">
+                                 <children>
+                                    <ToggleButton fx:id="togglePketLengthUDP" mnemonicParsing="false" onAction="#toggleUDPZeroValues" text="verstecke 0 Werte">
+                                       <VBox.margin>
+                                          <Insets left="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </ToggleButton>
+                                    <Label prefWidth="150.0" text="Länge [Byte]     Anzahl" />
+                                 </children>
+                              </VBox>
+                              <ListView fx:id="paket_length_data_udp" prefHeight="200.0" prefWidth="150.0" />
+                          </items>
+                        </SplitPane>
+                     </left>
+                  </BorderPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="tcp - Paketlänge">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <center>
+                        <LineChart fx:id="paket_length_chart_tcp" animated="false" createSymbols="false" legendVisible="false" title="Histogramm Paketlänge TCP" BorderPane.alignment="CENTER">
+                          <xAxis>
+                            <NumberAxis label="Paketlänge [Byte]" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="Anzahl" side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                     </center>
+                     <left>
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                          <items>
+                              <Label prefWidth="150.0" text="Länge [Byte]     Anzahl" />
+                              <ListView fx:id="paket_length_data_tcp" prefHeight="200.0" prefWidth="150.0" />
+                          </items>
+                        </SplitPane>
+                     </left>
+                  </BorderPane>
+               </children></AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="other - Paketlänge">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <center>
+                        <LineChart fx:id="paket_length_chart_other" animated="false" createSymbols="false" legendVisible="false" title="Histogramm Paketlänge TCP" BorderPane.alignment="CENTER">
+                           <xAxis>
+                              <NumberAxis label="Paketlänge [Byte]" side="BOTTOM" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis label="Anzahl" side="LEFT" />
+                           </yAxis>
+                        </LineChart>
+                     </center>
+                     <left>
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                           <items>
+                              <Label prefWidth="150.0" text="Länge [Byte]     Anzahl" />
+                              <ListView fx:id="paket_length_data_other" prefHeight="200.0" prefWidth="150.0" />
+                           </items>
+                        </SplitPane>
+                     </left>
+                  </BorderPane>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+      <Tab fx:id="paketLengthHistogram" text="total - Paketlänge">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <center>
+                        <LineChart fx:id="paket_length_chart_total" animated="false" createSymbols="false" legendVisible="false" title="Histogramm Paketlänge aller Pakete" BorderPane.alignment="CENTER">
+                           <xAxis>
+                              <NumberAxis label="Paketlänge [Byte]" side="BOTTOM" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis label="Anzahl" side="LEFT" />
+                           </yAxis>
+                        </LineChart>
+                     </center>
+                     <left>
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                          <items>
+                              <Label prefWidth="150.0" text="Länge [Byte]     Anzahl" />
+                              <ListView fx:id="paket_length_data_total" prefHeight="200.0" prefWidth="150.0" />
+                          </items>
+                        </SplitPane>
+                     </left>
+                  </BorderPane>
+               </children></AnchorPane>
+        </content>
+      </Tab>
+      <Tab fx:id="udp" text="udp - CDF">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <center>
+                        <LineChart fx:id="udp_chart" createSymbols="false" legendVisible="false" title="CDF nur UDP Pakete" BorderPane.alignment="CENTER">
+                           <xAxis>
+                              <NumberAxis label="Paketlänge [Byte]" side="BOTTOM" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis label="CDF [%]" side="LEFT" />
+                           </yAxis>
+                        </LineChart>
+                     </center>
+                     <left>
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                          <items>
+                              <Label prefHeight="17.0" prefWidth="150.0" text="Länge [Byte]      %" />
+                              <ListView fx:id="udp_data" prefHeight="200.0" prefWidth="150.0" />
+                          </items>
+                        </SplitPane>
+                     </left>
+                  </BorderPane>
+               </children></AnchorPane>
+        </content>
+      </Tab>
+      <Tab fx:id="tcp" text="tcp - CDF">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <center>
+                        <LineChart fx:id="tcp_chart" createSymbols="false" legendVisible="false" title="CDF nur TCP Pakete" BorderPane.alignment="CENTER">
+                           <xAxis>
+                              <NumberAxis label="Paketlänge [Byte]" side="BOTTOM" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis label="CDF [%]" side="LEFT" />
+                           </yAxis>
+                        </LineChart>
+                     </center>
+                     <left>
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                          <items>
+                              <Label prefWidth="150.0" text="Länge [Byte]      %" />
+                              <ListView fx:id="tcp_data" prefHeight="200.0" prefWidth="150.0" />
+                          </items>
+                        </SplitPane>
+                     </left>
+                  </BorderPane>
+               </children></AnchorPane>
+        </content>
+      </Tab>
+      <Tab fx:id="tcp1" text="other - CDF">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <center>
+                        <LineChart fx:id="other_chart" createSymbols="false" legendVisible="false" title="CDF nur TCP Pakete" BorderPane.alignment="CENTER">
+                           <xAxis>
+                              <NumberAxis label="Paketlänge [Byte]" side="BOTTOM" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis label="CDF [%]" side="LEFT" />
+                           </yAxis>
+                        </LineChart>
+                     </center>
+                     <left>
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                           <items>
+                              <Label prefWidth="150.0" text="Länge [Byte]      %" />
+                              <ListView fx:id="other_data" prefHeight="200.0" prefWidth="150.0" />
+                           </items>
+                        </SplitPane>
+                     </left>
+                  </BorderPane>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+      <Tab fx:id="total" text="total CDF">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <center>
+                        <LineChart fx:id="total_chart" createSymbols="false" legendVisible="false" title="CDF aller Pakete" BorderPane.alignment="CENTER">
+                           <xAxis>
+                              <NumberAxis label="Paketlänge [Byte]" side="BOTTOM" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis label="CDF [%]" side="LEFT" />
+                           </yAxis>
+                        </LineChart>
+                     </center>
+                     <left>
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                          <items>
+                              <Label prefWidth="150.0" text="Länge [Byte]      %" />
+                              <ListView fx:id="total_data" prefHeight="200.0" prefWidth="150.0" />
+                          </items>
+                        </SplitPane>
+                     </left>
+                  </BorderPane>
+               </children></AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="Bursts">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <BorderPane fx:id="borderPaneBursts" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <bottom>
+                        <FlowPane BorderPane.alignment="CENTER">
+                           <children>
+                              <Label text="dargestelltes Intervall:">
+                                 <FlowPane.margin>
+                                    <Insets />
+                                 </FlowPane.margin>
+                                 <padding>
+                                    <Insets left="5.0" right="5.0" />
+                                 </padding>
+                              </Label>
+                              <ComboBox fx:id="burst_intervalSelector" prefWidth="150.0" />
+                              <Label text=", Anzahl Mittelwert-Intervalle:">
+                                 <FlowPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </FlowPane.margin>
+                              </Label>
+                              <ComboBox fx:id="burst_mittelwerteBox" prefWidth="150.0" />
+                              <Label text=", Faktor Burst &gt; Mittelwert:">
+                                 <padding>
+                                    <Insets left="5.0" right="5.0" />
+                                 </padding>
+                              </Label>
+                              <ComboBox fx:id="burst_faktorCombBox" prefWidth="150.0" />
+                           </children>
+                        </FlowPane>
+                     </bottom></BorderPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+  </tabs>
+</TabPane>

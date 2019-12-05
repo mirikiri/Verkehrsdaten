@@ -1,0 +1,1 @@
+﻿Sind in einem Netz sehr viele Pakete kurzer Paketlänge (<100 Byte) vorhanden, kann es zu langen Warteschlangen an Netzelementen kommen. Dies liegt daran, dass der Routing Vorgang für jedes Paket gleich lange dauert. Daher belastet eine große Anzahl kleiner Pakete das Netz.

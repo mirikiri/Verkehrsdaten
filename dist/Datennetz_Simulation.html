@@ -1,0 +1,45 @@
+<html><head>
+  <SCRIPT src="./web-files/dtjava.js"></SCRIPT>
+<script>
+    function launchApplication(jnlpfile) {
+        dtjava.launch(            {
+                url : 'Datennetz_Simulation.jnlp',
+                jnlp_content : 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxqbmxwIHNwZWM9IjEuMCIgeG1sbnM6amZ4PSJodHRwOi8vamF2YWZ4LmNvbSIgaHJlZj0iRGF0ZW5uZXR6X1NpbXVsYXRpb24uam5scCI+DQogIDxpbmZvcm1hdGlvbj4NCiAgICA8dGl0bGU+RGF0ZW5uZXR6X1NpbXVsYXRpb248L3RpdGxlPg0KICAgIDx2ZW5kb3I+QWRtaW48L3ZlbmRvcj4NCiAgICA8ZGVzY3JpcHRpb24+bnVsbDwvZGVzY3JpcHRpb24+DQogICAgPG9mZmxpbmUtYWxsb3dlZC8+DQogIDwvaW5mb3JtYXRpb24+DQogIDxyZXNvdXJjZXM+DQogICAgPGoyc2UgdmVyc2lvbj0iMS42KyIgaHJlZj0iaHR0cDovL2phdmEuc3VuLmNvbS9wcm9kdWN0cy9hdXRvZGwvajJzZSIvPg0KICAgIDxqYXIgaHJlZj0iRGF0ZW5uZXR6X1NpbXVsYXRpb24uamFyIiBzaXplPSIxODI5MjAiIGRvd25sb2FkPSJlYWdlciIgLz4NCiAgICA8amFyIGhyZWY9ImxpYlxKVHJhbnNmb3Jtcy0zLjEtd2l0aC1kZXBlbmRlbmNpZXMuamFyIiBzaXplPSIxNTAxNzMwIiBkb3dubG9hZD0iZWFnZXIiIC8+DQogICAgPGphciBocmVmPSJsaWJcSmFtYS0xLjAuMy5qYXIiIHNpemU9IjM1OTgxIiBkb3dubG9hZD0iZWFnZXIiIC8+DQogICAgPGphciBocmVmPSJsaWJcY29tbW9ucy1pby0yLjYuamFyIiBzaXplPSIyMTQ3ODgiIGRvd25sb2FkPSJlYWdlciIgLz4NCiAgICA8amFyIGhyZWY9ImxpYlxjb21tb25zLWxhbmczLTMuOC4xLmphciIgc2l6ZT0iNTAxODc5IiBkb3dubG9hZD0iZWFnZXIiIC8+DQogICAgPGphciBocmVmPSJsaWJcZ3Nvbi0yLjYuMi5qYXIiIHNpemU9IjIyOTY1MCIgZG93bmxvYWQ9ImVhZ2VyIiAvPg0KICAgIDxqYXIgaHJlZj0ibGliXG9wZW5jc3YtNC41LmphciIgc2l6ZT0iMTY4Njc1IiBkb3dubG9hZD0iZWFnZXIiIC8+DQogICAgPGphciBocmVmPSJsaWJccGNhcG5nZGVjb2Rlci0xLjItamF2YWRvYy5qYXIiIHNpemU9IjIyODkwOSIgZG93bmxvYWQ9ImVhZ2VyIiAvPg0KICAgIDxqYXIgaHJlZj0ibGliXHBjYXBuZ2RlY29kZXItMS4yLXNvdXJjZXMuamFyIiBzaXplPSI3NjU5OCIgZG93bmxvYWQ9ImVhZ2VyIiAvPg0KICAgIDxqYXIgaHJlZj0ibGliXHBjYXBuZ2RlY29kZXItMS4yLmphciIgc2l6ZT0iNTMwOTYiIGRvd25sb2FkPSJlYWdlciIgLz4NCiAgPC9yZXNvdXJjZXM+DQogIDxhcHBsZXQtZGVzYyAgd2lkdGg9IjgwMCIgaGVpZ2h0PSI2MDAiIG1haW4tY2xhc3M9ImNvbS5qYXZhZngubWFpbi5Ob0phdmFGWEZhbGxiYWNrIiAgbmFtZT0iRGF0ZW5uZXR6X1NpbXVsYXRpb24iID4NCiAgICA8cGFyYW0gbmFtZT0icmVxdWlyZWRGWFZlcnNpb24iIHZhbHVlPSI4LjArIi8+DQogIDwvYXBwbGV0LWRlc2M+DQogIDxqZng6amF2YWZ4LWRlc2MgIHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBtYWluLWNsYXNzPSJkYXRlbm5ldHpfc2ltdWxhdGlvbi5EYXRlbm5ldHpfU2ltdWxhdGlvbiIgIG5hbWU9IkRhdGVubmV0el9TaW11bGF0aW9uIiAvPg0KICA8dXBkYXRlIGNoZWNrPSJhbHdheXMiLz4NCjwvam5scD4NCg=='
+            },
+            {
+                javafx : '8.0+'
+            },
+            {}
+        );
+        return false;
+    }
+</script>
+
+<script>
+    function javafxEmbeddatennetz_simulation() {
+        dtjava.embed(
+            {
+                id : 'datennetz_simulation',
+                url : 'Datennetz_Simulation.jnlp',
+                placeholder : 'javafx-app-placeholder',
+                width : '800',
+                height : '600',
+                jnlp_content : 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxqbmxwIHNwZWM9IjEuMCIgeG1sbnM6amZ4PSJodHRwOi8vamF2YWZ4LmNvbSIgaHJlZj0iRGF0ZW5uZXR6X1NpbXVsYXRpb24uam5scCI+DQogIDxpbmZvcm1hdGlvbj4NCiAgICA8dGl0bGU+RGF0ZW5uZXR6X1NpbXVsYXRpb248L3RpdGxlPg0KICAgIDx2ZW5kb3I+QWRtaW48L3ZlbmRvcj4NCiAgICA8ZGVzY3JpcHRpb24+bnVsbDwvZGVzY3JpcHRpb24+DQogICAgPG9mZmxpbmUtYWxsb3dlZC8+DQogIDwvaW5mb3JtYXRpb24+DQogIDxyZXNvdXJjZXM+DQogICAgPGoyc2UgdmVyc2lvbj0iMS42KyIgaHJlZj0iaHR0cDovL2phdmEuc3VuLmNvbS9wcm9kdWN0cy9hdXRvZGwvajJzZSIvPg0KICAgIDxqYXIgaHJlZj0iRGF0ZW5uZXR6X1NpbXVsYXRpb24uamFyIiBzaXplPSIxODI5MjAiIGRvd25sb2FkPSJlYWdlciIgLz4NCiAgICA8amFyIGhyZWY9ImxpYlxKVHJhbnNmb3Jtcy0zLjEtd2l0aC1kZXBlbmRlbmNpZXMuamFyIiBzaXplPSIxNTAxNzMwIiBkb3dubG9hZD0iZWFnZXIiIC8+DQogICAgPGphciBocmVmPSJsaWJcSmFtYS0xLjAuMy5qYXIiIHNpemU9IjM1OTgxIiBkb3dubG9hZD0iZWFnZXIiIC8+DQogICAgPGphciBocmVmPSJsaWJcY29tbW9ucy1pby0yLjYuamFyIiBzaXplPSIyMTQ3ODgiIGRvd25sb2FkPSJlYWdlciIgLz4NCiAgICA8amFyIGhyZWY9ImxpYlxjb21tb25zLWxhbmczLTMuOC4xLmphciIgc2l6ZT0iNTAxODc5IiBkb3dubG9hZD0iZWFnZXIiIC8+DQogICAgPGphciBocmVmPSJsaWJcZ3Nvbi0yLjYuMi5qYXIiIHNpemU9IjIyOTY1MCIgZG93bmxvYWQ9ImVhZ2VyIiAvPg0KICAgIDxqYXIgaHJlZj0ibGliXG9wZW5jc3YtNC41LmphciIgc2l6ZT0iMTY4Njc1IiBkb3dubG9hZD0iZWFnZXIiIC8+DQogICAgPGphciBocmVmPSJsaWJccGNhcG5nZGVjb2Rlci0xLjItamF2YWRvYy5qYXIiIHNpemU9IjIyODkwOSIgZG93bmxvYWQ9ImVhZ2VyIiAvPg0KICAgIDxqYXIgaHJlZj0ibGliXHBjYXBuZ2RlY29kZXItMS4yLXNvdXJjZXMuamFyIiBzaXplPSI3NjU5OCIgZG93bmxvYWQ9ImVhZ2VyIiAvPg0KICAgIDxqYXIgaHJlZj0ibGliXHBjYXBuZ2RlY29kZXItMS4yLmphciIgc2l6ZT0iNTMwOTYiIGRvd25sb2FkPSJlYWdlciIgLz4NCiAgPC9yZXNvdXJjZXM+DQogIDxhcHBsZXQtZGVzYyAgd2lkdGg9IjgwMCIgaGVpZ2h0PSI2MDAiIG1haW4tY2xhc3M9ImNvbS5qYXZhZngubWFpbi5Ob0phdmFGWEZhbGxiYWNrIiAgbmFtZT0iRGF0ZW5uZXR6X1NpbXVsYXRpb24iID4NCiAgICA8cGFyYW0gbmFtZT0icmVxdWlyZWRGWFZlcnNpb24iIHZhbHVlPSI4LjArIi8+DQogIDwvYXBwbGV0LWRlc2M+DQogIDxqZng6amF2YWZ4LWRlc2MgIHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBtYWluLWNsYXNzPSJkYXRlbm5ldHpfc2ltdWxhdGlvbi5EYXRlbm5ldHpfU2ltdWxhdGlvbiIgIG5hbWU9IkRhdGVubmV0el9TaW11bGF0aW9uIiAvPg0KICA8dXBkYXRlIGNoZWNrPSJhbHdheXMiLz4NCjwvam5scD4NCg=='
+            },
+            {
+                javafx : '8.0+'
+            },
+            {}
+        );
+    }
+    <!-- Embed FX application into web page once page is loaded -->
+    dtjava.addOnloadCallback(javafxEmbeddatennetz_simulation);
+</script>
+
+</head><body>
+<h2>Test page for <b>Datennetz_Simulation</b></h2>
+  <b>Webstart:</b> <a href='Datennetz_Simulation.jnlp' onclick="return launchApplication('Datennetz_Simulation.jnlp');">click to launch this app as webstart</a><br><hr><br>
+
+  <!-- Applet will be inserted here -->
+  <div id='javafx-app-placeholder'></div>
+</body></html>
