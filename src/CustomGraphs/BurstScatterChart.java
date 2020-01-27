@@ -5,7 +5,6 @@
  */
 package CustomGraphs;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import javafx.beans.InvalidationListener;
@@ -38,7 +37,7 @@ public class BurstScatterChart<X, Y> extends ScatterChart {
         verticalMarkers = FXCollections.observableArrayList(data -> new Observable[]{data.XValueProperty()});
         verticalMarkers.addListener((InvalidationListener) observable -> layoutPlotChildren());
     }
-    
+
     //just adding the markers. drawing happens in layoutPlotChildren() down below
     public void addAllHorizontalMarkers(List<BurstTabMittelwert> mittelwerte) {
         this.mittelwerte = mittelwerte;
@@ -57,7 +56,7 @@ public class BurstScatterChart<X, Y> extends ScatterChart {
         getPlotChildren().add(line);
         horizontalMarkers.add(marker);
     }
-    
+
     public void removeAllHorizontalMarkers() {
         for (Data<?, ?> horizontalMarker : horizontalMarkers) {
             removeHorizontalValueMarker(horizontalMarker);
@@ -76,12 +75,12 @@ public class BurstScatterChart<X, Y> extends ScatterChart {
     //just adding the markers. drawing happens in layoutPlotChildren() down below
     public void addAllVerticalMarkers(XYChart.Series<Number, Number> series) {
         int size = series.getData().size();
-        List<Data<Number,Number>> dataInList = series.getData();
+        List<Data<Number, Number>> dataInList = series.getData();
         for (int i = 0; i < size; i++) {
             addVerticalValueMarker(new Data<>(dataInList.get(i).getXValue(), dataInList.get(i).getYValue()));
         }
     }
-        
+
     public void addVerticalValueMarker(Data<?, ?> marker) {
         Objects.requireNonNull(marker, "the marker must not be null");
         if (verticalMarkers.contains(marker)) {
@@ -92,7 +91,7 @@ public class BurstScatterChart<X, Y> extends ScatterChart {
         getPlotChildren().add(line);
         verticalMarkers.add(marker);
     }
-    
+
     public void removeAllVerticalMarkers() {
         for (Data<?, ?> verticalMarker : verticalMarkers) {
             removeVerticalValueMarker(verticalMarker);
@@ -107,7 +106,6 @@ public class BurstScatterChart<X, Y> extends ScatterChart {
             marker.setNode(null);
         }
     }
-   
 
     //draws all the lines
     @Override
@@ -115,7 +113,7 @@ public class BurstScatterChart<X, Y> extends ScatterChart {
         counter++;
         super.layoutPlotChildren();
         for (int i = 0; i < horizontalMarkers.size(); i++) {
-            Data<?,?> horizontalMarker = horizontalMarkers.get(i);
+            Data<?, ?> horizontalMarker = horizontalMarkers.get(i);
             BurstTabMittelwert mittelwert = mittelwerte.get(i);
             Line line = (Line) horizontalMarker.getNode();
 //            line.setStartX(0);
@@ -146,9 +144,6 @@ public class BurstScatterChart<X, Y> extends ScatterChart {
     public void setCounter(int counter) {
         this.counter = counter;
     }
-    
-    
-    
-    
+
 
 }

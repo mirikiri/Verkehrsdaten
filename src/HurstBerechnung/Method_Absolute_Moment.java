@@ -1,7 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *  Original Matlab-Code Author: Chu Chen
+ *  Version 1.0,  03/10/2008
+ *  chen-chu@163.com
+ *  https://de.mathworks.com/matlabcentral/fileexchange/19148-hurst-parameter-estimate
+ *
+ *  code translation to Java: Florian Mederer
  */
 package HurstBerechnung;
 

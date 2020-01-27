@@ -14,7 +14,7 @@ import model.Zeitintervall;
  */
 public class W_peakAnkunftsrate extends Warnung {
     
-    private double threshold = 1000.0;
+    private final double threshold = 900.0; //aka 10 times bigger
 
     public W_peakAnkunftsrate(String titel, String beschreibung) {
         super(titel, beschreibung);

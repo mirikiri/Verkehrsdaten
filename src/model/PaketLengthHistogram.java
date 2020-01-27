@@ -76,8 +76,7 @@ public class PaketLengthHistogram {
 
             }
         }
-        shown_Paketlengths.addAll(paketlengths);
-
+        
         paket_length_series = new XYChart.Series<>();
         for (int i = 0; i < paketlengths.size(); i++) {
             paket_length_series.getData().add(new XYChart.Data<>(i, getPaketlengths().get(i).getCount()));
@@ -86,6 +85,7 @@ public class PaketLengthHistogram {
             Collections.sort(biggerThanThreshold);
             paketlengths.addAll(biggerThanThreshold);
         }
+        shown_Paketlengths.addAll(paketlengths);
     }
 
     /**

@@ -307,6 +307,8 @@ public class MessungWindowVC implements Initializable {
     private ComboBox<Integer> burst_faktorCombBox;
     @FXML
     private ComboBox<Integer> burst_mittelwerteBox;
+    @FXML
+    private ToggleButton toggleCDF_UDP;
 
     /**
      * Initializes the controller class.
@@ -347,7 +349,7 @@ public class MessungWindowVC implements Initializable {
     }
 
     private void setCDFTab(ListView paketList, LineChart chart, CDF cdf) {
-        paketList.setItems(cdf.getPaketlengths());
+        paketList.setItems(cdf.getShown_Paketlengths());
         paketList.setCellFactory(CDFDataListView -> new CDFDataListViewCell());
         chart.setData(cdf.get_cdf_series());
     }
@@ -656,6 +658,31 @@ public class MessungWindowVC implements Initializable {
 
     public void hideZeroValuesPaketLenghtUDP() {
         Iterator itr = currentMessung.getPaketlengthHisto_udp().getShown_Paketlengths().iterator();
+        while (itr.hasNext()) {
+            PaketLength paketLength = (PaketLength) itr.next();
+            if (paketLength.getCount() == 0) {
+                itr.remove();
+            }
+        }
+    }
+
+    @FXML
+    private void toggleUDP_CDFZeroValues(ActionEvent event) {
+        Boolean buttonPressed = toggleCDF_UDP.isSelected();
+        if (Objects.equals(buttonPressed, Boolean.TRUE)) {
+            hideZeroValuesCDF_UDP();
+        } else {
+            addAllZeroValuesCDF_UDP();
+        }
+    }
+    
+    public void addAllZeroValuesCDF_UDP() {
+        currentMessung.getCdf_udp().getShown_Paketlengths().removeAll(currentMessung.getCdf_udp().getPaketlengths());
+        currentMessung.getCdf_udp().getShown_Paketlengths().addAll(currentMessung.getCdf_udp().getPaketlengths());
+    }
+
+    public void hideZeroValuesCDF_UDP() {
+        Iterator itr = currentMessung.getCdf_udp().getShown_Paketlengths().iterator();
         while (itr.hasNext()) {
             PaketLength paketLength = (PaketLength) itr.next();
             if (paketLength.getCount() == 0) {

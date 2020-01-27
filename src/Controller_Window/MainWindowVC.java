@@ -37,14 +37,17 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.Window;
+import model.AnonymizePCAPNG;
 import model.CreateVKjson;
 import model.Zeitintervall;
 import org.apache.commons.io.FilenameUtils;
 
 public class MainWindowVC implements Initializable {
 
-    private CreateVKjson vk = new CreateVKjson();
+    private final CreateVKjson vk = new CreateVKjson();
+    private final ReadWireSharkCSV csvReader = new ReadWireSharkCSV();
+    private final Read_pcapng pcapngReader = new Read_pcapng();
+    private final AnonymizePCAPNG anonymizePCAPNG = new AnonymizePCAPNG();
 
     private String path;
     private String fileName;
@@ -62,7 +65,8 @@ public class MainWindowVC implements Initializable {
         if (fileChooser == null) {
             fileChooser = new FileChooser();
             fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV", "*.csv"));
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("File", "*.csv", "*.pcapng"));
+//            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("pcapng", "*.pcapng"));
         }
 
         File file = fileChooser.showOpenDialog(fileChooseStage);
@@ -70,6 +74,7 @@ public class MainWindowVC implements Initializable {
     }
 
     public void readFile(File file) throws IOException {
+        long startTime = System.nanoTime();
         if (file != null) {
             path = file.getAbsolutePath();
             fileName = file.getName();
@@ -87,14 +92,15 @@ public class MainWindowVC implements Initializable {
         List<Paket> pakets = new ArrayList<>();
         switch (FilenameUtils.getExtension(file.getName())) {
             case "csv":
-                ReadWireSharkCSV csvReader = new ReadWireSharkCSV();
                 pakets = csvReader.readFile(path);
                 break;
             case "pcapng":
-                Read_pcapng pcapngReader = new Read_pcapng();
                 pakets = pcapngReader.readFile(path);
                 break;
         }
+        
+//        System.out.println("Einlesen: " + Math.round((double)(System.nanoTime() - startTime) / 1000000000 * 10000d) / 10000d  + " s");
+//        startTime = System.nanoTime();
 
         Messung messung = new Messung(path, pakets);
         // do downsampling for all arrival rate graph data. downsampling functions takes care of too short data as well
@@ -102,11 +108,15 @@ public class MainWindowVC implements Initializable {
             zeitintervall.downSample();
         }
 
+//        System.out.println("Messung Objekt: " + Math.round((double)(System.nanoTime() - startTime) / 1000000000 * 10000d) / 10000d  + " s");
+//        startTime = System.nanoTime();
+
         openAuswertungsWindow(messung);
 
         openWarnungenWindow(messung);
 
         openSimulationWindow(messung);
+        System.out.println("Fenster offen: " + Math.round((double)(System.nanoTime() - startTime) / 1000000000 * 10000d) / 10000d  + " s");
     }
 
     public void openAuswertungsWindow(Messung messung) throws IOException {
@@ -245,5 +255,33 @@ public class MainWindowVC implements Initializable {
         } else {
             System.out.println("Cancel");
         }
+    }
+
+    //anonymize pcapng wireshark file into a csv file only containing timestamp, paketlength, protocol. Only use that anonymized file as input in this software
+    @FXML
+    private void anonymizePCAPNG(ActionEvent event) throws IOException {
+        //create file choose window
+        Stage fileChooseStage = new Stage();
+        if (fileChooser == null) {
+            fileChooser = new FileChooser();
+            fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PCAPNG", "*.pcapng"));
+        }
+        File file = fileChooser.showOpenDialog(fileChooseStage);
+        //file is null if canceled
+        if (file != null) {
+            path = file.getAbsolutePath();
+            fileName = file.getName();
+        } else {
+            return;
+        }
+        //set directory onto file location for future fileChoose windows
+        if (fileChooser != null) {
+            String dir = path.replace(fileName, "");
+            fileChooser.setInitialDirectory(new File(dir));
+        }
+        List<Paket> pakets = pcapngReader.readFile(path);
+        anonymizePCAPNG.anonymize(pakets, path);
+        
     }
 }

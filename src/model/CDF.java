@@ -5,10 +5,7 @@
  */
 package model;
 
-import model.PaketLength;
-import model.Paket;
 import model.Paket.Protocol;
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,12 +19,14 @@ import javafx.scene.chart.XYChart;
  */
 public class CDF {
 
-    private ObservableList<PaketLength> paketlengths;
+    private List<PaketLength> paketlengths;
+    private ObservableList<PaketLength> shown_Paketlengths;
     private XYChart.Series<Number, Number> cdf_series;
 
     public CDF(List<Paket> pakets, Protocol protocol) {
         int count = 0, paketCount = 0;
-        paketlengths = FXCollections.observableArrayList();
+        paketlengths = new ArrayList<>();
+        shown_Paketlengths = FXCollections.observableArrayList();
         for (int i = 0; i < 1562; i++) {
             paketlengths.add(new PaketLength(i));
         }
@@ -100,6 +99,7 @@ public class CDF {
                 paketlengths.get(i).setPercent(new Double(paketlengths.get(i).getCount()) / paketCount + paketlengths.get(i - 1).getPercent());
             }
         }
+        shown_Paketlengths.addAll(paketlengths);
     }
 
     /**
@@ -112,8 +112,12 @@ public class CDF {
     /**
      * @return the paketlengths
      */
-    public ObservableList<PaketLength> getPaketlengths() {
+    public List<PaketLength> getPaketlengths() {
         return paketlengths;
+    }
+
+    public ObservableList<PaketLength> getShown_Paketlengths() {
+        return shown_Paketlengths;
     }
 
 }
