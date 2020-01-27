@@ -9,8 +9,8 @@ build/classes/Controller_Window/MessungWindowVC.class
 
 build/classes/Controller_Window/MessungWindowVC$1.class
 
-build/
+build/*
 
-dist/
+dist/*
 
-Json_Fehler/
+Json_Fehler/*
