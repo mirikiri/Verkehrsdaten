@@ -13,8 +13,14 @@ import fr.bmartel.pcapdecoder.structure.types.inter.IEnhancedPacketBLock;
 import fr.bmartel.pcapdecoder.structure.types.inter.INameResolutionBlock;
 import fr.bmartel.pcapdecoder.structure.types.inter.ISectionHeaderBlock;
 import fr.bmartel.pcapdecoder.structure.types.inter.IStatisticsBlock;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
 /**
  *
@@ -24,8 +30,19 @@ public class Read_pcapng {
 
     public List<Paket> readFile(String path) {
         int[] POWERS_OF_10 = {1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000};
-        List<Paket> pakets = new ArrayList<>();
         int timeStampResolution = 1;
+        List<Paket> pakets = null;
+        File file = new File(path);
+
+        //check the file size. if file is big, display confirmation dialog to offer cancellation
+        int fileLength = (int) file.length() / 1000000; //round file size to MB
+        if (fileLength > 1000) { //file bigger than 1000 MB
+            if (showAlert(fileLength, fileLength / 1000) == ButtonType.CANCEL) { //user pressed cancel
+                return pakets;
+            }
+        }
+        
+        pakets = new ArrayList<>();
 
         PcapDecoder decoder = new PcapDecoder(path);
         decoder.decode();
@@ -42,7 +59,7 @@ public class Read_pcapng {
                 IEnhancedPacketBLock section = (IEnhancedPacketBLock) element;
                 Double timestamp;
                 if (pakets.size() > 0) {
-                    timestamp = (double)(section.getTimeStamp() - pakets.get(0).getTimestamp_absolute()) / POWERS_OF_10[timeStampResolution];
+                    timestamp = (double) (section.getTimeStamp() - pakets.get(0).getTimestamp_absolute()) / POWERS_OF_10[timeStampResolution];
                 } else {
                     timestamp = 0.0;
                 }
@@ -70,6 +87,17 @@ public class Read_pcapng {
         }
 
         return pakets;
+    }
+    
+    public ButtonType showAlert(int size, int duration) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(this.getClass().getResource("/Pictures/icon.jpg").toString()));
+        alert.setHeaderText("Große Datei erkannt!");
+        alert.setContentText("Ihre ausgewählte Datei ist " + size + " MB groß. Dadurch kann das Einlesen " + duration + " Sekunden oder länger dauern. \n\nFortfahren ?");
+        
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.get();
     }
 
 }
