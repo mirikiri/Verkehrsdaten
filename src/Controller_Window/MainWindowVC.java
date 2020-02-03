@@ -51,7 +51,8 @@ public class MainWindowVC implements Initializable {
 
     private String path;
     private String fileName;
-    private FileChooser fileChooser;
+    private FileChooser fileChooser_auswerten;
+    private FileChooser fileChooser_anonymisieren;
 
     @FXML
     private Text actiontarget;
@@ -62,19 +63,19 @@ public class MainWindowVC implements Initializable {
     protected void handleSubmitButtonAction(ActionEvent event) throws IOException {
 
         Stage fileChooseStage = new Stage();
-        if (fileChooser == null) {
-            fileChooser = new FileChooser();
-            fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("File", "*.csv", "*.pcapng"));
-//            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("pcapng", "*.pcapng"));
+        if (fileChooser_auswerten == null) {
+            fileChooser_auswerten = new FileChooser();
+            fileChooser_auswerten.setInitialDirectory(new File(System.getProperty("user.home")));
+            fileChooser_auswerten.getExtensionFilters().add(new FileChooser.ExtensionFilter("File", "*.csv", "*.pcapng"));
+            fileChooser_auswerten.getExtensionFilters().add(new FileChooser.ExtensionFilter("pcapng", "*.pcapng"));
         }
 
-        File file = fileChooser.showOpenDialog(fileChooseStage);
+        File file = fileChooser_auswerten.showOpenDialog(fileChooseStage);
         readFile(file);
     }
 
     public void readFile(File file) throws IOException {
-        long startTime = System.nanoTime();
+//        long startTime = System.nanoTime();
         if (file != null) {
             path = file.getAbsolutePath();
             fileName = file.getName();
@@ -84,9 +85,9 @@ public class MainWindowVC implements Initializable {
         }
         actiontarget.setText("Ausgewertet: " + fileName);
 
-        if (fileChooser != null) {
+        if (fileChooser_auswerten != null) {
             String dir = path.replace(fileName, "");
-            fileChooser.setInitialDirectory(new File(dir));
+            fileChooser_auswerten.setInitialDirectory(new File(dir));
         }
 
         List<Paket> pakets = new ArrayList<>();
@@ -99,6 +100,11 @@ public class MainWindowVC implements Initializable {
                 break;
         }
         
+        //if user cancelled the reading of a big file, pakets will be null. function stops here
+        if (pakets == null) {
+            return;
+        }
+        
 //        System.out.println("Einlesen: " + Math.round((double)(System.nanoTime() - startTime) / 1000000000 * 10000d) / 10000d  + " s");
 //        startTime = System.nanoTime();
 
@@ -107,16 +113,12 @@ public class MainWindowVC implements Initializable {
         for (Zeitintervall zeitintervall : messung.getZeitintervalle()) {
             zeitintervall.downSample();
         }
-
-//        System.out.println("Messung Objekt: " + Math.round((double)(System.nanoTime() - startTime) / 1000000000 * 10000d) / 10000d  + " s");
-//        startTime = System.nanoTime();
-
+        
         openAuswertungsWindow(messung);
 
         openWarnungenWindow(messung);
 
         openSimulationWindow(messung);
-        System.out.println("Fenster offen: " + Math.round((double)(System.nanoTime() - startTime) / 1000000000 * 10000d) / 10000d  + " s");
     }
 
     public void openAuswertungsWindow(Messung messung) throws IOException {
@@ -262,12 +264,12 @@ public class MainWindowVC implements Initializable {
     private void anonymizePCAPNG(ActionEvent event) throws IOException {
         //create file choose window
         Stage fileChooseStage = new Stage();
-        if (fileChooser == null) {
-            fileChooser = new FileChooser();
-            fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PCAPNG", "*.pcapng"));
+        if (fileChooser_anonymisieren == null) {
+            fileChooser_anonymisieren = new FileChooser();
+            fileChooser_anonymisieren.setInitialDirectory(new File(System.getProperty("user.home")));
+            fileChooser_anonymisieren.getExtensionFilters().add(new FileChooser.ExtensionFilter("PCAPNG", "*.pcapng"));
         }
-        File file = fileChooser.showOpenDialog(fileChooseStage);
+        File file = fileChooser_anonymisieren.showOpenDialog(fileChooseStage);
         //file is null if canceled
         if (file != null) {
             path = file.getAbsolutePath();
@@ -276,9 +278,9 @@ public class MainWindowVC implements Initializable {
             return;
         }
         //set directory onto file location for future fileChoose windows
-        if (fileChooser != null) {
+        if (fileChooser_anonymisieren != null) {
             String dir = path.replace(fileName, "");
-            fileChooser.setInitialDirectory(new File(dir));
+            fileChooser_anonymisieren.setInitialDirectory(new File(dir));
         }
         List<Paket> pakets = pcapngReader.readFile(path);
         anonymizePCAPNG.anonymize(pakets, path);
