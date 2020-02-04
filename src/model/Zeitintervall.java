@@ -29,11 +29,14 @@ public class Zeitintervall {
     private int maxArrivalrate;
     private final double meanArrivalRate;
     private final double maxPeak;
+    private final int desiredNumberOfChartPoints = 2000; //since most monitors use resolution of 1920x1080 hardly more points than 2000 are needed
 
     public Zeitintervall(String name, List<Integer> values, Integer sumUpFactor, Boolean sumUp) {
         this.name = name + "s";
         paketsPerInterval = new ArrayList<>();
         Double nameAsDouble = Double.parseDouble(name);
+        xyListe = FXCollections.observableArrayList();
+        List<XYChart.Data<Number, Number>> chartPoints = new ArrayList<>();
 
         if (sumUp) {
             int counter = 0;
@@ -52,12 +55,20 @@ public class Zeitintervall {
             paketsPerInterval = values;
         }
 
-        List<XYChart.Data<Number, Number>> chartPoints = new ArrayList<>();
-        xyListe = FXCollections.observableArrayList();
-        chartPoints.add(new XYChart.Data<>(0.0 * nameAsDouble, 0.0));
+        //create objects for display in data list next to graph
         for (int i = 0; i < paketsPerInterval.size(); i++) {
             xyListe.add(new PaketsPerTimeInterval((i + 1) * nameAsDouble, paketsPerInterval.get(i)));
-            chartPoints.add(new XYChart.Data<>((i + 1) * nameAsDouble, paketsPerInterval.get(i)));
+//            chartPoints.add(new XYChart.Data<>((i + 1) * nameAsDouble, paketsPerInterval.get(i)));
+        }
+
+        //add a origin point to chart points
+        chartPoints.add(new XYChart.Data<>(0.0 * nameAsDouble, 0.0));
+        if (paketsPerInterval.size() <= (desiredNumberOfChartPoints * 2)) { // no downsampling needed when number of data points already low enough
+            for (int i = 0; i < paketsPerInterval.size(); i++) {
+                chartPoints.add(new XYChart.Data<>((i + 1) * nameAsDouble, paketsPerInterval.get(i)));
+            }
+        } else { //do downsampling to have fewer chart points for better performance
+            downSample(chartPoints, nameAsDouble);
         }
 
         chartSeries = new XYChart.Series<>();
@@ -131,7 +142,7 @@ public class Zeitintervall {
         return meanArrivalRate;
     }
 
-    public double getMeanArrivalRate(int lowerBound, int upperBound) {      
+    public double getMeanArrivalRate(int lowerBound, int upperBound) {
         if (upperBound >= paketsPerInterval.size()) {
             System.out.println("upperBound greater than list size");
             return -1;
@@ -140,61 +151,60 @@ public class Zeitintervall {
         for (int i = lowerBound; i <= upperBound; i++) {
             sum += paketsPerInterval.get(i);
         }
-        return Math.round(sum / (upperBound - lowerBound +1) *100d) / 100d ;
+        return Math.round(sum / (upperBound - lowerBound + 1) * 100d) / 100d;
     }
 
     public double getMaxPeak() {
         return maxPeak;
     }
-    
+
     public boolean getDownsampled() {
         return downsampled;
     }
-    
+
     //function to downsample only the visual data in order to increase performance
-    public void downSample() {
-        //since most monitors use resolution of 1920x1080 hardly more points than 2000 are needed
-        int desiredNumberOfDataPoints = 2000;
-        // if series is shorter than 4000 points, downsampling is not really needed
-        if (chartSeries.getData().size() < desiredNumberOfDataPoints*2) {
-            return;
-        }
-        List<XYChart.Data<Number,Number>> data = chartSeries.getData();
-        List<XYChart.Data<Number, Number>> downSampledChartPoints = new ArrayList<>();
-        downSampledChartPoints.add(new XYChart.Data<>(0.0, 0.0));
-        double intervalLength = (double) data.size() / (desiredNumberOfDataPoints / 2);
+    public void downSample(List chartPoints, Double interval) {
+
+//        List<XYChart.Data<Number, Number>> data = chartSeries.getData();
+//        List<XYChart.Data<Number, Number>> downSampledChartPoints = new ArrayList<>();
+//        downSampledChartPoints.add(new XYChart.Data<>(0.0, 0.0));
+        double intervalLength = (double) paketsPerInterval.size() / (desiredNumberOfChartPoints / 2);
         double counter = 0.0;
-        
+
         //since in every iteration a min and max are produced, loop only needs to go half the desired points
-        for (int i = 0; i < (desiredNumberOfDataPoints/2); i++) {
+        for (int i = 0; i < (desiredNumberOfChartPoints / 2); i++) {
             int lb = (int) counter;
             int ub = (int) (counter + intervalLength) - 1;
+
+//            Data<Number, Number> max = new Data<>(0, Integer.MIN_VALUE);
+//            Data<Number, Number> min = new Data<>(0, Integer.MAX_VALUE);
             
-            Data<Number, Number> max = new Data<>(0,Integer.MIN_VALUE);
-            Data<Number, Number> min = new Data<>(0, Integer.MAX_VALUE);
+            int max = Integer.MIN_VALUE;
+            int maxPos = 0;
+            int min = Integer.MAX_VALUE;
+            int minPos = 0;
             //find min and max of current interval
             for (int j = lb; j < ub; j++) {
-                if (data.get(j).getYValue().intValue() > max.getYValue().intValue()) {
-                    max = data.get(j);
+                if (paketsPerInterval.get(j) > max) {
+                    max = paketsPerInterval.get(j);
+                    maxPos = j;
                 }
-                if (data.get(j).getYValue().intValue() < min.getYValue().intValue()) {
-                    min = data.get(j);
+                if (paketsPerInterval.get(j) < min) {
+                    min = paketsPerInterval.get(j);
+                    minPos = j;
                 }
             }
             //add min and max in the same order as they appear in the whole data
-            if(max.getXValue().doubleValue() < min.getXValue().doubleValue()) {
-                downSampledChartPoints.add(new Data<>(max.getXValue(), max.getYValue()));
-                downSampledChartPoints.add(new Data<>(min.getXValue(), min.getYValue()));
+            if (maxPos < minPos) {
+                chartPoints.add(new Data<>((maxPos + 1) * interval, max));
+                chartPoints.add(new Data<>((minPos + 1) * interval, min));
             } else {
-                downSampledChartPoints.add(new Data<>(min.getXValue(), min.getYValue()));
-                downSampledChartPoints.add(new Data<>(max.getXValue(), max.getYValue()));
+                chartPoints.add(new Data<>((minPos + 1) * interval, min));
+                chartPoints.add(new Data<>((maxPos + 1) * interval, max));
             }
             counter += intervalLength;
         }
-        chartSeries.getData().clear();
-        chartSeries.getData().addAll(downSampledChartPoints);
         
         downsampled = true;
     }
-
 }

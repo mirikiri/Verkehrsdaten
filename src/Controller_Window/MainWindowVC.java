@@ -109,10 +109,6 @@ public class MainWindowVC implements Initializable {
 //        startTime = System.nanoTime();
 
         Messung messung = new Messung(path, pakets);
-        // do downsampling for all arrival rate graph data. downsampling functions takes care of too short data as well
-        for (Zeitintervall zeitintervall : messung.getZeitintervalle()) {
-            zeitintervall.downSample();
-        }
         
         openAuswertungsWindow(messung);
 
