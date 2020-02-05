@@ -110,6 +110,10 @@ public class MainWindowVC implements Initializable {
 
         Messung messung = new Messung(path, pakets);
         
+        if (messung.getBigFile()) {
+            showBigFileAlert(messung);
+        }
+        
         openAuswertungsWindow(messung);
 
         openWarnungenWindow(messung);
@@ -279,7 +283,16 @@ public class MainWindowVC implements Initializable {
             fileChooser_anonymisieren.setInitialDirectory(new File(dir));
         }
         List<Paket> pakets = pcapngReader.readFile(path);
-        anonymizePCAPNG.anonymize(pakets, path);
-        
+        anonymizePCAPNG.anonymize(pakets, path);  
+    }
+    
+    public void showBigFileAlert(Messung messung) {
+        Alert alert = new Alert(AlertType.WARNING);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(this.getClass().getResource("/Pictures/icon.jpg").toString()));
+        alert.setHeaderText("Sehr lange Messung!");
+        alert.setContentText("Die eingelesene Messung ist " + messung.getDuration() + " Sekunden lang. Aus Performance Gründen ist im Zeitintervall 10ms nur jeder 10te Wert erfasst und weiterhin der Burst-Graph deaktiviert.\n\nDie Verarbeitung kann einen Moment dauern. Bitte haben Sie etwas Geduld.");
+
+        alert.showAndWait();
     }
 }

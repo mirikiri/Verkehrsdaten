@@ -339,7 +339,10 @@ public class MessungWindowVC implements Initializable {
         setCDFTab(other_data, other_chart, currentMessung.getCdf_other());
         setCDFTab(total_data, total_chart, currentMessung.getCdf_total());
 
-        setBurstTab();
+        if (!currentMessung.getBigFile()) {
+            setBurstTab();
+        }
+        
     }
 
     private void setPaketLengthTab(ListView paketList, LineChart chart, PaketLengthHistogram histo) {
