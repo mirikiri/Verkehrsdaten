@@ -125,32 +125,7 @@ public class MatlabFunctions {
         }
         return B;
     }
-
-    //cumulative sum columnwide. See matlab wiki cumsum, author: FM
-//    public static double[][] cumsum(double[][] input) {
-//        double[][] result = new double[input.length][input[0].length];
-//        if (input.length == 1) {
-//            for (int i = 0; i < input[0].length; i++) {
-//                double sum = 0.0;
-//                for (int j = i; j >= 0; j--) {
-//                    sum += input[0][j];
-//                }
-//                result[0][i] = sum;
-//            }
-//        } else {
-//            for (int i = 0; i < input[0].length; i++) {
-//                for (int j = 0; j < input.length; j++) {
-//                    double sum = 0.0;
-//                    for (int k = j; k >= 0; k--) {
-//                        sum += input[k][i];
-//                    }
-//                    result[j][i] = sum;
-//                }
-//            }
-//        }
-//        return result;
-//    }
-    
+  
     //cumulative sum columnwide. See matlab wiki cumsum, author: FM
     public static double[][] cumsum(double[][] input) {
         double[][] result = new double[input.length][input[0].length];
@@ -170,7 +145,6 @@ public class MatlabFunctions {
         return result;
     }
 
-    //author: FM
     public static double[] mean(double[][] input) {
         double[] result = new double[input[0].length];
 
@@ -184,7 +158,6 @@ public class MatlabFunctions {
         return result;
     }
 
-    //author: FM
     public static double mean(double[] input) {
         double sum = 0.0;
 
@@ -194,7 +167,6 @@ public class MatlabFunctions {
         return sum / input.length;
     }
 
-    //author: FM
     public static double[] sum(double[][] input) {
         double[] result = new double[input[0].length];
 
@@ -208,7 +180,6 @@ public class MatlabFunctions {
         return result;
     }
 
-    //author: FM
     public static double sum(double[] input) {
         double sum = 0.0;
 
@@ -230,7 +201,6 @@ public class MatlabFunctions {
         return result;
     }
 
-    //author : FM
     public static double[] max(double[][] input) {
         double[] result = new double[input[0].length];
 
@@ -246,7 +216,6 @@ public class MatlabFunctions {
         return result;
     }
 
-    //author : FM
     public static double max(double[] input) {
         double max = Double.NEGATIVE_INFINITY;
 
@@ -258,7 +227,6 @@ public class MatlabFunctions {
         return max;
     }
 
-    //author: FM
     public static double[] min(double[][] input) {
         double[] result = new double[input[0].length];
 
@@ -274,7 +242,6 @@ public class MatlabFunctions {
         return result;
     }
 
-    //author : FM
     public static double min(double[] input) {
         double min = Double.POSITIVE_INFINITY;
 
@@ -304,7 +271,6 @@ public class MatlabFunctions {
         return standardDeviation / (length - 1);
     }
 
-    //author: FM
     public static double[] std(double[][] input) {
         double[] result = new double[input[0].length];
 
@@ -318,7 +284,6 @@ public class MatlabFunctions {
         return result;
     }
 
-    //author: FM
     public static double[] var(double[][] input) {
         double[] result = new double[input[0].length];
 
@@ -332,7 +297,6 @@ public class MatlabFunctions {
         return result;
     }
 
-    //author: FM
     public static double var(double[] input) {
         double result = calculateVar(input);
         return result;
@@ -358,7 +322,6 @@ public class MatlabFunctions {
         return result;
     }
 
-    //author: FM
     public static double[] log10(double[] input) {
         for (int i = 0; i < input.length; i++) {
             input[i] = Math.log10(input[i]);
@@ -366,11 +329,4 @@ public class MatlabFunctions {
         return input;
     }
 
-//    //author: FM
-//    public static List log10(List input) {
-//        for (int i = 0; i < input.size(); i++) {
-//            input.set(i, Math.log10((double) input.get(i)));
-//        }
-//        return input;
-//    }
 }

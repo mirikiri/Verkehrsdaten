@@ -65,7 +65,6 @@ public class VerkehrsprofilLVC extends ListCell<Verkehrsprofil> {
                 if (text.matches("[0-9]*")) {
                     return change;
                 }
-
                 return null;
             };
             TextFormatter<String> textFormatter = new TextFormatter<>(filter);
@@ -75,12 +74,9 @@ public class VerkehrsprofilLVC extends ListCell<Verkehrsprofil> {
             input.textProperty().addListener((observable, oldValue, newValue) -> {
                 if ("".equals(input.getText())) {
                     window_controller.updateSimulation(profil,0);
-//                    profil.setTimesAdded(0);
                 } else {
                     window_controller.updateSimulation(profil, Integer.parseInt(input.getText()));
-//                    profil.setTimesAdded(Integer.parseInt(input.getText()));
                 }
-//                window_controller.updateSimulation();
 
             });
             setText(null);

@@ -11,9 +11,9 @@ package model;
  */
 public class Hurst {
 
-    private String methode;
-    private String full_name;
-    private Double hurst_wert;
+    private final String methode;
+    private final String full_name;
+    private final Double hurst_wert;
     
     public Hurst(String methode, String full_name, Double hurst_wert) {
         this.methode = methode;

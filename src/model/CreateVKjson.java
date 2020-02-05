@@ -14,10 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- *
- * @author Admin
- */
+
+//this big mess of a class includes verkehrsprofile in c-code with adjustments to make it runnable in java
+
 public class CreateVKjson {
 
     private final int[] POWERS_OF_10 = {1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000};

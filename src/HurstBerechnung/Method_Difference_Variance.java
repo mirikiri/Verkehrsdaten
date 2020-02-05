@@ -14,10 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Admin
- */
+
 public class Method_Difference_Variance implements BerechnungsMethodenInterface {
 
     private String name;
@@ -36,7 +33,6 @@ public class Method_Difference_Variance implements BerechnungsMethodenInterface 
         if (sequence.size() < 30) {
             return -1.0;
         }
-//        long startTime = System.nanoTime();
         
         double[][] sequenceAsArray = new double[1][sequence.size()];
         for (int i = 0; i < sequenceAsArray[0].length; i++) {
@@ -120,7 +116,6 @@ public class Method_Difference_Variance implements BerechnungsMethodenInterface 
 
         double beta = -(YFit[YFit.length - 1] - YFit[0]) / (X[X.length - 1] - X[0]);
         double hurstFaktor = Math.round((1 - beta / 2) * 10000d) / 10000d;
-//        Matrix_Calc.measureTime("end:", startTime);
         return hurstFaktor;
     }
 

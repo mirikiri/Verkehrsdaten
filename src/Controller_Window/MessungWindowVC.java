@@ -274,30 +274,6 @@ public class MessungWindowVC implements Initializable {
     @FXML
     private PieChart paketPieChart;
     @FXML
-    private TabPane rootTabPane;
-    @FXML
-    private Tab zeitintervall0;
-    @FXML
-    private AnchorPane z0_Anchor;
-    @FXML
-    private Tab zeitintervall1;
-    @FXML
-    private Tab zeitintervall2;
-    @FXML
-    private Tab zeitintervall3;
-    @FXML
-    private Tab zeitintervall4;
-    @FXML
-    private Tab paketLengthHistogram;
-    @FXML
-    private Tab udp;
-    @FXML
-    private Tab tcp;
-    @FXML
-    private Tab tcp1;
-    @FXML
-    private Tab total;
-    @FXML
     private ToggleButton togglePketLengthUDP;
     @FXML
     private BorderPane borderPaneBursts;

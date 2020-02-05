@@ -7,10 +7,6 @@ package datennetz_simulation;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +16,6 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.CreateVKjson;
-import model.PaketToSend;
 import pl.edu.icm.jlargearrays.ConcurrencyUtils;
 
 /**
@@ -53,27 +48,6 @@ public class Datennetz_Simulation extends Application {
         });
 
         primaryStage.show();
-
-//        final int contentLength[] = {100, 300, 500};
-//        final int packageAmount[] = {500, 100, 1000};
-//        List<PaketToSend> paketslist = new ArrayList<>();
-//        
-//        for (int i = 0; i < packageAmount.length; i++) {
-//            for (int j = 0; j < packageAmount[i]; j++) {
-//                paketslist.add(new PaketToSend(contentLength[i]));
-//            }
-//        }
-//        
-//        Collections.shuffle(paketslist);
-//        
-//        for (PaketToSend paketToSend : paketslist) {
-//            DatagramPacket DpSend = new DatagramPacket(paketToSend.getContent(), paketToSend.getLength(), ip, 1234);
-//
-//            sleep(3);
-//            ds.send(DpSend);
-//            System.out.println(DpSend.getData());
-//            System.out.println(buf);
-//        }
     }
 
     public void checkForVerkehrsprofileJSON() {
@@ -92,34 +66,4 @@ public class Datennetz_Simulation extends Application {
         launch(args);
     }
     
-    //    public void something() {
-//        boolean check = true;
-//        List<Paket> pakets = new ArrayList<>();
-//
-//        HashMap<Double, Double> arrival = new HashMap();
-//        double timestamp_old = 0;
-//        double timestamp_current = 0;
-//        double timestamp_difference = 0;
-//        double timestamp_difference_all = 0;
-//
-//        if (check) {    //hier ein check ob mehr als 1 paket pro ms geschickt werden muss
-//            
-//            //code zum erstellen von struktur zum senden von mehr als 1 paket pro ms hier
-//            
-//        } else { // hier landen wir wenn die ankunftsrate nicht kritisch hoch ist
-//            
-//            for (int i = 0; i < pakets.size() - 1; i++) {
-//                int waitTime = (int)Math.round(pakets.get(i+1).getTimestamp() - pakets.get(i).getTimestamp());
-//                if (waitTime == 0) {
-//                    waitTime = 1; //falls 2 pakete sehr nah aufeinander folgen, werden sie hiermit auf 1 ms getrennt. Sollte nicht großartig bemerkbar sein
-//                }
-//                //jetzt hast die im endeffekt die wartezeit vom aktuellen paket aufs nächste. Die Wartezeit kannst beim Senden benutzen: Thread.sleep(waitTime)
-//                //wie du die waitTime speicherst, musst du schauen. Mit der HashMap hab ich noch nie gearbeitet, mit der kann ich dir online nicht helfen.
-//                //Da müssten wir uns wenn dann mal zusammensetzen und du erklärst mir wie du rangehen möchtest.
-//                //Ich hätte es anders gelöst, aber will dir da jetzt nicht zu sehr reinreden ;)
-//            }
-//        }
-//
-//    }
-
 }

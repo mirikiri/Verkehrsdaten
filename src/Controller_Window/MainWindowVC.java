@@ -39,7 +39,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.AnonymizePCAPNG;
 import model.CreateVKjson;
-import model.Zeitintervall;
 import org.apache.commons.io.FilenameUtils;
 
 public class MainWindowVC implements Initializable {
@@ -75,7 +74,6 @@ public class MainWindowVC implements Initializable {
     }
 
     public void readFile(File file) throws IOException {
-//        long startTime = System.nanoTime();
         if (file != null) {
             path = file.getAbsolutePath();
             fileName = file.getName();
@@ -105,9 +103,6 @@ public class MainWindowVC implements Initializable {
             return;
         }
         
-//        System.out.println("Einlesen: " + Math.round((double)(System.nanoTime() - startTime) / 1000000000 * 10000d) / 10000d  + " s");
-//        startTime = System.nanoTime();
-
         Messung messung = new Messung(path, pakets);
         
         if (messung.getBigFile()) {

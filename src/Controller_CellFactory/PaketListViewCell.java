@@ -48,7 +48,6 @@ public class PaketListViewCell extends ListCell<PaketsPerTimeInterval>{
                 }
 
             }
-
             time.setText(paket.getTime());
             count.setText(String.valueOf(paket.getCount()));
 

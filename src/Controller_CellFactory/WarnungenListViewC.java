@@ -6,28 +6,21 @@
 package Controller_CellFactory;
 
 import Auswertung_Warnungen.Warnung;
-import com.sun.javafx.property.adapter.PropertyDescriptor;
 import java.io.IOException;
 import java.util.Objects;
-import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TitledPane;
 
-/**
- *
- * @author Florian
- */
+
 public class WarnungenListViewC extends ListCell<Warnung> {
 
     @FXML
     private Label warnungen_TriggerText;
     @FXML
     private Label warnungen_beschreibung;
-    @FXML
-    private Label hintergrund;
     @FXML
     private TitledPane titlePane;
 
@@ -60,11 +53,7 @@ public class WarnungenListViewC extends ListCell<Warnung> {
             }
             warnungen_TriggerText.setText(warnung.getTriggerText());
             warnungen_beschreibung.setText(warnung.getBeschreibung());
-            
-            
-            
-//            titlePane.setExpanded(warnung.getExpanded());
-
+     
             setText(null);
             setGraphic(titlePane);
         }

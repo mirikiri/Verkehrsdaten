@@ -37,7 +37,6 @@ public class Method_Residuals_Of_Regression implements BerechnungsMethodenInterf
         if (sequence.size() < 60) {
             return -1.0;
         }
-//        long startTime = System.nanoTime();
         double[][] sequenceAsArray = new double[1][sequence.size()];
         for (int i = 0; i < sequenceAsArray[0].length; i++) {
             sequenceAsArray[0][i] = sequence.get(i);
@@ -118,7 +117,6 @@ public class Method_Residuals_Of_Regression implements BerechnungsMethodenInterf
         double[] YFit = polyval_X.getYout();
 
         double hurstFaktor = Math.round(((0.5 * (YFit[YFit.length - 1] - YFit[0]) / (X[X.length - 1] - X[0]))) * 10000d) / 10000d;
-//        Matrix_Calc.measureTime("end:", startTime);
         return hurstFaktor;
     }
 

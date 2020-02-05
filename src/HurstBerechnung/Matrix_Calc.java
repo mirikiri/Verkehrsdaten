@@ -28,10 +28,6 @@ public class Matrix_Calc {
         return result;
     }
     
-    public static void measureTime(String message, long startTime) {
-        System.out.println(message + " " + Math.round((double)(System.nanoTime() - startTime) / 1000000000 * 10000d) / 10000d  + "s");
-    }
-
     public static double[] subtraction(double[] A, double[] B) {
         if (A.length != B.length) {
             throw new IllegalArgumentException("Matrix_Calc::subtraction(double[] A, double[] B) Matrix A and B must have same size");

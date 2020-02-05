@@ -15,10 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jtransforms.fft.DoubleFFT_1D;
 
-/**
- *
- * @author Admin
- */
+
 public class Method_Periodogram implements BerechnungsMethodenInterface {
 
     private String name;
@@ -37,7 +34,6 @@ public class Method_Periodogram implements BerechnungsMethodenInterface {
         if (sequence.size() < 22) {
             return -1.0;
         }
-//        long startTime = System.nanoTime();
         double[] sequenceAsArray = new double[sequence.size()];
         for (int i = 0; i < sequenceAsArray.length; i++) {
             sequenceAsArray[i] = sequence.get(i);
@@ -79,7 +75,6 @@ public class Method_Periodogram implements BerechnungsMethodenInterface {
         double[] YFit = polyval_X.getYout();
         
         double hurstFaktor = Math.round((1 - (YFit[YFit.length-1] - YFit[0])/ (X[X.length-1] - X[0]))/2 * 10000d) / 10000d;
-//        Matrix_Calc.measureTime("end:", startTime);
         return hurstFaktor;
     }
 

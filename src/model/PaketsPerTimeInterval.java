@@ -11,8 +11,8 @@ package model;
  */
 public class PaketsPerTimeInterval {
 
-    private String time;
-    private Integer count;
+    private final String time;
+    private final Integer count;
 
     public PaketsPerTimeInterval(Double time, Integer count) {
 

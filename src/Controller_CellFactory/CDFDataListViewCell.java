@@ -54,9 +54,7 @@ public class CDFDataListViewCell extends ListCell<PaketLength>{
                 length.setText(String.valueOf(paketlength.getLength()));
                 percent.setText(String.format("%,.1f", (paketlength.getPercent()*100)));
             }
-              
-            
-            
+                    
             setText(null);
             setGraphic(box);
         }
