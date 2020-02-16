@@ -189,12 +189,12 @@ public class Messung {
         return Math.round(pakets.get(pakets.size() - 1).getTimestamp() * 1000d) / 1000d;
     }
 
-    public int getNumberOfPakets() {
+    public long getNumberOfPakets() {
         return pakets.size();
     }
 
-    public int getTypeTotalPakets(Protocol protocol) {
-        int counter = 0;
+    public long getTypeTotalPakets(Protocol protocol) {
+        long counter = 0;
         for (Paket paket : pakets) {
             if (paket.getProtocol() == protocol) {
                 counter++;
@@ -239,15 +239,19 @@ public class Messung {
     public double getMeanPaketLength(Protocol protocol) {
         List<PaketLength> lst = null;
         lst = switchProtocol(protocol);
-        int summe = 0;
+        long summe = 0;
         for (int i = 0; i < lst.size(); i++) {
-            summe += lst.get(i).getCount() * lst.get(i).getLength();
+            long var1 = lst.get(i).getCount();
+            long var2 = lst.get(i).getLength();
+            long help_var = var1 * var2;
+            summe += help_var;  //if this calculation is done in one line without helper variables, we get wrong results with very large files. presumably value overflow, but not sure
         }
         summe -= lst.get(1561).getCount() * lst.get(1561).getLength(); //an stelle 1561 liegen pakete >1560 Byte gesammelt
         if (protocol == Protocol.TOTAL) {
             return Math.round((double)summe / getNumberOfPakets()*100d)/100d;
         } else {
-            return Math.round((double)summe / getTypeTotalPakets(protocol)*100d)/100d;
+            long anzahl_pakets = getTypeTotalPakets(protocol);
+            return Math.round((double)summe / anzahl_pakets*100d)/100d;
         }     
     }
     
@@ -292,8 +296,8 @@ public class Messung {
     }
 
     //Getter Functions für Statistik Byte Daten
-    public int getTotalBytes(Protocol protocol) {
-        int totalBytes = 0;
+    public long getTotalBytes(Protocol protocol) {
+        long totalBytes = 0;
         if (protocol == Protocol.TOTAL) {
             for (Paket paket : pakets) {
                 totalBytes += paket.getPaketlength();
@@ -308,11 +312,11 @@ public class Messung {
         return totalBytes;
     }
 
-    public double getAverageKBytePerSecond(int totalBytes) {
+    public double getAverageKBytePerSecond(long totalBytes) {
         return Math.round(((double) totalBytes / getDuration() / 1000) * 100d) / 100d;
     }
 
-    public double getAverageKBitPerSecond(int totalBytes) {
+    public double getAverageKBitPerSecond(long totalBytes) {
         return Math.round(((double) (totalBytes * 8) / getDuration() / 1000) * 100d) / 100d;
     }
     

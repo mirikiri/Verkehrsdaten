@@ -343,15 +343,15 @@ public class MessungWindowVC implements Initializable {
     private void setAllgemeinLabels() {
         stat_filename.setText(currentMessung.getName());
         stat_duration.setText(Double.toString(currentMessung.getDuration()));
-        stat_totalPakets.setText(Integer.toString(currentMessung.getNumberOfPakets()));
-        int stat_udp_pakets = currentMessung.getTypeTotalPakets(Protocol.UDP);
-        stat_UDPtotal.setText(Integer.toString(stat_udp_pakets));
+        stat_totalPakets.setText(Long.toString(currentMessung.getNumberOfPakets()));
+        long stat_udp_pakets = currentMessung.getTypeTotalPakets(Protocol.UDP);
+        stat_UDPtotal.setText(Long.toString(stat_udp_pakets));
         stat_UDPprozent.setText(Double.toString(Math.round((double) stat_udp_pakets / currentMessung.getNumberOfPakets() * 10000d) / 100d));
-        int stat_tcp_pakets = currentMessung.getTypeTotalPakets(Protocol.TCP);
-        stat_TCPtotal.setText(Integer.toString(stat_tcp_pakets));
+        long stat_tcp_pakets = currentMessung.getTypeTotalPakets(Protocol.TCP);
+        stat_TCPtotal.setText(Long.toString(stat_tcp_pakets));
         stat_TCPprozent.setText(Double.toString(Math.round((double) stat_tcp_pakets / currentMessung.getNumberOfPakets() * 10000d) / 100d));
-        int stat_rest_pakets = currentMessung.getTypeTotalPakets(Protocol.OTHER);
-        stat_andereTotal.setText(Integer.toString(stat_rest_pakets));
+        long stat_rest_pakets = currentMessung.getTypeTotalPakets(Protocol.OTHER);
+        stat_andereTotal.setText(Long.toString(stat_rest_pakets));
         stat_andereProzent.setText(Double.toString(Math.round((double) stat_rest_pakets / currentMessung.getNumberOfPakets() * 10000d) / 100d));
 
         ObservableList<PieChart.Data> paketPieChartData = FXCollections.observableArrayList();
@@ -431,8 +431,8 @@ public class MessungWindowVC implements Initializable {
     }
 
     private void setSingleProtocolByteLabels(Protocol protocol, Label bytesTotal, Label byteskByte, Label byteskBit) {
-        int totalProtocolBytes = currentMessung.getTotalBytes(protocol);
-        bytesTotal.setText(Integer.toString(totalProtocolBytes));
+        long totalProtocolBytes = currentMessung.getTotalBytes(protocol);
+        bytesTotal.setText(Long.toString(totalProtocolBytes));
         byteskByte.setText(Double.toString(currentMessung.getAverageKBytePerSecond(totalProtocolBytes)));
         byteskBit.setText(Double.toString(currentMessung.getAverageKBitPerSecond(totalProtocolBytes)));
     }
