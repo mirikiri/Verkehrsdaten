@@ -274,30 +274,6 @@ public class MessungWindowVC implements Initializable {
     @FXML
     private PieChart paketPieChart;
     @FXML
-    private TabPane rootTabPane;
-    @FXML
-    private Tab zeitintervall0;
-    @FXML
-    private AnchorPane z0_Anchor;
-    @FXML
-    private Tab zeitintervall1;
-    @FXML
-    private Tab zeitintervall2;
-    @FXML
-    private Tab zeitintervall3;
-    @FXML
-    private Tab zeitintervall4;
-    @FXML
-    private Tab paketLengthHistogram;
-    @FXML
-    private Tab udp;
-    @FXML
-    private Tab tcp;
-    @FXML
-    private Tab tcp1;
-    @FXML
-    private Tab total;
-    @FXML
     private ToggleButton togglePketLengthUDP;
     @FXML
     private BorderPane borderPaneBursts;
@@ -338,10 +314,11 @@ public class MessungWindowVC implements Initializable {
         setCDFTab(tcp_data, tcp_chart, currentMessung.getCdf_tcp());
         setCDFTab(other_data, other_chart, currentMessung.getCdf_other());
         setCDFTab(total_data, total_chart, currentMessung.getCdf_total());
-        
+
         if (!currentMessung.getBigFile()) {
             setBurstTab();
         }
+        
     }
 
     private void setPaketLengthTab(ListView paketList, LineChart chart, PaketLengthHistogram histo) {
@@ -366,15 +343,15 @@ public class MessungWindowVC implements Initializable {
     private void setAllgemeinLabels() {
         stat_filename.setText(currentMessung.getName());
         stat_duration.setText(Double.toString(currentMessung.getDuration()));
-        stat_totalPakets.setText(Integer.toString(currentMessung.getNumberOfPakets()));
-        int stat_udp_pakets = currentMessung.getTypeTotalPakets(Protocol.UDP);
-        stat_UDPtotal.setText(Integer.toString(stat_udp_pakets));
+        stat_totalPakets.setText(Long.toString(currentMessung.getNumberOfPakets()));
+        long stat_udp_pakets = currentMessung.getTypeTotalPakets(Protocol.UDP);
+        stat_UDPtotal.setText(Long.toString(stat_udp_pakets));
         stat_UDPprozent.setText(Double.toString(Math.round((double) stat_udp_pakets / currentMessung.getNumberOfPakets() * 10000d) / 100d));
-        int stat_tcp_pakets = currentMessung.getTypeTotalPakets(Protocol.TCP);
-        stat_TCPtotal.setText(Integer.toString(stat_tcp_pakets));
+        long stat_tcp_pakets = currentMessung.getTypeTotalPakets(Protocol.TCP);
+        stat_TCPtotal.setText(Long.toString(stat_tcp_pakets));
         stat_TCPprozent.setText(Double.toString(Math.round((double) stat_tcp_pakets / currentMessung.getNumberOfPakets() * 10000d) / 100d));
-        int stat_rest_pakets = currentMessung.getTypeTotalPakets(Protocol.OTHER);
-        stat_andereTotal.setText(Integer.toString(stat_rest_pakets));
+        long stat_rest_pakets = currentMessung.getTypeTotalPakets(Protocol.OTHER);
+        stat_andereTotal.setText(Long.toString(stat_rest_pakets));
         stat_andereProzent.setText(Double.toString(Math.round((double) stat_rest_pakets / currentMessung.getNumberOfPakets() * 10000d) / 100d));
 
         ObservableList<PieChart.Data> paketPieChartData = FXCollections.observableArrayList();
@@ -454,8 +431,8 @@ public class MessungWindowVC implements Initializable {
     }
 
     private void setSingleProtocolByteLabels(Protocol protocol, Label bytesTotal, Label byteskByte, Label byteskBit) {
-        int totalProtocolBytes = currentMessung.getTotalBytes(protocol);
-        bytesTotal.setText(Integer.toString(totalProtocolBytes));
+        long totalProtocolBytes = currentMessung.getTotalBytes(protocol);
+        bytesTotal.setText(Long.toString(totalProtocolBytes));
         byteskByte.setText(Double.toString(currentMessung.getAverageKBytePerSecond(totalProtocolBytes)));
         byteskBit.setText(Double.toString(currentMessung.getAverageKBitPerSecond(totalProtocolBytes)));
     }
@@ -502,7 +479,7 @@ public class MessungWindowVC implements Initializable {
         final NumberAxis xAxis = new NumberAxis();
         final NumberAxis yAxis = new NumberAxis();
         xAxis.setLabel("t [s]");
-        yAxis.setLabel("λ [1/Intervall]");
+        yAxis.setLabel("Î» [1/Intervall]");
         BurstScatterChart<Number, Number> chart = new BurstScatterChart<>(xAxis, yAxis);
         return chart;
     }
