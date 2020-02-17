@@ -30,7 +30,9 @@ public class Messung {
     private final CDF cdf_tcp;
     private final CDF cdf_other;
     private final CDF cdf_total;
+    private final boolean bigFile;
 
+    
     public Messung(String path, List<Paket> pakets) {
 
         this.path = path;
@@ -40,19 +42,28 @@ public class Messung {
 
         List<Integer> firstInterval = sumUpTimeStamps(pakets);
 
-        zeitintervalle.add(new Zeitintervall("0.01", firstInterval, 1, Boolean.FALSE));
-        zeitintervalle.add(new Zeitintervall("0.1", zeitintervalle.get(zeitintervalle.size() - 1).getPaketsPerInterval(), 10, Boolean.TRUE));
-        zeitintervalle.add(new Zeitintervall("1", zeitintervalle.get(zeitintervalle.size() - 1).getPaketsPerInterval(), 10, Boolean.TRUE));
-        zeitintervalle.add(new Zeitintervall("10", zeitintervalle.get(zeitintervalle.size() - 1).getPaketsPerInterval(), 10, Boolean.TRUE));
-        zeitintervalle.add(new Zeitintervall("60", zeitintervalle.get(zeitintervalle.size() - 1).getPaketsPerInterval(), 6, Boolean.TRUE));
+        if (firstInterval.size() > 2500000) {
+            zeitintervalle.add(new Zeitintervall("0.01", firstInterval, 1, false, true, 10));
+            bigFile = true;
+        } else {
+            zeitintervalle.add(new Zeitintervall("0.01", firstInterval, 1, false, false, 1));
+            bigFile = false;
+        }
+        zeitintervalle.add(new Zeitintervall("0.1", zeitintervalle.get(zeitintervalle.size() - 1).getPaketsPerInterval(), 10, true, false, 1));
+        zeitintervalle.add(new Zeitintervall("1", zeitintervalle.get(zeitintervalle.size() - 1).getPaketsPerInterval(), 10, true, false, 1));
+        zeitintervalle.add(new Zeitintervall("10", zeitintervalle.get(zeitintervalle.size() - 1).getPaketsPerInterval(), 10, true, false, 1));
+        zeitintervalle.add(new Zeitintervall("60", zeitintervalle.get(zeitintervalle.size() - 1).getPaketsPerInterval(), 6, true, false, 1));
+        
         paketlengthHisto_udp = new PaketLengthHistogram(pakets, Protocol.UDP);
         paketlengthHisto_tcp = new PaketLengthHistogram(pakets, Protocol.TCP);
         paketlengthHisto_other = new PaketLengthHistogram(pakets, Protocol.OTHER);
         paketlengthHisto_total = new PaketLengthHistogram(pakets, Protocol.TOTAL);
+        
         cdf_udp = new CDF(pakets, Protocol.UDP);
         cdf_tcp = new CDF(pakets, Protocol.TCP);
         cdf_other = new CDF(pakets, Protocol.OTHER);
         cdf_total = new CDF(pakets, Protocol.TOTAL);
+
 
         schaetzer.berechneHurst(zeitintervalle.get(0));
         schaetzer.berechneHurst(zeitintervalle.get(1));
@@ -305,6 +316,10 @@ public class Messung {
 
     public double getAverageKBitPerSecond(int totalBytes) {
         return Math.round(((double) (totalBytes * 8) / getDuration() / 1000) * 100d) / 100d;
+    }
+    
+    public boolean getBigFile() {
+        return bigFile;
     }
 
 }

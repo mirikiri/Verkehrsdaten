@@ -50,6 +50,7 @@ import model.CreateVKjson;
 public class SimulationWindowVC implements Initializable {
 
     private XYChart.Series<Number, Number> originalPakets;
+    private XYChart.Series<Number, Number> copiedOriginalPakets;
     private ObservableList<Verkehrsprofil> profile;
     private XYChart.Series<Number, Number> simulatedPakets;
     private final Random rnd_generator = new Random();
@@ -82,14 +83,17 @@ public class SimulationWindowVC implements Initializable {
         profile_List.setCellFactory(ProfileListView -> new VerkehrsprofilLVC(this));
 
         simulatedPakets = new XYChart.Series<>();
+        copiedOriginalPakets = new XYChart.Series<>();
 
+        //change listener of the mode radio button
         modeSelect.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             @Override
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
                 if (oldValue != null && newValue != null) {
                     RadioButton oldVal = (RadioButton) oldValue;
                     RadioButton newVal = (RadioButton) newValue;
-
+                    
+                    //for every profile: remove already added instances with old mode, then add again with the new mode
                     for (Verkehrsprofil verkehrsprofil : profile) {
                         Integer timesAdded = verkehrsprofil.getOldTimesAdded();
                         updateSimulation(verkehrsprofil, 0, oldVal.getId());
@@ -107,20 +111,23 @@ public class SimulationWindowVC implements Initializable {
     public void startUp() {
         //deepcopy original pakets onto simulated pakets in order to have both in the graph
         List<XYChart.Data<Number, Number>> chartPoints = new ArrayList<>();
+        List<XYChart.Data<Number, Number>> chartPoints_copy = new ArrayList<>();
         int max = 0;
         for (int i = 0; i < originalPakets.getData().size(); i++) {
-            Number yValue = originalPakets.getData().get(i).getYValue();
-            if (yValue.intValue() >= max) {
-                max = yValue.intValue();
+            int yValue = originalPakets.getData().get(i).getYValue().intValue();
+            if (yValue >= max) {
+                max = yValue;
                 worstCasePos = i;
             }
             chartPoints.add(new XYChart.Data<>(originalPakets.getData().get(i).getXValue(), yValue));
+            chartPoints_copy.add(new XYChart.Data<>(originalPakets.getData().get(i).getXValue(), yValue));
         }
         simulatedPakets.getData().addAll(chartPoints);
+        copiedOriginalPakets.getData().addAll(chartPoints_copy);
 
-        originalPakets.setName("originale Ankunftsrate");
+        copiedOriginalPakets.setName("originale Ankunftsrate");
         simulatedPakets.setName("simulierter Gesamtverkehr");
-        lineChart.getData().addAll(originalPakets, simulatedPakets);
+        lineChart.getData().addAll(copiedOriginalPakets, simulatedPakets);
     }
 
     public void loadProfile() {

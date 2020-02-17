@@ -48,9 +48,9 @@ import org.apache.commons.io.IOUtils;
 public class WarnungenWindowVC implements Initializable {
 
     private Messung currentMessung;
-    private List<Warnung> warnungen = new ArrayList<>();
+    private final List<Warnung> warnungen = new ArrayList<>();
     private ObservableList<Warnung> shownWarnungen;
-    private Gson gson = new Gson();
+    private final Gson gson = new Gson();
 
     @FXML
     private ListView<Warnung> warnungenList;

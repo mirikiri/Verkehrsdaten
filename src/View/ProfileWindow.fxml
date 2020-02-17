@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller_Window.MainWindowVC">
+   <bottom>
+      <Pane maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="544.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text fx:id="savedinfo_Text" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="205.13671875" />
+         </children>
+         <BorderPane.margin>
+            <Insets left="15.0" right="15.0" />
+         </BorderPane.margin>
+      </Pane>
+   </bottom>
+   <left>
+      <Pane prefHeight="584.0" prefWidth="40.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="39.0" fitWidth="50.0" onMouseReleased="#handleMenuImage" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Pictures/Menu_Icon.jpg" />
+               </image>
+            </ImageView>
+            <GridPane fx:id="menuGrid" gridLinesVisible="true" prefHeight="200.0" prefWidth="190.0" styleClass="gridPane" stylesheets="@../CSS/Menu.css" visible="false">
+               <children>
+                  <Label prefHeight="27.0" prefWidth="193.0" text="Messung Starten" textFill="#021244" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="7.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Profil einrichten" textFill="#021244" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="7.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Auswertung einsehen" textFill="#021244" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="7.0" right="7.0" />
+                     </padding>
+                  </Label>
+                  <ImageView fitHeight="39.0" fitWidth="60.0" onMouseReleased="#handleMenuInvis" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Pictures/Menu_Icon_invert.jpg" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </ImageView>
+                  <Label text="Einstellungen" textFill="#021244" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="7.0" right="7.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </children>
+      </Pane>
+   </left>
+   <right>
+      <Pane prefHeight="200.0" prefWidth="40.0" BorderPane.alignment="CENTER">
+         <children>
+            <Circle fill="#ffffff00" layoutX="13.0" layoutY="576.0" radius="17.0" stroke="#021244" strokeType="INSIDE" />
+            <ImageView fx:id="hilfeImage" fitHeight="33.0" fitWidth="32.0" layoutX="-3.0" layoutY="561.0" onMouseReleased="#handleImageHilfe" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Pictures/Cloud_Icon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </right>
+
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="204.0" layoutY="56.0" text="Neues Profil erstellen" />
+            <Label layoutX="377.0" layoutY="56.0" text="Speichername" />
+            <Button layoutX="377.0" layoutY="478.0" mnemonicParsing="false" text="Button" />
+         </children>
+      </Pane>
+   </center>
+   
+   <stylesheets>
+      <URL value="@/CSS/MainWindow.css" />
+   </stylesheets>
+</BorderPane>

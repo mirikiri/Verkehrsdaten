@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -9,38 +19,127 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<GridPane fx:id="rootPane" alignment="center" hgap="10" styleClass="root" vgap="10" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller_Window.MainWindowVC">
-    <padding>
-        <Insets bottom="10" left="25" right="25" top="25" />
-    </padding>
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller_Window.MainWindowVC">
+    <center>
+        <Pane maxHeight="450.0" maxWidth="500.0" minHeight="400.0" minWidth="500.0" prefHeight="400.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button contentDisplay="CENTER" layoutX="150.0" layoutY="84.0" mnemonicParsing="false" onAction="#handleProfilButtonAction" prefHeight="23.0" prefWidth="200.0" stylesheets="@../CSS/MainWindow.css" text="Profil anlegen" />
+                <Button layoutX="150.0" layoutY="127.0" mnemonicParsing="false" onAction="#handleMessungButtonAction" prefWidth="200.0" stylesheets="@../CSS/MainWindow.css" text="Messung aufnehmen" />
+                <Button layoutX="152.0" layoutY="199.0" onAction="#handleAuswertungButtonAction" prefHeight="23.0" prefWidth="197.0" stylesheets="@../CSS/MainWindow.css" text="Auswertung einsehen" />
+                <Label id="U1" contentDisplay="CENTER" layoutX="56.0" layoutY="14.0" stylesheets="@../CSS/MainWindow.css" text="Was möchten Sie tun?" />
+                <CheckBox layoutX="134.0" layoutY="170.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" styleClass="checkBox" stylesheets="@../CSS/MainWindow.css" text="Verbindungsstatus zu Generatoren" />
+                <Accordion layoutX="150.0" layoutY="249.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="200.0" stylesheets="@../CSS/MainWindow.css">
+                    <panes>
+                        <TitledPane alignment="CENTER_RIGHT" animated="false" nodeOrientation="RIGHT_TO_LEFT" stylesheets="@../CSS/MainWindow.css" text="Zuletzt genutzt">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                            </content>
+                        </TitledPane>
+                        <TitledPane alignment="CENTER_RIGHT" animated="false" collapsible="false" expanded="false" nodeOrientation="RIGHT_TO_LEFT" stylesheets="@../CSS/MainWindow.css" text="Aus Ordner importieren">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                            </content>
+                        </TitledPane>
+                        <TitledPane alignment="CENTER_RIGHT" animated="false" nodeOrientation="RIGHT_TO_LEFT" stylesheets="@../CSS/MainWindow.css" text="Zuletzt aufgenommen">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                            </content>
+                        </TitledPane>
+                    </panes>
+                </Accordion>
+                <Button layoutX="120.0" layoutY="347.0" onAction="#restoreVkpJSON" prefHeight="32.0" prefWidth="261.0" stylesheets="@../CSS/MainWindow.css" text="verkehrsprofile.json wiederherstellen" />
+                <Button layoutX="151.0" layoutY="398.0" onAction="#anonymizePCAPNG" prefHeight="23.0" prefWidth="197.0" stylesheets="@../CSS/MainWindow.css" text=".pcapng anonymisieren" />
+            </children>
+        </Pane>
+    </center>
 
-    <Text id="welcome-text" text="Welcome" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
-   <Button mnemonicParsing="false" onAction="#restoreVkpJSON" text="verkehrsprofile.json wiederherstellen" GridPane.rowIndex="1" />
-   <Button mnemonicParsing="false" onAction="#anonymizePCAPNG" text=".pcapng anonymisieren" GridPane.rowIndex="3" />
-    
-    <HBox spacing="10" GridPane.rowIndex="6">
-        <Button onAction="#handleSubmitButtonAction" text="csv oder pcapng auswerten" />
-    </HBox>
-
-    <Text fx:id="actiontarget" GridPane.rowIndex="8" />
-    
     <stylesheets>
-    <URL value="@/CSS/MainWindow.css" />
-  </stylesheets>
-   <columnConstraints>
-      <ColumnConstraints minWidth="93.0" />
-      <ColumnConstraints />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-   </rowConstraints>
-   
-</GridPane>
+        <URL value="@/CSS/MainWindow.css" />
+    </stylesheets>
+   <left>
+      <Pane prefHeight="584.0" prefWidth="40.0" BorderPane.alignment="CENTER">
+         <children>
+              <ImageView fitHeight="39.0" fitWidth="50.0" onMouseReleased="#handleMenuImage" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                      <Image url="@../Pictures/Menu_Icon.jpg" />
+                  </image>
+              </ImageView>
+                <GridPane fx:id="menuGrid" gridLinesVisible="true" prefHeight="200.0" prefWidth="190.0" styleClass="gridPane" stylesheets="@../CSS/Menu.css" visible="false">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Label prefHeight="27.0" prefWidth="193.0" text="Messung Starten" textFill="#021244" GridPane.rowIndex="2">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <padding>
+                                <Insets left="7.0" />
+                            </padding>
+                        </Label>
+                        <Label text="Profil einrichten" textFill="#021244" GridPane.rowIndex="1">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <padding>
+                                <Insets left="7.0" />
+                            </padding>
+                        </Label>
+                        <Label text="Auswertung einsehen" textFill="#021244" GridPane.rowIndex="3">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <padding>
+                                <Insets left="7.0" right="7.0" />
+                            </padding>
+                        </Label>
+                        <ImageView fitHeight="39.0" fitWidth="60.0" onMouseReleased="#handleMenuInvis" pickOnBounds="true" preserveRatio="true">
+                            <GridPane.margin>
+                                <Insets />
+                            </GridPane.margin>
+                            <image>
+                                <Image url="@../Pictures/Menu_Icon_invert.jpg" />
+                            </image>
+                        </ImageView>
+                        <Label text="Einstellungen" textFill="#021244" GridPane.rowIndex="4">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <padding>
+                                <Insets left="7.0" right="7.0" />
+                            </padding>
+                        </Label>
+                    </children>
+                </GridPane>
+         </children>
+      </Pane>
+   </left>
+   <right>
+      <Pane prefHeight="200.0" prefWidth="40.0" BorderPane.alignment="CENTER">
+         <children>
+            <Circle fill="#ffffff00" layoutX="14.0" layoutY="570.0" radius="17.0" stroke="#021244" strokeType="INSIDE" />
+         </children></Pane>
+   </right>
+   <bottom>
+      <Pane maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="544.0" BorderPane.alignment="CENTER">
+         <children>
+              <Text fx:id="actiontarget" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="205.13671875" />
+            <ImageView fx:id="hilfeImage" fitHeight="33.0" fitWidth="32.0" layoutX="543.0" layoutY="-16.0" onMouseReleased="#handleImageHilfe" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Pictures/Cloud_Icon.png" />
+               </image></ImageView>
+         </children>
+         <BorderPane.margin>
+            <Insets left="15.0" right="15.0" />
+         </BorderPane.margin>
+      </Pane>
+   </bottom>
+
+</BorderPane>

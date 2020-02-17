@@ -37,13 +37,13 @@ public class Datennetz_Simulation extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("/View/MainWindow.fxml"));
 
-        Scene scene = new Scene(root, 300, 275);
+        Scene scene = new Scene(root, 700, 600);
 
         primaryStage.setTitle("Welcome");
-        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/Pictures/icon.jpg")));
         primaryStage.setScene(scene);
-        primaryStage.setMinWidth(330);
-        primaryStage.setMinHeight(275);
+        primaryStage.setMinWidth(700);
+        primaryStage.setMinHeight(600);
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/Pictures/PC_Icon.png")));
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent t) {
