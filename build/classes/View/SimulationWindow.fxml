@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -9,50 +15,144 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import java.net.*?>
+<?import javafx.scene.text.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
 
-<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller_Window.SimulationWindowVC">
-   <children>
-      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <center>
-            <LineChart fx:id="lineChart" createSymbols="false" styleClass="chart-series-line" stylesheets="@../CSS/chartLines.css" BorderPane.alignment="CENTER">
-              <xAxis>
-                <NumberAxis label="t [s]" side="BOTTOM" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis label="λ [1/s]" side="LEFT" />
-              </yAxis>
-            </LineChart>
-         </center>
-         <left>
-            <ListView fx:id="profile_List" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-         </left>
-         <bottom>
-            <FlowPane alignment="CENTER" BorderPane.alignment="CENTER">
-               <children>
-                  <RadioButton fx:id="standard" mnemonicParsing="false" text="Standard">
-                     <padding>
-                        <Insets left="5.0" right="5.0" />
-                     </padding>
-                     <toggleGroup>
-                        <ToggleGroup fx:id="modeSelect" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <RadioButton fx:id="random" mnemonicParsing="false" text="Zufällig" toggleGroup="$modeSelect">
-                     <padding>
-                        <Insets left="5.0" right="5.0" />
-                     </padding>
-                  </RadioButton>
-                  <RadioButton fx:id="worstCase" mnemonicParsing="false" text="Worst-Case" toggleGroup="$modeSelect">
-                     <padding>
-                        <Insets left="5.0" right="5.0" />
-                     </padding>
-                  </RadioButton>
-               </children>
-               <BorderPane.margin>
-                  <Insets bottom="5.0" top="5.0" />
-               </BorderPane.margin>
-            </FlowPane>
-         </bottom>
-      </BorderPane>
-   </children>
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller_Window.SimulationWindowVC">
+    <children>
+        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <center>
+                <LineChart fx:id="lineChart" createSymbols="false" styleClass="chart-series-line" stylesheets="@../CSS/chartLines.css" BorderPane.alignment="CENTER">
+                    <xAxis>
+                        <NumberAxis label="t [s]" side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="λ [1/s]" side="LEFT" />
+                    </yAxis>
+                </LineChart>
+            </center>
+            <left>
+                <ListView fx:id="profile_List" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            </left>
+            <bottom>
+                <FlowPane alignment="CENTER" BorderPane.alignment="CENTER">
+                    <children>
+                        <RadioButton fx:id="standard" mnemonicParsing="false" text="Standard">
+                            <padding>
+                                <Insets left="5.0" right="5.0" />
+                            </padding>
+                            <toggleGroup>
+                                <ToggleGroup fx:id="modeSelect" />
+                            </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="random" mnemonicParsing="false" text="Zufällig" toggleGroup="$modeSelect">
+                            <padding>
+                                <Insets left="5.0" right="5.0" />
+                            </padding>
+                        </RadioButton>
+                        <RadioButton fx:id="worstCase" mnemonicParsing="false" text="Worst-Case" toggleGroup="$modeSelect">
+                            <padding>
+                                <Insets left="5.0" right="5.0" />
+                            </padding>
+                        </RadioButton>
+                    </children>
+                    <BorderPane.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                    </BorderPane.margin>
+                </FlowPane>
+            </bottom>
+            <top>
+                <Pane prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <ImageView fitHeight="39.0" fitWidth="39.0" onMouseReleased="#handleMenuImage" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Pictures/Menu_Icon.jpg" />
+                            </image>
+                        </ImageView>
+                        <GridPane fx:id="grid_menu" gridLinesVisible="true" prefHeight="238.0" prefWidth="175.0" styleClass="menugridPane" stylesheets="@../CSS/MainWindow.css" visible="false">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="-Infinity" percentWidth="0.0" prefWidth="175.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <ImageView fitHeight="39.0" fitWidth="39.0" onMouseReleased="#handleMenuInvis" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../Pictures/Menu_Icon_invert.jpg" />
+                                    </image>
+                                </ImageView>
+                                <Label fx:id="label_Messung" onMouseReleased="#handlemenumessung" prefHeight="43.0" prefWidth="175.0" styleClass="menulabel" stylesheets="@../CSS/MainWindow.css" text="Messung aufnehmen" textFill="#021244" GridPane.rowIndex="3">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                    <padding>
+                                        <Insets left="7.0" />
+                                    </padding>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Label>
+                                <Label fx:id="label_profil" onMouseReleased="#handlemenuprofil" prefHeight="43.0" prefWidth="175.0" styleClass="menulabel" stylesheets="@../CSS/MainWindow.css" text="Profil anlegen" textFill="#021244" GridPane.rowIndex="2">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                    <padding>
+                                        <Insets left="7.0" />
+                                    </padding>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Label>
+                                <Label fx:id="label_auswertung" onMouseReleased="#handlemenuauswertung" prefHeight="39.0" prefWidth="175.0" styleClass="menulabel" stylesheets="@../CSS/MainWindow.css" text="Auswertung einsehen" textFill="#021244" GridPane.rowIndex="4">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                    <padding>
+                                        <Insets left="7.0" />
+                                    </padding>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Label>
+                                <Label fx:id="label_einstellung" onMouseReleased="#handlemenueinstellungen" prefHeight="41.0" prefWidth="175.0" styleClass="menulabel" stylesheets="@../CSS/MainWindow.css" text="Einstellungen" textFill="#021244" GridPane.rowIndex="5">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                    <padding>
+                                        <Insets left="7.0" />
+                                    </padding>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Label>
+                                <Label fx:id="label_home" onMouseReleased="#handlemenuHome" prefHeight="43.0" prefWidth="175.0" styleClass="menulabel" stylesheets="@../CSS/MainWindow.css" text="Home" textFill="#021244" GridPane.rowIndex="1">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                    <padding>
+                                        <Insets left="7.0" />
+                                    </padding>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Label>
+                            </children>
+                        </GridPane>
+                    </children>
+                </Pane>
+            </top>
+        </BorderPane>
+    </children>
 </AnchorPane>

@@ -8,12 +8,13 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Datennetz_Simulation.jar" size="205567" download="eager" />
+    <jar href="Datennetz_Simulation.jar" size="21229056" download="eager" />
     <jar href="lib\JTransforms-3.1-with-dependencies.jar" size="1501730" download="eager" />
     <jar href="lib\Jama-1.0.3.jar" size="35981" download="eager" />
     <jar href="lib\commons-io-2.6.jar" size="214788" download="eager" />
     <jar href="lib\commons-lang3-3.8.1.jar" size="501879" download="eager" />
     <jar href="lib\gson-2.6.2.jar" size="229650" download="eager" />
+    <jar href="lib\jsch-0.1.53.jar" size="278297" download="eager" />
     <jar href="lib\opencsv-4.5.jar" size="168675" download="eager" />
     <jar href="lib\pcapngdecoder-1.2-javadoc.jar" size="228909" download="eager" />
     <jar href="lib\pcapngdecoder-1.2-sources.jar" size="76598" download="eager" />

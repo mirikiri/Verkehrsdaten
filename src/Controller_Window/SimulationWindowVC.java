@@ -8,6 +8,7 @@ package Controller_Window;
 import Controller_CellFactory.VerkehrsprofilLVC;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
+import static datennetz_simulation.Datennetz_Simulation.menucontrol;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -38,7 +39,10 @@ import java.nio.file.Files;
 import java.nio.file.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.CreateVKjson;
 
@@ -50,6 +54,7 @@ import model.CreateVKjson;
 public class SimulationWindowVC implements Initializable {
 
     private XYChart.Series<Number, Number> originalPakets;
+    private XYChart.Series<Number, Number> copiedOriginalPakets;
     private ObservableList<Verkehrsprofil> profile;
     private XYChart.Series<Number, Number> simulatedPakets;
     private final Random rnd_generator = new Random();
@@ -69,6 +74,18 @@ public class SimulationWindowVC implements Initializable {
     private RadioButton random;
     @FXML
     private RadioButton worstCase;
+    @FXML
+    private GridPane grid_menu;
+    @FXML
+    private Label label_Messung;
+    @FXML
+    private Label label_profil;
+    @FXML
+    private Label label_auswertung;
+    @FXML
+    private Label label_einstellung;
+    @FXML
+    private Label label_home;
 
     /**
      * Initializes the controller class.
@@ -82,14 +99,17 @@ public class SimulationWindowVC implements Initializable {
         profile_List.setCellFactory(ProfileListView -> new VerkehrsprofilLVC(this));
 
         simulatedPakets = new XYChart.Series<>();
+        copiedOriginalPakets = new XYChart.Series<>();
 
+        //change listener of the mode radio button
         modeSelect.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             @Override
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
                 if (oldValue != null && newValue != null) {
                     RadioButton oldVal = (RadioButton) oldValue;
                     RadioButton newVal = (RadioButton) newValue;
-
+                    
+                    //for every profile: remove already added instances with old mode, then add again with the new mode
                     for (Verkehrsprofil verkehrsprofil : profile) {
                         Integer timesAdded = verkehrsprofil.getOldTimesAdded();
                         updateSimulation(verkehrsprofil, 0, oldVal.getId());
@@ -107,20 +127,23 @@ public class SimulationWindowVC implements Initializable {
     public void startUp() {
         //deepcopy original pakets onto simulated pakets in order to have both in the graph
         List<XYChart.Data<Number, Number>> chartPoints = new ArrayList<>();
+        List<XYChart.Data<Number, Number>> chartPoints_copy = new ArrayList<>();
         int max = 0;
         for (int i = 0; i < originalPakets.getData().size(); i++) {
-            Number yValue = originalPakets.getData().get(i).getYValue();
-            if (yValue.intValue() >= max) {
-                max = yValue.intValue();
+            int yValue = originalPakets.getData().get(i).getYValue().intValue();
+            if (yValue >= max) {
+                max = yValue;
                 worstCasePos = i;
             }
             chartPoints.add(new XYChart.Data<>(originalPakets.getData().get(i).getXValue(), yValue));
+            chartPoints_copy.add(new XYChart.Data<>(originalPakets.getData().get(i).getXValue(), yValue));
         }
         simulatedPakets.getData().addAll(chartPoints);
+        copiedOriginalPakets.getData().addAll(chartPoints_copy);
 
-        originalPakets.setName("originale Ankunftsrate");
+        copiedOriginalPakets.setName("originale Ankunftsrate");
         simulatedPakets.setName("simulierter Gesamtverkehr");
-        lineChart.getData().addAll(originalPakets, simulatedPakets);
+        lineChart.getData().addAll(copiedOriginalPakets, simulatedPakets);
     }
 
     public void loadProfile() {
@@ -317,4 +340,43 @@ public class SimulationWindowVC implements Initializable {
         }
 
     }
+
+    @FXML
+    private void handlemenumessung(MouseEvent event) throws IOException {
+        menucontrol.handlemenumessung();
+    }
+
+    @FXML
+    private void handlemenuprofil(MouseEvent event) throws IOException {
+        menucontrol.handlemenuprofil();
+    }
+
+    @FXML
+    private void handlemenuauswertung(MouseEvent event) throws IOException {
+        menucontrol.handlemenuauswertung();
+    }
+
+    @FXML
+    private void handlemenueinstellungen(MouseEvent event) throws IOException {
+        menucontrol.handlemenueinstellungen();
+    }
+
+    @FXML
+    private void handlemenuHome(MouseEvent event) throws IOException {
+        menucontrol.handlemenuHome();
+    }
+    
+        
+    @FXML
+    private void handleMenuImage(MouseEvent event) {
+        grid_menu.setVisible(true);
+        //setAnimation(menu, true);
+    }
+    
+    @FXML
+    private void handleMenuInvis(MouseEvent event) {
+        grid_menu.setVisible(false);
+        //setAnimation(homeWindow, false);
+    }
+    
 }

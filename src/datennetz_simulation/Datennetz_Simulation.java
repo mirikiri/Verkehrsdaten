@@ -5,12 +5,10 @@
  */
 package datennetz_simulation;
 
+import Menu.MenuController;
+import Profile.ProfileController;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +18,6 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.CreateVKjson;
-import model.PaketToSend;
 import pl.edu.icm.jlargearrays.ConcurrencyUtils;
 
 /**
@@ -30,20 +27,25 @@ import pl.edu.icm.jlargearrays.ConcurrencyUtils;
 //just soime random comment
 public class Datennetz_Simulation extends Application {
 
+    public static Stage parentWindow;
+    public static MenuController menucontrol = new MenuController();
+    public static String targetsystem = "Linux";
+    public static ProfileController profilcontrol = new ProfileController();
+    
     @Override
     public void start(Stage primaryStage) throws IOException {
-
+        parentWindow = primaryStage;
         checkForVerkehrsprofileJSON();
 
         Parent root = FXMLLoader.load(getClass().getResource("/View/MainWindow.fxml"));
 
-        Scene scene = new Scene(root, 300, 275);
+        Scene scene = new Scene(root, 700, 600);
 
-        primaryStage.setTitle("Welcome");
-        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/Pictures/icon.jpg")));
+        primaryStage.setTitle("Willkommen");
         primaryStage.setScene(scene);
-        primaryStage.setMinWidth(330);
-        primaryStage.setMinHeight(275);
+        primaryStage.setMinWidth(700);
+        primaryStage.setMinHeight(600);
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/Pictures/Cloud_Icon_bottom.png")));
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent t) {

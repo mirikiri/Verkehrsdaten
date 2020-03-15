@@ -25,7 +25,7 @@ public class W_kleinePakete extends Warnung {
     @Override
     public void check_Trigger(Messung messung) {
         List<PaketLength> paketlengths = messung.getPaketlengthHisto_total().getPaketlengths();
-        int totalPakets = messung.getNumberOfPakets();
+        int totalPakets = (int) messung.getNumberOfPakets();
         int smallerthanThreshold = 0;
         for (int i = 0; i < threshold_byte + 1; i++) {
             smallerthanThreshold += paketlengths.get(i).getCount();
