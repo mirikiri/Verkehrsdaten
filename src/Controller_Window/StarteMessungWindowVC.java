@@ -9,11 +9,8 @@ package Controller_Window;
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
-<<<<<<< HEAD
 import datennetz_simulation.Datennetz_Simulation;
 import static datennetz_simulation.Datennetz_Simulation.menucontrol;
-=======
->>>>>>> master
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -33,7 +30,6 @@ import javafx.scene.image.ImageView;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-<<<<<<< HEAD
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -47,10 +43,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import Profile.ProfileController;
 import static datennetz_simulation.Datennetz_Simulation.targetsystem;
-=======
-import javafx.scene.layout.Pane;
-import javafx.util.Duration;
->>>>>>> master
 
 /**
  *
@@ -77,17 +69,11 @@ public class StarteMessungWindowVC implements Initializable {
     private String typeMess;
     private String befehl_wireshark;
     private String savename;
-<<<<<<< HEAD
     
     private Stage homeWindow = Datennetz_Simulation.parentWindow;
         
     //Variablen für Übertragung ans PI
     private List<String> piOrder = new ArrayList<String>();
-=======
-        
-    //Variablen für Übertragung ans PI
-    private List<String> piOrder = new ArrayList<String>();; //evtl auch als Liste machen für gemischte Profile
->>>>>>> master
     private int port = 22;
     private List<String> nutzername = new ArrayList<String>();
     private String passwort = "2t4h0-1n3b9g1";
@@ -95,13 +81,9 @@ public class StarteMessungWindowVC implements Initializable {
     private int i = 0;
     private static final SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy_HH.mm.ss");
     
-<<<<<<< HEAD
     private ProfileController profile;
     
     //Variablen für Animation des Menüs
-=======
-    //Variablen für Animation
->>>>>>> master
     Duration startDuration = Duration.ZERO;
     Duration endDuration = Duration.seconds(10);
     
@@ -153,7 +135,6 @@ public class StarteMessungWindowVC implements Initializable {
     private TextField input_warte_einzel;
     @FXML
     private TextField input_anz_Seiten_einzel;
-<<<<<<< HEAD
     @FXML
     private TextField input_rauschen_einzel;
    
@@ -201,12 +182,6 @@ public class StarteMessungWindowVC implements Initializable {
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         //choice_type.setId("einzel");
-=======
-      
-    
-    @Override // This method is called by the FXMLLoader when initialization is complete
-    public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
->>>>>>> master
         setListeners();
         setChoices();
         getConnection(); //evtl auch als listener?  
@@ -220,10 +195,7 @@ public class StarteMessungWindowVC implements Initializable {
         //*************Neue Messung starten********************
         System.out.println("MIRI: Starte Messung Button");
         
-<<<<<<< HEAD
         
-=======
->>>>>>> master
         //alle Parameter einlesen
         if(typeMess.equals("Einzelsignal")){
             signalType = signalType_einzel;
@@ -264,82 +236,14 @@ public class StarteMessungWindowVC implements Initializable {
        
         piOrder.clear();
         //Art der Anwendung in Befehl für Pi-Skript umwandeln
-<<<<<<< HEAD
         piOrder = profile.gsetOrderList(signalType, duration, minSize, maxSize, rauschen_skalierung, web_anzahlSeiten, web_wartezeit);
         
         System.out.println("MIRI: Parameters are Type: "+ signalType + ", Generator: "+ generator+ ", Number of Gens: "+numGenerator+" ,time: "+ duration+", Size: "+minSize+"-"+maxSize+", "+rauschen_skalierung+", "+web_anzahlSeiten+", "+web_wartezeit);
-=======
-        switch(signalType){
-            case "Skype-Shared-Screen": 
-                piOrder.add("./skypesc "+ duration);
-                break;
-            case "Web": 
-                piOrder.add("./web "+ web_anzahlSeiten + " " + web_wartezeit);
-                break;
-            case "VoIP": 
-                piOrder.add("./voip "+ minSize + " " + maxSize + " " + duration);
-                break;
-            case "YouTube 240p":
-                piOrder.add("./youtube240p "+ duration);
-                break;
-            case "YouTube 720p": 
-                piOrder.add("./youtube720p "+ duration);
-                break;
-            case "YouTube 2160p": 
-                piOrder.add("./youtube2160p "+ duration);
-                break;
-            case "Excel": 
-                piOrder.add("./excel "+ duration);
-                break;
-            case "ES Office": 
-                piOrder.add("./esoffice_udp "+ duration);
-                break;
-            case "Lasttest": 
-                piOrder.add("./lasttest_udp "+ duration);
-                break;
-            case "Outlook Start": 
-                piOrder.add("./outlook_start_udp "+ duration);
-                break;
-            case "Print": 
-                piOrder.add("./print "+ duration);
-                break;
-            case "Rauschen": 
-                piOrder.add("./rauschen "+ duration+ " " + rauschen_skalierung);
-                break; 
-            case "Remote Desktop":                               
-                piOrder.add("./remote_desktop_udp "+ duration);
-                break;
-            case "Gaming": 
-                piOrder.add("./gaming "+ duration);
-                break;
-            case "VoIP_Multi": 
-                piOrder.add("./voip_multi "+ duration);
-                break;
-            case "Industrie 1": 
-                piOrder.add("./rauschen " + duration + " " + rauschen_skalierung);
-                piOrder.add("./excel " + duration);                       
-                piOrder.add("./outlook_start_udp " + duration);
-                piOrder.add("./print " + duration);
-                piOrder.add("./skypesc " + duration);
-                piOrder.add("./voip_profil " + duration);
-                piOrder.add("./web_profil " + duration);
-                break;
-            default: 
-                System.out.println("Kein Signaltyp ausgewählt!");
-                break;
-        }
-        System.out.println("MIRI: Parameters are Type: "+ signalType + ", Generator: "+ generator+ ", Number of Gens: "+numGenerator+" ,time: "+ duration+", Size: "+minSize+"-"+maxSize+", "+rauschen_skalierung+", "+web_anzahlSeiten+", "+web_wartezeit);
-        //wireshark starten mit tshark
->>>>>>> master
         dur = Integer.parseInt(duration.replaceAll("[^\\d]", "")); //plus extra minuten???
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         savename = typeMess + "_" + signalType.replaceAll("\\s+", "") + "_" + sdf.format(timestamp);
         System.out.println("MIRI: "+ savename);
-<<<<<<< HEAD
         startWireshark(dur, savename);
-=======
-        //startWireshark(dur, savename);
->>>>>>> master
         
         //Liste an Pi senden
         for(i=0; i < num; i++){
@@ -467,15 +371,10 @@ public class StarteMessungWindowVC implements Initializable {
             generator = newValue;
             gen = Integer.parseInt(generator.replaceAll("[^\\d]", ""));
             System.out.println("MIRI: Generator = " + generator);
-<<<<<<< HEAD
-=======
-            
->>>>>>> master
         });
         choice_Signal_einzel.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
             signalType_einzel = newValue;
             System.out.println("MIRI: Signal = " + signalType);
-<<<<<<< HEAD
             
             if (signalType_einzel.equals("Web")){
                 input_warte_einzel.setVisible(true);
@@ -509,15 +408,11 @@ public class StarteMessungWindowVC implements Initializable {
                 input_min_einzel.setVisible(false);
                 input_max_einzel.setVisible(false);
             }
-=======
-            //if web or rauschen set extraparameter visible else invisible
->>>>>>> master
         });
         choice_Signal_Multi.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
             signalType_Multi = newValue;
             System.out.println("MIRI: Signal = " + signalType);
             //if web or rauschen set extraparameter visible else invisible
-<<<<<<< HEAD
             if (signalType_Multi.equals("Web")){
                 input_warte_Multi.setVisible(true);
                 input_anz_Seiten_Multi.setVisible(true);
@@ -550,8 +445,6 @@ public class StarteMessungWindowVC implements Initializable {
                 input_min_Multi.setVisible(false);
                 input_max_Multi.setVisible(false);
             }
-=======
->>>>>>> master
         });
         choice_Signal_Profil.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
             signalType_Profil = newValue;
@@ -623,12 +516,8 @@ public class StarteMessungWindowVC implements Initializable {
     }
     
     protected boolean startWireshark(int duration, String name){
-<<<<<<< HEAD
         //Windows?
         /*try {
-=======
-        try {
->>>>>>> master
             //tshark -i "EVIL" -a duration:10 -w h:\ws\test.pcap
             befehl_wireshark = "Pfad\\tshark -i \"eth0\" -a duration:" + duration + " -w Pfad\\" + name;
             // Funktion ausführen und Konsolenausgabe in "lines" speichern.
@@ -642,17 +531,12 @@ public class StarteMessungWindowVC implements Initializable {
         catch (Exception e) {
             e.printStackTrace();
             return false;
-<<<<<<< HEAD
         }*/
-=======
-        }
->>>>>>> master
 
         return true;
     }
     
     protected void getPcap(){
-<<<<<<< HEAD
         /*if(targetsystem.equals("Linux"){
             scp <quelle> user@host:ziel
             scp pfad/datei.pcapng ssh-1234-xxx@localhost:/Pfad/ziel/
@@ -705,10 +589,6 @@ public class StarteMessungWindowVC implements Initializable {
     private void handleMenuInvis(MouseEvent event) {
         grid_menu.setVisible(false);
         //setAnimation(homeWindow, false);
-=======
-        //scp <quelle> user@host:ziel
-        //scp pfad/datei.pcapng ssh-1234-xxx@localhost:/Pfad/ziel/
->>>>>>> master
     }
     
     

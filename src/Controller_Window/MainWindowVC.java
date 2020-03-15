@@ -45,10 +45,7 @@ import javafx.scene.text.Text;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-<<<<<<< HEAD
 import javafx.scene.layout.VBox;
-=======
->>>>>>> master
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.AnonymizePCAPNG;
@@ -75,7 +72,6 @@ public class MainWindowVC implements Initializable {
     public static Text actiontarget;
     @FXML
     private BorderPane rootPane;
-<<<<<<< HEAD
     @FXML
     private ImageView hilfeImage;
     @FXML
@@ -149,223 +145,6 @@ public class MainWindowVC implements Initializable {
     protected void handleAuswertungButtonAction(ActionEvent event) throws IOException {
         menucontrol.handlemenuauswertung();
     }
-=======
-    @FXML
-    private GridPane menuGrid;
-
-    private Stage testi = new Stage();
-    @FXML
-    private ImageView hilfeImage;
-    
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        rootPane.setOnDragOver(new EventHandler<DragEvent>() {
-
-            @Override
-            public void handle(DragEvent event) {
-                if (event.getGestureSource() != rootPane
-                        && event.getDragboard().hasFiles()) {
-                    /* allow for both copying and moving, whatever user chooses */
-                    event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
-                }
-                event.consume();
-            }
-        });
-
-        rootPane.setOnDragDropped(new EventHandler<DragEvent>() {
-
-            @Override
-            public void handle(DragEvent event) {
-                Dragboard db = event.getDragboard();
-                boolean success = false;
-                if (db.hasFiles()) {
-                    try {
-                        readFile(db.getFiles().get(0));
-                    } catch (IOException ex) {
-                        Logger.getLogger(MainWindowVC.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    success = true;
-                }
-                /* let the source know whether the string was successfully 
-                 * transferred and used */
-                event.setDropCompleted(success);
-
-                event.consume();
-            }
-        });
-        //setAnimation(testi);
-    }
-    
-    
-    @FXML
-    protected void handleProfilButtonAction(ActionEvent event) throws IOException {
-
-        //Miri
-        //Neue seite aufrufen um Profile zu managen
-        
-    }
-    
-    @FXML
-    private void handleMenuImage(MouseEvent event) {
-        menuGrid.setVisible(true);
-        testi = (Stage)((Node) event.getSource()).getScene().getWindow();
-        setAnimation(testi, true);
-    }
-    @FXML
-    private void handleMenuInvis(MouseEvent event) {
-        menuGrid.setVisible(false);
-        testi = (Stage)((Node) event.getSource()).getScene().getWindow();
-        setAnimation(testi, false);
-    }
-    
-    
-    @FXML
-    protected void handleMessungButtonAction(ActionEvent event) throws IOException {
-        //Miri
-        //Neue seite aufrufen um Messung zu Starten
-    
-        URL url_messung = getClass().getResource("/View/StarteMessungWindow.fxml");
-        
-        FXMLLoader fxmlloader_messung = new FXMLLoader();
-        fxmlloader_messung.setLocation(url_messung);
-
-        Parent messung = fxmlloader_messung.load(url_messung.openStream());
-
-        Stage messung_newStage = new Stage();
-        Scene messung_scene = new Scene(messung);
-        messung_newStage.getIcons().add(new Image(getClass().getResourceAsStream("/Pictures/PC_Icon.jpg")));
-
-        messung_newStage.setTitle("Messungen starten");
-        messung_newStage.setScene(messung_scene);
-        messung_newStage.show();
-    }
-    
-    @FXML
-    protected void handleAuswertungButtonAction(ActionEvent event) throws IOException {
-
-        System.out.println("MIRI: Button Messung auswerten");
-        Stage fileChooseStage = new Stage();
-        if (fileChooser_auswerten == null) {
-            fileChooser_auswerten = new FileChooser();
-            fileChooser_auswerten.setInitialDirectory(new File(System.getProperty("user.home")));
-            fileChooser_auswerten.getExtensionFilters().add(new FileChooser.ExtensionFilter("File", "*.csv", "*.pcapng"));
-            fileChooser_auswerten.getExtensionFilters().add(new FileChooser.ExtensionFilter("pcapng", "*.pcapng"));
-        }
-
-        File file = fileChooser_auswerten.showOpenDialog(fileChooseStage);
-        readFile(file);
-    }
-
-    public void readFile(File file) throws IOException {
-//        long startTime = System.nanoTime();
-        System.out.println("MIRI: readFile");
-        if (file != null) {
-            path = file.getAbsolutePath();
-            fileName = file.getName();
-        } else {
-            actiontarget.setText("keine Datei ausgewählt");
-            return;
-        }
-        actiontarget.setText("Ausgewertet: " + fileName);
-        
-        
-        if (fileChooser_auswerten != null) {
-            String dir = path.replace(fileName, "");
-            fileChooser_auswerten.setInitialDirectory(new File(dir));
-        }
-        List<Paket> pakets = new ArrayList<>();
-        switch (FilenameUtils.getExtension(file.getName())) {
-            case "csv":
-                pakets = csvReader.readFile(path);
-                break;
-            case "pcapng":
-                pakets = pcapngReader.readFile(path);
-                break;
-        }
-        //if user cancelled the reading of a big file, pakets will be null. function stops here
-        if (pakets == null) {
-            return;
-        }
-        
-//        System.out.println("Einlesen: " + Math.round((double)(System.nanoTime() - startTime) / 1000000000 * 10000d) / 10000d  + " s");
-//        startTime = System.nanoTime();
-
-        Messung messung = new Messung(path, pakets);
-        // do downsampling for all arrival rate graph data. downsampling functions takes care of too short data as well
-        if (messung.getBigFile()) {
-            showBigFileAlert(messung);
-        }
-        
-        openAuswertungsWindow(messung);
-
-        openWarnungenWindow(messung);
-
-        openSimulationWindow(messung);
-    }
-
-    public void openAuswertungsWindow(Messung messung) throws IOException {
-        //open auswertungswindow
-        URL url_auswerung = getClass().getResource("/View/MessungWindow.fxml");
-
-        FXMLLoader fxmlloader_auswertung = new FXMLLoader();
-        fxmlloader_auswertung.setLocation(url_auswerung);
-
-        Parent auswertung = fxmlloader_auswertung.load(url_auswerung.openStream());
-        ((MessungWindowVC) fxmlloader_auswertung.getController()).setCurrentMessung(messung);
-        ((MessungWindowVC) fxmlloader_auswertung.getController()).startUp();
-
-        Stage auswertung_stage = new Stage();
-        auswertung_stage.setMaximized(true);
-        auswertung_stage.getIcons().add(new Image(getClass().getResourceAsStream("/Pictures/Cloud_Icon.jpg")));
-        Scene auswertung_scene = new Scene(auswertung);
-
-        auswertung_stage.setTitle(fileName + "  -  Auswertung");
-        auswertung_stage.setScene(auswertung_scene);
-        auswertung_stage.show();
-    }
-
-    public void openWarnungenWindow(Messung messung) throws IOException {
-        //open warnungen window
-        URL url_warnung = getClass().getResource("/View/WarnungenWindow.fxml");
-
-        FXMLLoader fxmlloader_warnung = new FXMLLoader();
-        fxmlloader_warnung.setLocation(url_warnung);
-
-        Parent warnung = fxmlloader_warnung.load(url_warnung.openStream());
-        ((WarnungenWindowVC) fxmlloader_warnung.getController()).setCurrentMessung(messung);
-        ((WarnungenWindowVC) fxmlloader_warnung.getController()).startUp();
-
-        Stage warnung_newStage = new Stage();
-        warnung_newStage.getIcons().add(new Image(getClass().getResourceAsStream("/Pictures/Cloud_Icon.jpg")));
-        Scene warnung_scene = new Scene(warnung);
-
-        warnung_newStage.setTitle(fileName + "  -  Warnungen");
-        warnung_newStage.setScene(warnung_scene);
-        warnung_newStage.show();
-    }
-
-    public void openSimulationWindow(Messung messung) throws IOException {
-        //open Simulation window. this should be moved / integrated somewhere else in the future. maybe with a button.
-        URL url_simulation = getClass().getResource("/View/SimulationWindow.fxml");
-
-        FXMLLoader fxmlloader_simulation = new FXMLLoader();
-        fxmlloader_simulation.setLocation(url_simulation);
-
-        Parent simulation = fxmlloader_simulation.load(url_simulation.openStream());
-        ((SimulationWindowVC) fxmlloader_simulation.getController()).setOriginalPakets(messung.getZeitintervalle().get(0).getChartSeriesRaw());
-        ((SimulationWindowVC) fxmlloader_simulation.getController()).startUp();
-
-        Stage simulation_newStage = new Stage();
-        simulation_newStage.getIcons().add(new Image(getClass().getResourceAsStream("/Pictures/Cloud_Icon.jpg")));
-        Scene simulation_scene = new Scene(simulation);
-        simulation_scene.getStylesheets().add("/CSS/chartLines.css");   //stylesheet only gives chart series distinct colors (blue & red atm)
-
-        simulation_newStage.setTitle("Simulation von zusätzlicher Last");
-        simulation_newStage.setScene(simulation_scene);
-        simulation_newStage.show();
-    }
-
->>>>>>> master
 
 
     //restore verkehrsprofile.json
@@ -434,34 +213,14 @@ public class MainWindowVC implements Initializable {
         
     }
 
-<<<<<<< HEAD
     
     protected void setAnimation(Stage stage, boolean dir){
               
-=======
-     public void showBigFileAlert(Messung messung) {
-        Alert alert = new Alert(AlertType.WARNING);
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image(this.getClass().getResource("/Pictures/icon.jpg").toString()));
-        alert.setHeaderText("Sehr lange Messung!");
-        alert.setContentText("Die eingelesene Messung ist " + messung.getDuration() + " Sekunden lang. Aus Performance Gründen ist im Zeitintervall 10ms nur jeder 10te Wert erfasst und weiterhin der Burst-Graph deaktiviert.\n\nDie Verarbeitung kann einen Moment dauern. Bitte haben Sie etwas Geduld.");
-
-        alert.showAndWait();
-    }
-    
-    protected void setAnimation(Stage stage, boolean dir){
-              
-        
->>>>>>> master
         KeyValue startKeyValue;
         KeyValue endKeyValue;
         
         // Create the Scene
-<<<<<<< HEAD
         Scene scene = new Scene(grid_menu);
-=======
-        Scene scene = new Scene(menuGrid);
->>>>>>> master
         
         // Add the Scene to the Stage
         stage.setScene(scene);
@@ -470,11 +229,7 @@ public class MainWindowVC implements Initializable {
         stage.show();
         
         // Get the Width of the Text
-<<<<<<< HEAD
         double textWidth = grid_menu.getLayoutBounds().getWidth();
-=======
-        double textWidth = menuGrid.getLayoutBounds().getWidth();
->>>>>>> master
         
         // Define the Durations
         Duration startDuration = Duration.ZERO;
@@ -482,21 +237,12 @@ public class MainWindowVC implements Initializable {
         
         // Create the start and end Key Frames
         if(dir = true){
-<<<<<<< HEAD
             startKeyValue = new KeyValue(grid_menu.translateXProperty(), 0);
             endKeyValue = new KeyValue(grid_menu.translateXProperty(), textWidth);
         }
         else{
             startKeyValue = new KeyValue(grid_menu.translateXProperty(), textWidth);
             endKeyValue = new KeyValue(grid_menu.translateXProperty(), 0);
-=======
-            startKeyValue = new KeyValue(menuGrid.translateXProperty(), 0);
-            endKeyValue = new KeyValue(menuGrid.translateXProperty(), textWidth);
-        }
-        else{
-            startKeyValue = new KeyValue(menuGrid.translateXProperty(), textWidth);
-            endKeyValue = new KeyValue(menuGrid.translateXProperty(), 0);
->>>>>>> master
         }
             KeyFrame startKeyFrame = new KeyFrame(startDuration, startKeyValue);
             KeyFrame endKeyFrame = new KeyFrame(endDuration, endKeyValue);
@@ -510,7 +256,6 @@ public class MainWindowVC implements Initializable {
 
     @FXML
     private void handleImageHilfe(MouseEvent event) throws IOException {
-<<<<<<< HEAD
          menucontrol.handleImageHilfe();
     }
 
@@ -557,25 +302,5 @@ public class MainWindowVC implements Initializable {
         menucontrol.setSimulation();
     }
     
-=======
-            //Hilfeseite öffnen
-        URL url_hilfe = getClass().getResource("/View/HilfeWindow.fxml");
-
-        FXMLLoader fxmlloader_hilfe = new FXMLLoader();
-        fxmlloader_hilfe.setLocation(url_hilfe);
-
-        Parent hilfe = fxmlloader_hilfe.load(url_hilfe.openStream());
-
-        Stage hilfe_stage = new Stage();
-        hilfe_stage.setMaximized(true);
-        hilfe_stage.getIcons().add(new Image(getClass().getResourceAsStream("/Pictures/Cloud_Icon.jpg")));
-        Scene hilfe_scene = new Scene(hilfe);
-
-        hilfe_stage.setTitle("Hilfe");
-        hilfe_stage.setScene(hilfe_scene);
-        hilfe_stage.show();
-    
-    }
->>>>>>> master
 }
 

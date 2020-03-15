@@ -10,6 +10,7 @@ import Profile.ProfileController;
 import java.io.File;
 import java.io.IOException;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -41,19 +42,11 @@ public class Datennetz_Simulation extends Application {
 
         Scene scene = new Scene(root, 700, 600);
 
-<<<<<<< HEAD
         primaryStage.setTitle("Willkommen");
         primaryStage.setScene(scene);
         primaryStage.setMinWidth(700);
         primaryStage.setMinHeight(600);
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/Pictures/Cloud_Icon_bottom.png")));
-=======
-        primaryStage.setTitle("Welcome");
-        primaryStage.setScene(scene);
-        primaryStage.setMinWidth(700);
-        primaryStage.setMinHeight(600);
-        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/Pictures/PC_Icon.png")));
->>>>>>> master
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent t) {
