@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<<<<<<< HEAD
 <?import java.net.*?>
 <?import javafx.geometry.*?>
+=======
+>>>>>>> master
 <?import javafx.collections.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.image.*?>
@@ -13,6 +16,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.collections.FXCollections?>
 
+<<<<<<< HEAD
 <BorderPane id="BorderPane" prefHeight="550.0" prefWidth="405.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller_Window.StarteMessungWindowVC">
     <left>
         <Pane prefHeight="200.0" prefWidth="40.0" BorderPane.alignment="CENTER">
@@ -354,3 +358,225 @@
         </Pane>
     </right>
 </BorderPane>
+=======
+<AnchorPane id="AnchorPane" prefHeight="497.0" prefWidth="405.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller_Window.StarteMessungWindowVC">
+   <children>
+      <Label id="U2" layoutX="44.0" layoutY="25.0" stylesheets="@../CSS/MainWindow.css" text="Messung">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Button fx:id="Button_Start" layoutX="282.0" layoutY="438.0" mnemonicParsing="false" onAction="#handleStartButtonAction" prefHeight="25.0" prefWidth="84.0" stylesheets="@../CSS/MainWindow.css" text="Starten" />
+      <Label layoutX="44.0" layoutY="77.0" stylesheets="@../CSS/MainWindow.css" text="Verbindungsstatus:">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c2e1ff" height="24.0" layoutX="170.0" layoutY="75.0" stroke="BLACK" strokeType="INSIDE" width="24.0" />
+      <ImageView fx:id="Image_Verbindung" fitHeight="20.0" fitWidth="20.0" layoutX="212.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../Bilder/Check_Icon.jpg" />
+         </image>
+      </ImageView>
+      <ChoiceBox fx:id="choice_type" layoutX="44.0" layoutY="108.0" prefWidth="150.0">
+        <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:id="einzel" fx:value="Einzelsignal" />
+                    <String fx:id="multi" fx:value="Multisignal" />
+                    <String fx:id="profil" fx:value="Fertiges Profil" />
+                </FXCollections>
+            </items>
+      </ChoiceBox>
+      <Pane fx:id="pane_Multi" layoutX="7.0" layoutY="141.0" prefHeight="287.0" prefWidth="391.0" visible="false">
+         <children>
+            <ChoiceBox fx:id="choice_Signal_Multi" layoutX="196.0" layoutY="12.0" prefWidth="150.0">
+               <items>
+                  <FXCollections fx:factory="observableArrayList">
+                     <String fx:id="skype2" fx:value="Skype-Shared-Screen" />
+                     <String fx:id="web2" fx:value="Web" />
+                     <String fx:id="voIP2" fx:value="VoIP" />
+                     <String fx:id="yt2402" fx:value="YouTube 240p" />
+                     <String fx:id="yt7202" fx:value="YouTube 720p" />
+                     <String fx:id="yt21602" fx:value="YouTube 2160p" />
+                     <String fx:id="exc2" fx:value="Excel" />
+                     <String fx:id="office2" fx:value="ES Office" />
+                     <String fx:id="lsat2" fx:value="Lasttest" />
+                     <String fx:id="outlook2" fx:value="Outlook Start" />
+                     <String fx:id="print2" fx:value="Print" />
+                     <String fx:id="rauschen2" fx:value="Rauschen" />
+                     <String fx:id="remote2" fx:value="Remote Desktop" />
+                     <String fx:id="game2" fx:value="Gaming" />
+                     <String fx:id="voIPmulti2" fx:value="VoIP_Multi" />
+                  </FXCollections>
+               </items>
+            </ChoiceBox>
+            <TextField fx:id="input_Dauer_Multi" layoutX="197.0" layoutY="98.0" />
+            <TextField fx:id="input_min_Multi" layoutX="197.0" layoutY="171.0" />
+            <TextField fx:id="input_max_Multi" layoutX="197.0" layoutY="132.0" />
+            <Label layoutX="33.0" layoutY="14.0" stylesheets="@../CSS/MainWindow.css" text="Signal:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="28.0" layoutY="100.0" stylesheets="@../CSS/MainWindow.css" text="Dauer/Minuten:">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="173.0" stylesheets="@../CSS/MainWindow.css" text="Paketgröße min.:">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="134.0" stylesheets="@../CSS/MainWindow.css" text="Paketgröße max.:">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="58.0" stylesheets="@../CSS/MainWindow.css" text="Anzahl Generatoren:">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="choice_AnzahlGen" layoutX="196.0" layoutY="55.0" prefWidth="150.0">
+               <items>
+                  <FXCollections fx:factory="observableArrayList">
+                     <String fx:id="1Gen2" fx:value="1 Generator" />
+                     <String fx:id="2Gen2" fx:value="2 Generatoren" />
+                     <String fx:id="3Gen2" fx:value="3 Generatoren" />
+                     <String fx:id="4Gen2" fx:value="4 Generatoren" />
+                     <String fx:id="5Gen2" fx:value="5 Generatoren" />
+                     <String fx:id="6Gen2" fx:value="6 Generatoren" />
+                     <String fx:id="7Gen2" fx:value="7 Generatoren" />
+                     <String fx:id="8Gen2" fx:value="8 Generatoren" />
+                  </FXCollections>
+               </items>
+            </ChoiceBox>
+            <Label layoutX="30.0" layoutY="211.0" stylesheets="@../CSS/MainWindow.css" text="Anzahl Seiten">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="245.0" stylesheets="@../CSS/MainWindow.css" text="Wartezeit">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="input_anz_Seiten_Multi" layoutX="197.0" layoutY="208.0" />
+            <TextField fx:id="input_warte_Multi" layoutX="197.0" layoutY="244.0" />
+         </children>
+      </Pane>
+      <Pane fx:id="pane_Profil" layoutX="7.0" layoutY="144.0" prefHeight="287.0" prefWidth="391.0" visible="false">
+         <children>
+            <ChoiceBox fx:id="choice_Signal_Profil" layoutX="196.0" layoutY="12.0" prefWidth="150.0">
+               <items>
+                  <FXCollections fx:factory="observableArrayList">
+                     <String fx:id="Ind_1" fx:value="Industrie 1" />
+                     <String fx:id="Ind_2" fx:value="Industrie 2" />
+                     <String fx:id="Ind_3" fx:value="Industrie 3" />
+                     <String fx:id="media" fx:value="Multimedia" />
+                  </FXCollections>
+               </items>
+            </ChoiceBox>
+            <TextField fx:id="input_Dauer_Profil" layoutX="197.0" layoutY="61.0" />
+            <TextField fx:id="input_skal_Rauschen" layoutX="197.0" layoutY="96.0" />
+            <Label layoutX="33.0" layoutY="14.0" stylesheets="@../CSS/MainWindow.css" text="Signal:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="28.0" layoutY="63.0" stylesheets="@../CSS/MainWindow.css" text="Dauer/Minuten:">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="98.0" stylesheets="@../CSS/MainWindow.css" text="Skalierung Rauschen">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="pane_Einzel" layoutX="11.0" layoutY="141.0" prefHeight="287.0" prefWidth="391.0">
+         <children>
+            <ChoiceBox fx:id="choice_Signal_einzel" layoutX="196.0" layoutY="12.0" prefWidth="150.0">
+                  <items>
+                      <FXCollections fx:factory="observableArrayList">
+                          <String fx:id="skype" fx:value="Skype-Shared-Screen" />
+                          <String fx:id="web" fx:value="Web" />
+                          <String fx:id="voIP" fx:value="VoIP" />
+                          <String fx:id="yt240" fx:value="YouTube 240p" />
+                          <String fx:id="yt720" fx:value="YouTube 720p" />
+                          <String fx:id="yt2160" fx:value="YouTube 2160p" />
+                          <String fx:id="exc" fx:value="Excel" />
+                          <String fx:id="office" fx:value="ES Office" />
+                          <String fx:id="lsat" fx:value="Lasttest" />
+                          <String fx:id="outlook" fx:value="Outlook Start" />
+                          <String fx:id="print" fx:value="Print" />
+                          <String fx:id="rauschen" fx:value="Rauschen" />
+                          <String fx:id="remote" fx:value="Remote Desktop" />
+                          <String fx:id="game" fx:value="Gaming" />
+                          <String fx:id="voIPmulti" fx:value="VoIP_Multi" />
+                      </FXCollections>
+                  </items>
+            </ChoiceBox>   
+            <ChoiceBox fx:id="choice_Gen" layoutX="196.0" layoutY="50.0" prefWidth="150.0">
+                <items>
+                      <FXCollections fx:factory="observableArrayList">
+                          <String fx:id="Gen1" fx:value="Generator 1" />
+                          <String fx:id="Gen2" fx:value="Generator 2" />
+                          <String fx:id="Gen3" fx:value="Generator 3" />
+                          <String fx:id="Gen4" fx:value="Generator 4" />
+                          <String fx:id="Gen5" fx:value="Generator 5" />
+                          <String fx:id="Gen6" fx:value="Generator 6" />
+                          <String fx:id="Gen7" fx:value="Generator 7" />
+                          <String fx:id="Gen8" fx:value="Generator 8" />
+                      </FXCollections>
+                  </items>
+            </ChoiceBox>
+            <TextField fx:id="input_Dauer_einzel" layoutX="197.0" layoutY="87.0" />
+            <TextField fx:id="input_min_einzel" layoutX="197.0" layoutY="162.0" />
+            <TextField fx:id="input_max_einzel" layoutX="197.0" layoutY="125.0" />
+            <Label layoutX="32.0" layoutY="14.0" stylesheets="@../CSS/MainWindow.css" text="Signal:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="52.0" stylesheets="@../CSS/MainWindow.css" text="Generator:">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="27.0" layoutY="90.0" stylesheets="@../CSS/MainWindow.css" text="Dauer/Minuten:">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="29.0" layoutY="165.0" stylesheets="@../CSS/MainWindow.css" text="Paketgröße min.:">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="29.0" layoutY="127.0" stylesheets="@../CSS/MainWindow.css" text="Paketgröße max.:">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="input_warte_einzel" layoutX="198.0" layoutY="234.0" />
+            <TextField fx:id="input_anz_Seiten_einzel" layoutX="198.0" layoutY="198.0" />
+            <Label layoutX="31.0" layoutY="235.0" stylesheets="@../CSS/MainWindow.css" text="Wartezeit">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="201.0" stylesheets="@../CSS/MainWindow.css" text="Anzahl Seiten">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      
+   </children>
+</AnchorPane>
+>>>>>>> master

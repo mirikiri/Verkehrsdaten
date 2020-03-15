@@ -33,6 +33,7 @@ Colors:
     -fx-text-fill: #021244;
     -fx-font-family: "Arial Narrow";
     /*-fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );*/
+<<<<<<< HEAD
 }
 
 .button {
@@ -60,12 +61,40 @@ Colors:
     -fx-cursor: hand;
 }
 
+=======
+}
+
+.button {
+    -fx-text-fill: #021244;
+    -fx-font-size: 16px;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#ffffff, #c5c0af);
+    /*-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );*/
+}
+
+.checkBox {
+    -fx-text-fill: #021244;
+    -fx-font-size: 16px;
+    -fx-font-family: "Arial Narrow";
+    /*-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );*/
+}
+
+.comboBox {
+    -fx-text-fill: #021244;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#ffffff, #c5c0af);
+}
+
+>>>>>>> master
 .choiceBox {
     -fx-text-fill: #021244;
     -fx-font-family: "Arial Narrow";
     -fx-font-size: 12px;
     -fx-font-weight: bold;
     -fx-background-color: linear-gradient(#ffffff, #c5c0af);
+<<<<<<< HEAD
     -fx-cursor: hand;
 }
 
@@ -83,6 +112,10 @@ Colors:
     -fx-font-weight: bold;
 }
 
+=======
+}
+
+>>>>>>> master
 
 #U1 { /*Überschrift Typ 1*/
    -fx-font-size: 32px;
@@ -112,6 +145,7 @@ Colors:
   /*-fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 ); */ 
 }
 
+<<<<<<< HEAD
 
 .menulabel {  
     -fx-font-size: 18px;
@@ -128,3 +162,5 @@ Colors:
     -fx-background-color: #3e608a;
 }
 
+=======
+>>>>>>> master
