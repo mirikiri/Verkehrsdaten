@@ -21,7 +21,7 @@ public class Profil {
     }
 
     protected String name;
-    protected profil_Type type;
+    protected profil_Type type;     //Test
     protected int[] paketArray;
 
     public Profil(String name, profil_Type type) {
