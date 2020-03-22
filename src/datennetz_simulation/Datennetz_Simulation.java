@@ -6,9 +6,16 @@
 package datennetz_simulation;
 
 import Menu.MenuController;
+import Profile.Profil;
+import Profile.Profil_Web;
 import Profile.ProfileController;
+import com.google.gson.Gson;
 import java.io.File;
 import java.io.IOException;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.event.EventHandler;
@@ -56,27 +63,21 @@ public class Datennetz_Simulation extends Application {
         });
 
         primaryStage.show();
-
-//        final int contentLength[] = {100, 300, 500};
-//        final int packageAmount[] = {500, 100, 1000};
-//        List<PaketToSend> paketslist = new ArrayList<>();
-//        
-//        for (int i = 0; i < packageAmount.length; i++) {
-//            for (int j = 0; j < packageAmount[i]; j++) {
-//                paketslist.add(new PaketToSend(contentLength[i]));
-//            }
-//        }
-//        
-//        Collections.shuffle(paketslist);
-//        
-//        for (PaketToSend paketToSend : paketslist) {
-//            DatagramPacket DpSend = new DatagramPacket(paketToSend.getContent(), paketToSend.getLength(), ip, 1234);
-//
-//            sleep(3);
-//            ds.send(DpSend);
-//            System.out.println(DpSend.getData());
-//            System.out.println(buf);
-//        }
+        
+        
+        //Profil Testing
+        Gson gson = new Gson();
+        Profil_Web web = new Profil_Web("Web_Testing", Profil.profil_Type.WEB);
+        web.saveAndWrite(gson);
+        try {
+            web.send();
+        } catch (SocketException ex) {
+            Logger.getLogger(Datennetz_Simulation.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(Datennetz_Simulation.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Datennetz_Simulation.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void checkForVerkehrsprofileJSON() {

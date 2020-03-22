@@ -17,6 +17,6 @@ public class Profil_Gleichverteilung extends Profil {
        super(name, type);
        int[] pakets = new int[dauer];
        Arrays.fill(pakets, ankunftsrate);
-       this.paketArray = pakets;
+//       this.paketArray = pakets;
     }
 }
