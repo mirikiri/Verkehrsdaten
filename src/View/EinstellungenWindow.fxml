@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<<<<<<< HEAD
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
-=======
->>>>>>> master
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<<<<<<< HEAD
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller_Window.EinstellungenWindowVC">
     <left>
         <Pane prefHeight="200.0" prefWidth="40.0" BorderPane.alignment="CENTER">
@@ -139,8 +135,3 @@
         <Pane prefHeight="30.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
     </bottom>
 </BorderPane>
-=======
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller_Window.EinstellungenWindowController">
-    
-</AnchorPane>
->>>>>>> master
