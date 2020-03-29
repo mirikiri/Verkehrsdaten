@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -81,7 +82,7 @@ public class StarteMessungWindowVC implements Initializable {
     private int i = 0;
     private static final SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy_HH.mm.ss");
     
-    private ProfileController profile;
+    private ProfileController profile = new ProfileController();
     
     //Variablen für Animation des Menüs
     Duration startDuration = Duration.ZERO;
@@ -225,6 +226,9 @@ public class StarteMessungWindowVC implements Initializable {
                 case "6 Generatoren": num = 6; break;
                 case "7 Generatoren": num = 7; break;
                 case "8 Generatoren": num = 8; break;
+                case "9 Generatoren": num = 9; break;
+                case "10 Generatoren": num = 10; break;
+                case "11 Generatoren": num = 11; break;
                 default: num=1; break;
             }
         }
@@ -236,6 +240,9 @@ public class StarteMessungWindowVC implements Initializable {
        
         piOrder.clear();
         //Art der Anwendung in Befehl für Pi-Skript umwandeln
+        
+        System.out.println("MIRI: Parameters are Type: "+ signalType + ", Generator: "+ generator+ ", Number of Gens: "+numGenerator+" ,time: "+ duration+", Size: "+minSize+"-"+maxSize+", "+rauschen_skalierung+", "+web_anzahlSeiten+", "+web_wartezeit);
+        
         piOrder = profile.gsetOrderList(signalType, duration, minSize, maxSize, rauschen_skalierung, web_anzahlSeiten, web_wartezeit);
         
         System.out.println("MIRI: Parameters are Type: "+ signalType + ", Generator: "+ generator+ ", Number of Gens: "+numGenerator+" ,time: "+ duration+", Size: "+minSize+"-"+maxSize+", "+rauschen_skalierung+", "+web_anzahlSeiten+", "+web_wartezeit);
@@ -251,15 +258,15 @@ public class StarteMessungWindowVC implements Initializable {
         * evtl anpassen so dass orderliste geschickt wird und nicht jeder einzelne befehl
         ***************************/
             if(signalType.equals(signalType_Profil)){
-                //orderForPi(piOrder.get(i), nutzername.get(i), passwort, ip.get(i), port);
+                orderForPi(piOrder.get(i), nutzername.get(i), passwort, ip.get(i), port);
                 System.out.println("MIRI: Industrie");
             }
             else if(signalType.equals(signalType_Multi)){
-                //orderForPi(piOrder.get(0), nutzername.get(i), passwort, ip.get(i), port);
+                orderForPi(piOrder.get(0), nutzername.get(i), passwort, ip.get(i), port);
                 System.out.println("MIRI: orderforPi done");
             }
             else{
-                //orderForPi(piOrder.get(0), nutzername.get(gen-1), passwort, ip.get(gen-1), port);
+                orderForPi(piOrder.get(0), nutzername.get(gen-1), passwort, ip.get(gen-1), port);
                 System.out.println("MIRI: orderforPi done");
             }
         }
@@ -485,6 +492,9 @@ public class StarteMessungWindowVC implements Initializable {
         nutzername.add("verkehrsgenerator6");
         nutzername.add("verkehrsgenerator7");
         nutzername.add("verkehrsgenerator8");
+        nutzername.add("verkehrsgenerator9");
+        nutzername.add("verkehrsgenerator10");
+        nutzername.add("verkehrsgenerator11");
         nutzername.add("Server");
         
         ip.add("192.168.1.131");        
@@ -494,8 +504,11 @@ public class StarteMessungWindowVC implements Initializable {
         ip.add("192.168.1.135");        
         ip.add("192.168.1.136");        
         ip.add("192.168.1.137");        
-        ip.add("192.168.1.138");     
-        ip.add("192.168.1.11");
+        ip.add("192.168.1.138");
+        ip.add("192.168.1.139");   
+        ip.add("192.168.1.140");   
+        ip.add("192.168.1.141");  
+        ip.add("192.168.1.10");
         
     }
     

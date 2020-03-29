@@ -197,7 +197,9 @@
                                     <String fx:value="5 Generatoren" />
                                     <String fx:value="6 Generatoren" />
                                     <String fx:value="7 Generatoren" />
-                                    <String fx:value="8 Generatoren" />
+                                    <String fx:value="9 Generatoren" />
+                                    <String fx:value="10 Generatoren" />
+                                    <String fx:value="11 Generatoren" />
                                 </FXCollections>
                             </items>
                         </ChoiceBox>
@@ -288,6 +290,9 @@
                                     <String fx:value="Generator 6" />
                                     <String fx:value="Generator 7" />
                                     <String fx:value="Generator 8" />
+                                    <String fx:value="Generator 9" />
+                                    <String fx:value="Generator 10" />
+                                    <String fx:value="Generator 11" />
                                 </FXCollections>
                             </items>
                         </ChoiceBox>
