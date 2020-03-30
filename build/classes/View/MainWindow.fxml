@@ -60,15 +60,15 @@
     <right>
         <Pane prefHeight="200.0" prefWidth="40.0" BorderPane.alignment="CENTER" />
     </right>
-   <top>
-        <Pane prefHeight="40.0" BorderPane.alignment="CENTER">
+   <left>
+      <Pane prefHeight="200.0" prefWidth="40.0" BorderPane.alignment="CENTER">
          <children>
                 <ImageView fx:id="image_menu_off" fitHeight="39.0" fitWidth="50.0" onMouseReleased="#handleMenuImage" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../Pictures/Menu_Icon.jpg" />
                     </image>
                 </ImageView>
-                <GridPane fx:id="grid_menu" alignment="BOTTOM_LEFT" gridLinesVisible="true" prefHeight="238.0" prefWidth="175.0" styleClass="menugridPane" stylesheets="@../CSS/Menu.css" visible="false">
+                <GridPane fx:id="grid_menu" alignment="BOTTOM_LEFT" gridLinesVisible="true" prefHeight="238.0" prefWidth="175.0" styleClass="menugridPane" stylesheets="@../CSS/MainWindow.css" visible="false">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" />
                     </columnConstraints>
@@ -92,7 +92,18 @@
                         <Insets left="7.0" />
                      </padding>
                   </Label>
-                        <Label onMouseReleased="#handlemenumessung" prefHeight="43.0" prefWidth="175.0" styleClass="menulabel" stylesheets="@../CSS/MainWindow.css" text="Messung aufnehmen" textFill="#021244" GridPane.rowIndex="3">
+                        <ImageView fx:id="image_icon" fitHeight="39.0" fitWidth="39.0" onMouseReleased="#handleMenuInvis" pickOnBounds="true" preserveRatio="true">
+                            <GridPane.margin>
+                                <Insets />
+                            </GridPane.margin>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            <image>
+                                <Image url="@../Pictures/Menu_Icon_invert.jpg" />
+                            </image>
+                        </ImageView>
+                        <Label onMouseReleased="#handlemenuHome" prefHeight="43.0" prefWidth="175.0" styleClass="menulabel" stylesheets="@../CSS/MainWindow.css" text="Home" textFill="#021244" GridPane.rowIndex="1">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -114,40 +125,7 @@
                                 <Cursor fx:constant="HAND" />
                             </cursor>
                         </Label>
-                        <Label onMouseReleased="#handlemenuauswertung" prefHeight="44.0" prefWidth="175.0" styleClass="menulabel" stylesheets="@../CSS/MainWindow.css" text="Auswertung einsehen" textFill="#021244" GridPane.rowIndex="4">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                            <padding>
-                                <Insets left="7.0" right="7.0" />
-                            </padding>
-                            <cursor>
-                                <Cursor fx:constant="HAND" />
-                            </cursor>
-                        </Label>
-                        <ImageView fx:id="image_icon" fitHeight="39.0" fitWidth="39.0" onMouseReleased="#handleMenuInvis" pickOnBounds="true" preserveRatio="true">
-                            <GridPane.margin>
-                                <Insets />
-                            </GridPane.margin>
-                            <cursor>
-                                <Cursor fx:constant="HAND" />
-                            </cursor>
-                            <image>
-                                <Image url="@../Pictures/Menu_Icon_invert.jpg" />
-                            </image>
-                        </ImageView>
-                        <Label onMouseReleased="#handlemenueinstellungen" prefHeight="41.0" prefWidth="175.0" styleClass="menulabel" stylesheets="@../CSS/MainWindow.css" text="Einstellungen" textFill="#021244" GridPane.rowIndex="5">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                            <padding>
-                                <Insets left="7.0" right="7.0" />
-                            </padding>
-                            <cursor>
-                                <Cursor fx:constant="HAND" />
-                            </cursor>
-                        </Label>
-                        <Label onMouseReleased="#handlemenuHome" prefHeight="43.0" prefWidth="175.0" styleClass="menulabel" stylesheets="@../CSS/MainWindow.css" text="Home" textFill="#021244" GridPane.rowIndex="1">
+                        <Label onMouseReleased="#handlemenumessung" prefHeight="43.0" prefWidth="175.0" styleClass="menulabel" stylesheets="@../CSS/MainWindow.css" text="Messung aufnehmen" textFill="#021244" GridPane.rowIndex="3">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -158,19 +136,36 @@
                                 <Cursor fx:constant="HAND" />
                             </cursor>
                         </Label>
+                        <Label onMouseReleased="#handlemenuauswertung" prefHeight="43.0" prefWidth="175.0" styleClass="menulabel" stylesheets="@../CSS/MainWindow.css" text="Auswertung einsehen" textFill="#021244" GridPane.rowIndex="4">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <padding>
+                                <Insets left="7.0" right="7.0" />
+                            </padding>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Label>
+                        <Label onMouseReleased="#handlemenueinstellungen" prefHeight="43.0" prefWidth="175.0" styleClass="menulabel" stylesheets="@../CSS/MainWindow.css" text="Einstellungen" textFill="#021244" GridPane.rowIndex="5">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <padding>
+                                <Insets left="7.0" right="7.0" />
+                            </padding>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Label>
                     </children>
                 </GridPane>
-         </children></Pane>
-   </top>
-   <left>
-      <Pane prefHeight="200.0" prefWidth="40.0" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="20.0" layoutY="487.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="499.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Pictures/Ohm_Logo.png" />
                </image>
             </ImageView>
-                <Text fx:id="actiontarget" layoutY="542.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="205.13671875" />
+                <Text fx:id="actiontarget" layoutY="548.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="205.13671875" />
          </children>
       </Pane>
    </left>

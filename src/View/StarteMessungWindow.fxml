@@ -42,9 +42,9 @@
                     </font>
                 </Label>
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c2e1ff" height="24.0" layoutX="177.0" layoutY="53.0" stroke="BLACK" strokeType="INSIDE" width="24.0" />
-                <ImageView fx:id="Image_Verbindung" fitHeight="20.0" fitWidth="20.0" layoutX="219.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                <ImageView fx:id="Image_Verbindung" fitHeight="20.0" fitWidth="60.0" layoutX="179.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" visible="false">
                     <image>
-                        <Image url="@../../../Bilder/Check_Icon.jpg" />
+                        <Image url="@../Pictures/Check_Icon.jpg" />
                     </image>
                 </ImageView>
                 <Pane fx:id="pane_Multi" layoutX="15.0" layoutY="120.0" prefHeight="287.0" prefWidth="391.0" visible="false">
@@ -276,7 +276,7 @@
                         <Image url="@../Pictures/Menu_Icon.jpg" />
                     </image>
                 </ImageView>
-                <GridPane fx:id="grid_menu" alignment="BOTTOM_LEFT" gridLinesVisible="true" prefHeight="238.0" prefWidth="175.0" styleClass="menugridPane" stylesheets="@../CSS/Menu.css" visible="false">
+                <GridPane fx:id="grid_menu" alignment="BOTTOM_LEFT" gridLinesVisible="true" prefHeight="238.0" prefWidth="175.0" styleClass="menugridPane" stylesheets="@../CSS/MainWindow.css" visible="false">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" />
                     </columnConstraints>

@@ -9,10 +9,41 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller_Window.EinstellungenWindowVC">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller_Window.EinstellungenWindowVC">
     <left>
-        <Pane prefHeight="200.0" prefWidth="40.0" BorderPane.alignment="CENTER">
+        <Pane prefHeight="200.0" prefWidth="40.0" BorderPane.alignment="CENTER" />
+    </left>
+    <center>
+        <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
+                <Label layoutX="45.0" layoutY="14.0" text="Einstellungen">
+                    <font>
+                        <Font size="25.0" />
+                    </font>
+                </Label>
+            <RadioButton fx:id="radio_Linux" layoutX="45.0" layoutY="78.0" mnemonicParsing="false" onAction="#handle_radio_Linux" selected="true" text="Raspberrys" />
+            <RadioButton fx:id="radio_Windows" layoutX="45.0" layoutY="104.0" mnemonicParsing="false" onAction="#handle_radio_Windows" text="Notebook" />
+            <Pane layoutX="42.0" layoutY="127.0" prefHeight="200.0" prefWidth="337.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" text="IP Einstellung">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="input_IP" layoutX="94.0" layoutY="46.0" />
+                  <Label layoutX="14.0" layoutY="50.0" text="Start-IP" />
+               </children>
+            </Pane>
+            <Button layoutX="247.0" layoutY="333.0" mnemonicParsing="false" text="Speichern" />
+            </children>
+        </Pane>
+    </center>
+    <right>
+        <Pane prefHeight="200.0" prefWidth="40.0" BorderPane.alignment="CENTER" />
+    </right>
+   <top>
+      <Pane prefHeight="40.0" BorderPane.alignment="CENTER">
+         <children>
                 <ImageView fitHeight="39.0" fitWidth="50.0" onMouseReleased="#handleMenuImage" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../Pictures/Menu_Icon.jpg" />
@@ -31,12 +62,23 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
+                  <Label prefHeight="43.0" prefWidth="175.0" styleClass="menulabel" stylesheets="@../CSS/MainWindow.css" textFill="#021244">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="7.0" />
+                     </padding>
+                  </Label>
                         <ImageView fitHeight="39.0" fitWidth="39.0" onMouseReleased="#handleMenuInvis" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../Pictures/Menu_Icon_invert.jpg" />
                             </image>
                         </ImageView>
-                        <Label fx:id="label_Messung" onMouseReleased="#handlemenumessung" prefHeight="43.0" prefWidth="175.0" styleClass="menulabel" stylesheets="@../CSS/MainWindow.css" text="Messung aufnehmen" textFill="#021244" GridPane.rowIndex="3">
+                        <Label onMouseReleased="#handlemenuHome" prefHeight="43.0" prefWidth="175.0" styleClass="menulabel" stylesheets="@../CSS/MainWindow.css" text="Home" textFill="#021244" GridPane.rowIndex="1">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -47,7 +89,7 @@
                                 <Cursor fx:constant="HAND" />
                             </cursor>
                         </Label>
-                        <Label fx:id="label_profil" onMouseReleased="#handlemenuprofil" prefHeight="43.0" prefWidth="175.0" styleClass="menulabel" stylesheets="@../CSS/MainWindow.css" text="Profil anlegen" textFill="#021244" GridPane.rowIndex="2">
+                        <Label onMouseReleased="#handlemenuprofil" prefHeight="43.0" prefWidth="175.0" styleClass="menulabel" stylesheets="@../CSS/MainWindow.css" text="Profil anlegen" textFill="#021244" GridPane.rowIndex="2">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -58,7 +100,7 @@
                                 <Cursor fx:constant="HAND" />
                             </cursor>
                         </Label>
-                        <Label fx:id="label_auswertung" onMouseReleased="#handlemenuauswertung" prefHeight="39.0" prefWidth="175.0" styleClass="menulabel" stylesheets="@../CSS/MainWindow.css" text="Auswertung einsehen" textFill="#021244" GridPane.rowIndex="4">
+                        <Label onMouseReleased="#handlemenumessung" prefHeight="43.0" prefWidth="175.0" styleClass="menulabel" stylesheets="@../CSS/MainWindow.css" text="Messung aufnehmen" textFill="#021244" GridPane.rowIndex="3">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -69,7 +111,7 @@
                                 <Cursor fx:constant="HAND" />
                             </cursor>
                         </Label>
-                        <Label fx:id="label_einstellung" onMouseReleased="#handlemenueinstellungen" prefHeight="41.0" prefWidth="175.0" styleClass="menulabel" stylesheets="@../CSS/MainWindow.css" text="Einstellungen" textFill="#021244" GridPane.rowIndex="5">
+                        <Label onMouseReleased="#handlemenuauswertung" prefHeight="39.0" prefWidth="175.0" styleClass="menulabel" stylesheets="@../CSS/MainWindow.css" text="Auswertung einsehen" textFill="#021244" GridPane.rowIndex="4">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -80,7 +122,7 @@
                                 <Cursor fx:constant="HAND" />
                             </cursor>
                         </Label>
-                        <Label fx:id="label_home" onMouseReleased="#handlemenuHome" prefHeight="43.0" prefWidth="175.0" styleClass="menulabel" stylesheets="@../CSS/MainWindow.css" text="Home" textFill="#021244" GridPane.rowIndex="1">
+                        <Label onMouseReleased="#handlemenueinstellungen" prefHeight="41.0" prefWidth="175.0" styleClass="menulabel" stylesheets="@../CSS/MainWindow.css" text="Einstellungen" textFill="#021244" GridPane.rowIndex="5">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -93,45 +135,17 @@
                         </Label>
                     </children>
                 </GridPane>
-            </children>
-        </Pane>
-    </left>
-    <center>
-        <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <children>
-                <Label layoutX="45.0" layoutY="48.0" text="Einstellungen">
-                    <font>
-                        <Font size="25.0" />
-                    </font>
-                </Label>
-            <RadioButton fx:id="radio_Linux" layoutX="45.0" layoutY="127.0" mnemonicParsing="false" onAction="#handle_radio_Linux" selected="true" text="Raspberrys" />
-            <RadioButton fx:id="radio_Windows" layoutX="45.0" layoutY="153.0" mnemonicParsing="false" onAction="#handle_radio_Windows" text="Notebook" />
-            <Pane layoutX="45.0" layoutY="189.0" prefHeight="200.0" prefWidth="337.0">
-               <children>
-                  <Label layoutX="14.0" layoutY="14.0" text="IP Einstellung">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="input_IP" layoutX="94.0" layoutY="46.0" />
-                  <Label layoutX="14.0" layoutY="50.0" text="Start-IP" />
-               </children>
-            </Pane>
-            <Button layoutX="337.0" layoutY="431.0" mnemonicParsing="false" text="Speichern" />
-            </children>
-        </Pane>
-    </center>
-    <right>
-        <Pane prefHeight="200.0" prefWidth="40.0" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fx:id="hilfeImage" fitHeight="33.0" fitWidth="32.0" layoutX="-16.0" layoutY="540.0" onMouseReleased="#handleImageHilfe" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Pictures/Hilfe_Icon_rand.png" />
-               </image></ImageView>
          </children>
-        </Pane>
-    </right>
-    <bottom>
-        <Pane prefHeight="30.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-    </bottom>
+      </Pane>
+   </top>
+   <bottom>
+      <ImageView fx:id="hilfeImage" fitHeight="33.0" fitWidth="32.0" onMouseReleased="#handleImageHilfe" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="TOP_RIGHT">
+         <image>
+            <Image url="@../Pictures/Hilfe_Icon_rand.png" />
+         </image>
+         <BorderPane.margin>
+            <Insets bottom="10.0" right="10.0" />
+         </BorderPane.margin>
+      </ImageView>
+   </bottom>
 </BorderPane>

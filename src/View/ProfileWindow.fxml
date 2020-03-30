@@ -78,15 +78,15 @@
     <stylesheets>
         <URL value="@/CSS/MainWindow.css" />
     </stylesheets>
-    <top>
-        <Pane prefHeight="40.0" BorderPane.alignment="CENTER">
-         <children>
+    <left>
+        <Pane prefHeight="200.0" prefWidth="40.0" BorderPane.alignment="CENTER">
+            <children>
                 <ImageView fx:id="image_menu_off" fitHeight="39.0" fitWidth="50.0" onMouseReleased="#handleMenuImage" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../Pictures/Menu_Icon.jpg" />
                     </image>
                 </ImageView>
-                <GridPane fx:id="grid_menu" alignment="BOTTOM_LEFT" gridLinesVisible="true" prefHeight="238.0" prefWidth="175.0" styleClass="menugridPane" stylesheets="@../CSS/Menu.css" visible="false">
+                <GridPane fx:id="grid_menu" alignment="BOTTOM_LEFT" gridLinesVisible="true" prefHeight="238.0" prefWidth="175.0" styleClass="menugridPane" stylesheets="@../CSS/MainWindow.css" visible="false">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" />
                     </columnConstraints>
@@ -178,11 +178,6 @@
                         </Label>
                     </children>
                 </GridPane>
-         </children></Pane>
-    </top>
-    <left>
-        <Pane prefHeight="200.0" prefWidth="40.0" BorderPane.alignment="CENTER">
-            <children>
                 <Text fx:id="savedinfo_Text" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="205.13671875" />
             </children>
         </Pane>
