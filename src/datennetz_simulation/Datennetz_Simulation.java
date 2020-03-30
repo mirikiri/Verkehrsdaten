@@ -47,11 +47,11 @@ public class Datennetz_Simulation extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("/View/MainWindow.fxml"));
 
-        Scene scene = new Scene(root, 700, 600);
+        Scene scene = new Scene(root, 500, 600);
 
         primaryStage.setTitle("Willkommen");
         primaryStage.setScene(scene);
-        primaryStage.setMinWidth(700);
+        primaryStage.setMinWidth(500);
         primaryStage.setMinHeight(600);
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/Pictures/Cloud_Icon_bottom.png")));
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -69,7 +69,7 @@ public class Datennetz_Simulation extends Application {
         Gson gson = new Gson();
         Profil_Web web = new Profil_Web("Web_Testing", Profil.profil_Type.WEB);
         web.saveAndWrite(gson);
-        try {
+        /*try {
             web.send();
         } catch (SocketException ex) {
             Logger.getLogger(Datennetz_Simulation.class.getName()).log(Level.SEVERE, null, ex);
@@ -77,7 +77,7 @@ public class Datennetz_Simulation extends Application {
             Logger.getLogger(Datennetz_Simulation.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
             Logger.getLogger(Datennetz_Simulation.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }
 
     public void checkForVerkehrsprofileJSON() {

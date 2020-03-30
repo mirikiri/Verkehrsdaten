@@ -70,7 +70,7 @@
             <top>
                 <Pane prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <children>
-                        <ImageView fitHeight="39.0" fitWidth="39.0" onMouseReleased="#handleMenuImage" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="image_menu_off" fitHeight="39.0" fitWidth="39.0" onMouseReleased="#handleMenuImage" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../Pictures/Menu_Icon.jpg" />
                             </image>
