@@ -96,7 +96,6 @@ public class ProfileWindowVC implements Initializable {
     private TextField input_name;
     @FXML
     private ChoiceBox<String> choice_signal;
-    @FXML
     private TextField input_dauer;
     @FXML
     private TextField input_anzahl;
@@ -119,6 +118,10 @@ public class ProfileWindowVC implements Initializable {
     private tableProfil test1 = new tableProfil("VoIP", "2");
     private tableProfil test2 = new tableProfil("Youtube720p", "1");
     private tableProfil test3 = new tableProfil("gaming", "1");
+    @FXML
+    private ImageView image_menu_off;
+    @FXML
+    private ImageView image_icon;
     
             
 
@@ -185,15 +188,18 @@ public class ProfileWindowVC implements Initializable {
     }
     
         
+           
     @FXML
     private void handleMenuImage(MouseEvent event) {
         grid_menu.setVisible(true);
+        image_menu_off.setVisible(false);
         //setAnimation(menu, true);
     }
     
     @FXML
     private void handleMenuInvis(MouseEvent event) {
         grid_menu.setVisible(false);
+        image_menu_off.setVisible(true);
         //setAnimation(homeWindow, false);
     }
 

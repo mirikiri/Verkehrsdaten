@@ -177,6 +177,8 @@ public class StarteMessungWindowVC implements Initializable {
     private TextField input_rauschen_multi;
     @FXML
     private ImageView hilfeImage;
+    @FXML
+    private ImageView image_menu_off;
     
    
    
@@ -592,15 +594,18 @@ public class StarteMessungWindowVC implements Initializable {
     }
     
         
+            
     @FXML
     private void handleMenuImage(MouseEvent event) {
         grid_menu.setVisible(true);
+        image_menu_off.setVisible(false);
         //setAnimation(menu, true);
     }
     
     @FXML
     private void handleMenuInvis(MouseEvent event) {
         grid_menu.setVisible(false);
+        image_menu_off.setVisible(true);
         //setAnimation(homeWindow, false);
     }
     

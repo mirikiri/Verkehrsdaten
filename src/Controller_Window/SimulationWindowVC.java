@@ -86,6 +86,8 @@ public class SimulationWindowVC implements Initializable {
     private Label label_einstellung;
     @FXML
     private Label label_home;
+    @FXML
+    private ImageView image_menu_off;
 
     /**
      * Initializes the controller class.
@@ -367,15 +369,18 @@ public class SimulationWindowVC implements Initializable {
     }
     
         
+           
     @FXML
     private void handleMenuImage(MouseEvent event) {
         grid_menu.setVisible(true);
+        image_menu_off.setVisible(false);
         //setAnimation(menu, true);
     }
     
     @FXML
     private void handleMenuInvis(MouseEvent event) {
         grid_menu.setVisible(false);
+        image_menu_off.setVisible(true);
         //setAnimation(homeWindow, false);
     }
     

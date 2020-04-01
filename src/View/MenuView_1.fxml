@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+
+<GridPane fx:id="grid_menu" gridLinesVisible="true" prefHeight="262.0" prefWidth="188.0" stylesheets="@../CSS/MainWindow.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller_Window.MenuViewVC">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="label_Messung" onMouseReleased="#handlemenumessung" prefHeight="43.0" prefWidth="188.0" text="Messung aufnehmen" textFill="#021244" GridPane.rowIndex="3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <padding>
+                  <Insets left="7.0" />
+               </padding>
+            </Label>
+            <Label fx:id="label_profil" onMouseReleased="#handlemenuprofil" prefHeight="43.0" prefWidth="185.0" text="Profil einrichten" textFill="#021244" GridPane.rowIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <padding>
+                  <Insets left="7.0" />
+               </padding>
+            </Label>
+            <Label fx:id="label_auswertung" onMouseReleased="#handlemenuauswertung" prefHeight="44.0" prefWidth="185.0" text="Auswertung einsehen" textFill="#021244" GridPane.rowIndex="4">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <padding>
+                  <Insets left="7.0" right="7.0" />
+               </padding>
+            </Label>
+            <ImageView fx:id="image_icon" fitHeight="39.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </ImageView>
+            <Label fx:id="label_einstellung" onMouseReleased="#handlemenueinstellungen" prefHeight="41.0" prefWidth="186.0" text="Einstellungen" textFill="#021244" GridPane.rowIndex="5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <padding>
+                  <Insets left="7.0" right="7.0" />
+               </padding>
+            </Label>
+      <Label fx:id="label_home" onMouseReleased="#handlemenuHome" prefHeight="43.0" prefWidth="185.0" text="Home" textFill="#021244" GridPane.rowIndex="1">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <padding>
+            <Insets left="7.0" />
+         </padding>
+      </Label>
+         </children>
+         <stylesheets>
+            <URL value="@/CSS/Menu.css" />
+        </stylesheets>
+      </GridPane>

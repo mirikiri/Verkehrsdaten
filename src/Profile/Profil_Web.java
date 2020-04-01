@@ -35,10 +35,10 @@ public class Profil_Web extends Profil {
         }
         pakets.get(pakets.size() - 1).setWaitTime(0); // nach dem letzten Paket muss nicht mehr gewartet werden
         
-        System.out.println(pakets.size() + " Pakete");
-        System.out.println("");
+        //System.out.println(pakets.size() + " Pakete");
+        //System.out.println("");
         for (PaketToSend paket : pakets) {
-            System.out.print(paket.getWaitTime() + ", ");
+            //System.out.print(paket.getWaitTime() + ", ");
         }
     }
 

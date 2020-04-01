@@ -8,11 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-<<<<<<< HEAD
-    <jar href="Datennetz_Simulation.jar" size="21229056" download="eager" />
-=======
-    <jar href="Datennetz_Simulation.jar" size="5443056" download="eager" />
->>>>>>> master
+    <jar href="Datennetz_Simulation.jar" size="21300133" download="eager" />
     <jar href="lib\JTransforms-3.1-with-dependencies.jar" size="1501730" download="eager" />
     <jar href="lib\Jama-1.0.3.jar" size="35981" download="eager" />
     <jar href="lib\commons-io-2.6.jar" size="214788" download="eager" />

@@ -77,17 +77,9 @@ public class MainWindowVC implements Initializable {
     @FXML
     private GridPane grid_menu;
     @FXML
-    private Label label_Messung;
-    @FXML
-    private Label label_profil;
-    @FXML
-    private Label label_auswertung;
-    @FXML
     private ImageView image_icon;
     @FXML
-    private Label label_einstellung;
-    @FXML
-    private Label label_home;
+    private ImageView image_menu_off;
 
     
     @Override
@@ -288,12 +280,14 @@ public class MainWindowVC implements Initializable {
     @FXML
     private void handleMenuImage(MouseEvent event) {
         grid_menu.setVisible(true);
+        image_menu_off.setVisible(false);
         //setAnimation(menu, true);
     }
     
     @FXML
     private void handleMenuInvis(MouseEvent event) {
         grid_menu.setVisible(false);
+        image_menu_off.setVisible(true);
         //setAnimation(homeWindow, false);
     }
 
