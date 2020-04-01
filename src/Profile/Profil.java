@@ -15,6 +15,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.List;
 import model.PaketToSend;
 
@@ -31,6 +32,8 @@ public class Profil {
     protected String name;
     protected profil_Type type;
     protected List<PaketToSend> pakets;
+    protected List<PaketToSend> packetToSend;
+    protected List<PaketToSend> packetslist = new ArrayList<>();
 
     public Profil(String name, profil_Type type) {
         this.name = name;
@@ -46,8 +49,31 @@ public class Profil {
         } catch (IOException ex) {
         }
     }
+    
+    
+     public void send1() throws SocketException, UnknownHostException, IOException, InterruptedException {
+        DatagramSocket ds = new DatagramSocket();
 
-    public void send() throws SocketException, UnknownHostException, IOException, InterruptedException {
+        InetAddress ip = InetAddress.getByName("192.168.0.58");
+        System.out.println("Start");
+
+        DatagramPacket DpSend;
+           for (PaketToSend packetToSend : packetslist) {            
+                DpSend = new DatagramPacket(packetToSend.getContent(), packetToSend.getLength(), ip, 1234);
+        
+                sleep(30);              //sleeps for 30 milliseconds, evtl. für die vielen icmps verantwortlich?
+                ds.send(DpSend);
+                System.out.println(DpSend.getData());
+                System.out.println(packetToSend.getContent());
+            
+        }
+    }
+     
+
+    
+    
+
+    public void send2() throws SocketException, UnknownHostException, IOException, InterruptedException {
         DatagramSocket ds = new DatagramSocket();
 
         InetAddress ip = InetAddress.getByName("192.168.0.58");
