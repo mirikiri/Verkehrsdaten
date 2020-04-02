@@ -67,17 +67,17 @@ public class Datennetz_Simulation extends Application {
         
         //Profil Testing
         Gson gson = new Gson();
-        Profil_Web web = new Profil_Web("Web_Testing", Profil.profil_Type.WEB);
+        Profil_Web web = new Profil_Web("Web_Testing", Profil.profil_Type.Web);
         web.saveAndWrite(gson);
-        /*try {
-            web.send();
+        try {  
+            web.send2();
         } catch (SocketException ex) {
             Logger.getLogger(Datennetz_Simulation.class.getName()).log(Level.SEVERE, null, ex);
         } catch (UnknownHostException ex) {
             Logger.getLogger(Datennetz_Simulation.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
             Logger.getLogger(Datennetz_Simulation.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
     }
 
     public void checkForVerkehrsprofileJSON() {

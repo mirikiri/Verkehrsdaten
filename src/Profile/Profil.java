@@ -16,7 +16,9 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import model.Paket;
 import model.PaketToSend;
 
 /**
@@ -26,7 +28,7 @@ import model.PaketToSend;
 public class Profil {
 
     public enum profil_Type {
-        GLEICHVERTEILUNG, GAUSS, VOIP, WEB, REALMESSUNG
+        Gleichverteilung, Gauss, VoIP, Web, Stresstest, IoT, Signal_Generator, Spotify, Backbone_Rauschen, Allegro_Office; 
     }
 
     protected String name;
@@ -34,6 +36,16 @@ public class Profil {
     protected List<PaketToSend> pakets;
     protected List<PaketToSend> packetToSend;
     protected List<PaketToSend> packetslist = new ArrayList<>();
+    protected int sleeptime;
+    
+    
+    protected double timestamp_old = 0;                     // für Signal_Generator
+    protected double timestamp_current = 0;
+    protected double timestamp_difference = 0;
+    protected double timestamp_difference_all = 0;
+    protected int package_counter = 0;
+    protected int package_duration = 0;
+    protected List<Paket> packages = new ArrayList<>();
 
     public Profil(String name, profil_Type type) {
         this.name = name;
@@ -61,7 +73,7 @@ public class Profil {
            for (PaketToSend packetToSend : packetslist) {            
                 DpSend = new DatagramPacket(packetToSend.getContent(), packetToSend.getLength(), ip, 1234);
         
-                sleep(30);              //sleeps for 30 milliseconds, evtl. für die vielen icmps verantwortlich?
+                sleep(sleeptime);              //sleeps for 30 milliseconds, evtl. für die vielen icmps verantwortlich?
                 ds.send(DpSend);
                 System.out.println(DpSend.getData());
                 System.out.println(packetToSend.getContent());
@@ -69,10 +81,6 @@ public class Profil {
         }
     }
      
-
-    
-    
-
     public void send2() throws SocketException, UnknownHostException, IOException, InterruptedException {
         DatagramSocket ds = new DatagramSocket();
 
@@ -90,4 +98,33 @@ public class Profil {
             }
         }
     }
+    
+    
+    
+     public void send3() throws SocketException, UnknownHostException, IOException, InterruptedException {
+        DatagramSocket ds = new DatagramSocket();
+
+        InetAddress ip = InetAddress.getByName("192.168.0.58");
+        System.out.println("Start");
+
+        DatagramPacket DpSend;
+        timestamp_old = 0;
+         for (Paket paket: packages) {
+                byte[] packageContent = new byte[paket.getPaketlength()];
+                Arrays.fill(packageContent, (byte) 1 );
+                
+                timestamp_current = paket.getTimestamp();
+                timestamp_difference = timestamp_current - timestamp_old;
+                timestamp_old = timestamp_current;
+                int sleep_value = (int) timestamp_difference *1000; 
+               
+                DpSend = new DatagramPacket(packageContent, paket.getPaketlength(), ip, 1234);      
+                sleep(sleep_value);              //sleeps for 3 milliseconds, evtl. für die vielen icmps verantwortlich?
+                ds.send(DpSend);
+                
+                System.out.println(DpSend.getData());            
+        
+            }
+    }
 }
+

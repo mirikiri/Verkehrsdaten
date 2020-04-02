@@ -11,7 +11,7 @@ import model.PaketToSend;
 
 /**
  *
- * @author Admin
+ * @author Tobias
  */
 public class Profil_Gleichverteilung extends Profil {
     
@@ -26,7 +26,7 @@ public class Profil_Gleichverteilung extends Profil {
                 packetslist.add(new PaketToSend(contentLength[i]));
             }
         }
-       
+       sleeptime = 30;
        Collections.shuffle(packetslist);
     }
 }
