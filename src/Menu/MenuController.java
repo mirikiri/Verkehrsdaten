@@ -55,7 +55,7 @@ public class MenuController{
         Scene home_scene = new Scene(home);
         Datennetz_Simulation.parentWindow.getIcons().add(new Image(getClass().getResourceAsStream("/Pictures/PC_Icon.jpg")));
 
-        Datennetz_Simulation.parentWindow.setTitle("Messungen starten");
+        Datennetz_Simulation.parentWindow.setTitle("Willkommen");
         Datennetz_Simulation.parentWindow.setScene(home_scene);
         Datennetz_Simulation.parentWindow.show();
     }
@@ -73,7 +73,7 @@ public class MenuController{
         Scene messung_scene = new Scene(messung);
         Datennetz_Simulation.parentWindow.getIcons().add(new Image(getClass().getResourceAsStream("/Pictures/PC_Icon.jpg")));
 
-        Datennetz_Simulation.parentWindow.setTitle("Messungen starten");
+        Datennetz_Simulation.parentWindow.setTitle("Messungen aufnehmen");
         Datennetz_Simulation.parentWindow.setScene(messung_scene);
         Datennetz_Simulation.parentWindow.show();
     }
