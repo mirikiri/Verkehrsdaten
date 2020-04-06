@@ -38,6 +38,7 @@ public class Datennetz_Simulation extends Application {
     public static Stage parentWindow;
     public static MenuController menucontrol = new MenuController();
     public static String targetsystem = "Linux";
+    public static String start_IP = "192.168.0.58";
     public static ProfileController profilcontrol = new ProfileController();
     
     @Override
@@ -64,7 +65,7 @@ public class Datennetz_Simulation extends Application {
 
         primaryStage.show();
         
-        
+        /*
         //Profil Testing
         Gson gson = new Gson();
         Profil_Web web = new Profil_Web("Web_Testing", Profil.profil_Type.Web);
@@ -77,7 +78,7 @@ public class Datennetz_Simulation extends Application {
             Logger.getLogger(Datennetz_Simulation.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
             Logger.getLogger(Datennetz_Simulation.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }
 
     public void checkForVerkehrsprofileJSON() {

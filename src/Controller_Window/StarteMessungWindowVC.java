@@ -6,7 +6,8 @@
  */
 package Controller_Window;
 
-
+import Profile.Profil;
+import Profile.Profil_Web;
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
@@ -43,19 +44,26 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import Profile.ProfileController;
+import com.google.gson.Gson;
+import static datennetz_simulation.Datennetz_Simulation.start_IP;
 import static datennetz_simulation.Datennetz_Simulation.targetsystem;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Miriam
  */
-
 public class StarteMessungWindowVC implements Initializable {
+
     //Variablen
     private String signalType;
-    private String signalType_einzel;    
+    private String signalType_einzel;
     private String signalType_Multi;
     private String signalType_Profil;
+    private String signalType_einzel_windows;
     private String generator;
     private int gen;
     private String numGenerator;
@@ -70,9 +78,9 @@ public class StarteMessungWindowVC implements Initializable {
     private String typeMess;
     private String befehl_wireshark;
     private String savename;
-    
+
     private Stage homeWindow = Datennetz_Simulation.parentWindow;
-        
+
     //Variablen für Übertragung ans PI
     private List<String> piOrder = new ArrayList<String>();
     private int port = 22;
@@ -81,13 +89,12 @@ public class StarteMessungWindowVC implements Initializable {
     private List<String> ip = new ArrayList<String>();
     private int i = 0;
     private static final SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy_HH.mm.ss");
-    
+
     private ProfileController profile = new ProfileController();
-    
+
     //Variablen für Animation des Menüs
     Duration startDuration = Duration.ZERO;
     Duration endDuration = Duration.seconds(10);
-    
 
     @FXML
     private Button Button_Start;
@@ -127,7 +134,7 @@ public class StarteMessungWindowVC implements Initializable {
     private TextField input_min_einzel;
     @FXML
     private TextField input_max_einzel;
-   
+
     @FXML
     private TextField input_anz_Seiten_Multi;
     @FXML
@@ -138,7 +145,7 @@ public class StarteMessungWindowVC implements Initializable {
     private TextField input_anz_Seiten_einzel;
     @FXML
     private TextField input_rauschen_einzel;
-   
+
     @FXML
     private GridPane grid_menu;
     @FXML
@@ -150,17 +157,7 @@ public class StarteMessungWindowVC implements Initializable {
     @FXML
     private Label label_anzSeiten_einzel;
     @FXML
-    private Label label_Messung;
-    @FXML
-    private Label label_profil;
-    @FXML
-    private Label label_auswertung;
-    @FXML
     private ImageView image_icon;
-    @FXML
-    private Label label_einstellung;
-    @FXML
-    private Label label_home;
     @FXML
     private Label label_min_multi;
     @FXML
@@ -179,104 +176,141 @@ public class StarteMessungWindowVC implements Initializable {
     private ImageView hilfeImage;
     @FXML
     private ImageView image_menu_off;
-    
-   
-   
+    @FXML
+    private Pane pane_windows_einzel;
+    @FXML
+    private ChoiceBox<String> choice_Signal_einzel_windows;
+    @FXML
+    private TextField input_Dauer_einzel_windows;
+
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         //choice_type.setId("einzel");
         setListeners();
         setChoices();
         getConnection(); //evtl auch als listener?  
+        if (targetsystem == "Windows") {
+            typeMess = "Einzelsignal";
+            choice_type.setDisable(true);
+            pane_windows_einzel.setVisible(true);
+        } else {
+            choice_type.setDisable(false);
+            pane_windows_einzel.setVisible(false);
+        }
     }
-    
-    
+
     @FXML
     protected void handleStartButtonAction(ActionEvent event) throws IOException {
 
         //Miri
         //*************Neue Messung starten********************
         System.out.println("MIRI: Starte Messung Button");
-        
-        
-        //alle Parameter einlesen
-        if(typeMess.equals("Einzelsignal")){
-            signalType = signalType_einzel;
-            numGenerator = "1 Generator";
-            num = 1;
-            duration = input_Dauer_einzel.getCharacters().toString().replaceAll("[^\\d]", "");
-            minSize = input_min_einzel.getCharacters().toString().replaceAll("[^\\d]", "");
-            maxSize = input_max_einzel.getCharacters().toString().replaceAll("[^\\d]", "");
-            web_anzahlSeiten = input_anz_Seiten_einzel.getCharacters().toString().replaceAll("[^\\d]", "");
-            web_wartezeit = input_warte_einzel.getCharacters().toString().replaceAll("[^\\d]", "");
-            rauschen_skalierung = input_skal_Rauschen.getCharacters().toString().replaceAll("[^\\d]", "");
-        }
-        else if (typeMess.equals("Multisignal")){
-            signalType = signalType_Multi;
-            duration = input_Dauer_Multi.getCharacters().toString().replaceAll("[^\\d]", "");
-            minSize = input_min_Multi.getCharacters().toString().replaceAll("[^\\d]", "");
-            maxSize = input_max_Multi.getCharacters().toString().replaceAll("[^\\d]", "");
-            web_anzahlSeiten = input_anz_Seiten_Multi.getCharacters().toString().replaceAll("[^\\d]", "");
-            web_wartezeit = input_warte_Multi.getCharacters().toString().replaceAll("[^\\d]", "");
-            rauschen_skalierung = input_skal_Rauschen.getCharacters().toString().replaceAll("[^\\d]", "");
-            switch(numGenerator){
-                case "1 Generator": num = 1; break;
-                case "2 Generatoren": num = 2; break;
-                case "3 Generatoren": num = 3; break;
-                case "4 Generatoren": num = 4; break;
-                case "5 Generatoren": num = 5; break;
-                case "6 Generatoren": num = 6; break;
-                case "7 Generatoren": num = 7; break;
-                case "8 Generatoren": num = 8; break;
-                case "9 Generatoren": num = 9; break;
-                case "10 Generatoren": num = 10; break;
-                case "11 Generatoren": num = 11; break;
-                default: num=1; break;
+
+        if (targetsystem == "Linux") {
+            //alle Parameter einlesen
+            if (typeMess.equals("Einzelsignal")) {
+                signalType = signalType_einzel;
+                numGenerator = "1 Generator";
+                num = 1;
+                duration = input_Dauer_einzel.getCharacters().toString().replaceAll("[^\\d]", "");
+                minSize = input_min_einzel.getCharacters().toString().replaceAll("[^\\d]", "");
+                maxSize = input_max_einzel.getCharacters().toString().replaceAll("[^\\d]", "");
+                web_anzahlSeiten = input_anz_Seiten_einzel.getCharacters().toString().replaceAll("[^\\d]", "");
+                web_wartezeit = input_warte_einzel.getCharacters().toString().replaceAll("[^\\d]", "");
+                rauschen_skalierung = input_skal_Rauschen.getCharacters().toString().replaceAll("[^\\d]", "");
+            } else if (typeMess.equals("Multisignal")) {
+                signalType = signalType_Multi;
+                duration = input_Dauer_Multi.getCharacters().toString().replaceAll("[^\\d]", "");
+                minSize = input_min_Multi.getCharacters().toString().replaceAll("[^\\d]", "");
+                maxSize = input_max_Multi.getCharacters().toString().replaceAll("[^\\d]", "");
+                web_anzahlSeiten = input_anz_Seiten_Multi.getCharacters().toString().replaceAll("[^\\d]", "");
+                web_wartezeit = input_warte_Multi.getCharacters().toString().replaceAll("[^\\d]", "");
+                rauschen_skalierung = input_skal_Rauschen.getCharacters().toString().replaceAll("[^\\d]", "");
+                switch (numGenerator) {
+                    case "1 Generator":
+                        num = 1; break;
+                    case "2 Generatoren":
+                        num = 2; break;
+                    case "3 Generatoren":
+                        num = 3; break;
+                    case "4 Generatoren":
+                        num = 4; break;
+                    case "5 Generatoren":
+                        num = 5; break;
+                    case "6 Generatoren":
+                        num = 6; break;
+                    case "7 Generatoren":
+                        num = 7; break;
+                    case "8 Generatoren":
+                        num = 8; break;
+                    case "9 Generatoren":
+                        num = 9; break;
+                    case "10 Generatoren":
+                        num = 10; break;
+                    case "11 Generatoren":
+                        num = 11; break;
+                    default:
+                        num = 1; break;
+                }
+            } else if (typeMess.equals("Fertiges Profil")) {
+                signalType = signalType_Profil;
+                duration = input_Dauer_Profil.getCharacters().toString().replaceAll("[^\\d]", "");
+                rauschen_skalierung = input_skal_Rauschen.getCharacters().toString().replaceAll("[^\\d]", "");
             }
-        }
-        else if (typeMess.equals("Fertiges Profil")){
-            signalType = signalType_Profil;
-            duration = input_Dauer_Profil.getCharacters().toString().replaceAll("[^\\d]", "");
-            rauschen_skalierung = input_skal_Rauschen.getCharacters().toString().replaceAll("[^\\d]", "");
-        }
-       
-        piOrder.clear();
-        //Art der Anwendung in Befehl für Pi-Skript umwandeln
-        
-        System.out.println("MIRI: Parameters are Type: "+ signalType + ", Generator: "+ generator+ ", Number of Gens: "+numGenerator+" ,time: "+ duration+", Size: "+minSize+"-"+maxSize+", "+rauschen_skalierung+", "+web_anzahlSeiten+", "+web_wartezeit);
-        
-        piOrder = profile.gsetOrderList(signalType, duration, minSize, maxSize, rauschen_skalierung, web_anzahlSeiten, web_wartezeit);
-        
-        System.out.println("MIRI: Parameters are Type: "+ signalType + ", Generator: "+ generator+ ", Number of Gens: "+numGenerator+" ,time: "+ duration+", Size: "+minSize+"-"+maxSize+", "+rauschen_skalierung+", "+web_anzahlSeiten+", "+web_wartezeit);
-        dur = Integer.parseInt(duration.replaceAll("[^\\d]", "")); //plus extra minuten???
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        savename = typeMess + "_" + signalType.replaceAll("\\s+", "") + "_" + sdf.format(timestamp);
-        System.out.println("MIRI: "+ savename);
-        startWireshark(dur, savename);
-        
-        //Liste an Pi senden
-        for(i=0; i < num; i++){
-        /***************************
-        * evtl anpassen so dass orderliste geschickt wird und nicht jeder einzelne befehl
-        ***************************/
-            if(signalType.equals(signalType_Profil)){
-                orderForPi(piOrder.get(i), nutzername.get(i), passwort, ip.get(i), port);
-                System.out.println("MIRI: Industrie");
+            //Arbeitet mit den Raspberry Pi Generatoren
+            piOrder.clear();
+            //Art der Anwendung in Befehl für Pi-Skript umwandeln
+
+            System.out.println("MIRI: Parameters are Type: " + signalType + ", Generator: " + generator + ", Number of Gens: " + numGenerator + " ,time: " + duration + ", Size: " + minSize + "-" + maxSize + ", " + rauschen_skalierung + ", " + web_anzahlSeiten + ", " + web_wartezeit);
+
+            piOrder = profile.gsetOrderList(signalType, duration, minSize, maxSize, rauschen_skalierung, web_anzahlSeiten, web_wartezeit);
+
+            System.out.println("MIRI: Parameters are Type: " + signalType + ", Generator: " + generator + ", Number of Gens: " + numGenerator + " ,time: " + duration + ", Size: " + minSize + "-" + maxSize + ", " + rauschen_skalierung + ", " + web_anzahlSeiten + ", " + web_wartezeit);
+            dur = Integer.parseInt(duration.replaceAll("[^\\d]", "")); //plus extra minuten???
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            savename = typeMess + "_" + signalType.replaceAll("\\s+", "") + "_" + sdf.format(timestamp);
+            System.out.println("MIRI: " + savename);
+            startWireshark(dur, savename);
+
+            //Liste an Pi senden
+            for (i = 0; i < num; i++) {
+                /**
+                 * *************************
+                 * evtl anpassen so dass orderliste geschickt wird und nicht
+                 * jeder einzelne befehl *************************
+                 */
+                if (signalType.equals(signalType_Profil)) {
+                    orderForPi(piOrder.get(i), nutzername.get(i), passwort, ip.get(i), port);
+                    System.out.println("MIRI: Industrie");
+                } else if (signalType.equals(signalType_Multi)) {
+                    orderForPi(piOrder.get(0), nutzername.get(i), passwort, ip.get(i), port);
+                    System.out.println("MIRI: orderforPi done");
+                } else {
+                    orderForPi(piOrder.get(0), nutzername.get(gen - 1), passwort, ip.get(gen - 1), port);
+                    System.out.println("MIRI: orderforPi done");
+                }
             }
-            else if(signalType.equals(signalType_Multi)){
-                orderForPi(piOrder.get(0), nutzername.get(i), passwort, ip.get(i), port);
-                System.out.println("MIRI: orderforPi done");
-            }
-            else{
-                orderForPi(piOrder.get(0), nutzername.get(gen-1), passwort, ip.get(gen-1), port);
-                System.out.println("MIRI: orderforPi done");
+        } else {
+            //Arbeitet mit einem weiteren Notebook
+            duration = input_Dauer_einzel_windows.getCharacters().toString().replaceAll("[^\\d]", "");
+            Gson gson = new Gson();
+            Profil windows_profil = profile.getProfilOrder(signalType_einzel_windows);
+            windows_profil.saveAndWrite(gson);
+            System.out.println("MIRI: new profile for windows: " + signalType_einzel_windows);
+            try {
+                windows_profil.send2();
+            } catch (SocketException ex) {
+                Logger.getLogger(Datennetz_Simulation.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (UnknownHostException ex) {
+                Logger.getLogger(Datennetz_Simulation.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Datennetz_Simulation.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         System.out.println("MIRI: Orders sent");
-        
+
     }
-   
-    
+
     public static ArrayList<String> sendToPi(String befehl, String nutzername, String passwort, String ip, int port) throws Exception {
 
         // Erstelle das benötigte Objekt, um eine SSH-Verbindung aufbauen zu können.
@@ -336,8 +370,7 @@ public class StarteMessungWindowVC implements Initializable {
                 } catch (Exception ee) {
                 }
             }
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
         }
         System.out.println("SSH done");
 
@@ -346,10 +379,10 @@ public class StarteMessungWindowVC implements Initializable {
         session.disconnect();
 
         // Gib die Ausgabe zurück
-        return lines;    
+        return lines;
     }
 
-    protected void orderForPi(String befehl, String nutzername, String passwort, String ip, int port){
+    protected void orderForPi(String befehl, String nutzername, String passwort, String ip, int port) {
 
         //Hier werden die genauen Befehle mit sendToPi gesendet
         System.out.println("MIRI: orderForPi");
@@ -364,18 +397,17 @@ public class StarteMessungWindowVC implements Initializable {
                     ArrayList<String> lines = sendToPi(befehl, nutzername, passwort, ip, port);
                     // Alle Zeilen der Konsolenausgabe in den Android Logs ausgeben.
                     while (!lines.isEmpty()) {
-                        System.out.println("Rückgabe"+ lines.get(0));
+                        System.out.println("Rückgabe" + lines.get(0));
                         lines.remove(0);
                     }
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }.start();
     }
-    
-    protected void setListeners(){
+
+    protected void setListeners() {
         choice_Gen.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
             generator = newValue;
             gen = Integer.parseInt(generator.replaceAll("[^\\d]", ""));
@@ -383,35 +415,32 @@ public class StarteMessungWindowVC implements Initializable {
         });
         choice_Signal_einzel.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
             signalType_einzel = newValue;
-            System.out.println("MIRI: Signal = " + signalType);
-            
-            if (signalType_einzel.equals("Web")){
+            System.out.println("MIRI: Signal = " + signalType_einzel);
+
+            if (signalType_einzel.equals("Web")) {
                 input_warte_einzel.setVisible(true);
                 input_anz_Seiten_einzel.setVisible(true);
                 label_warte_einzel.setVisible(true);
                 label_anzSeiten_einzel.setVisible(true);
-            }
-            else {
+            } else {
                 input_warte_einzel.setVisible(false);
                 input_anz_Seiten_einzel.setVisible(false);
                 label_warte_einzel.setVisible(false);
                 label_anzSeiten_einzel.setVisible(false);
             }
-            if (signalType_einzel.equals("Rauschen")){
+            if (signalType_einzel.equals("Rauschen")) {
                 label_rauschen_einzel.setVisible(true);
                 input_rauschen_einzel.setVisible(true);
-            }
-            else{
+            } else {
                 label_rauschen_einzel.setVisible(false);
                 input_rauschen_einzel.setVisible(false);
             }
-            if (signalType_einzel.equals("VoIP")){
+            if (signalType_einzel.equals("VoIP")) {
                 label_min_einzel.setVisible(true);
                 label_max_einzel.setVisible(true);
                 input_min_einzel.setVisible(true);
                 input_max_einzel.setVisible(true);
-            }
-            else{
+            } else {
                 label_min_einzel.setVisible(false);
                 label_max_einzel.setVisible(false);
                 input_min_einzel.setVisible(false);
@@ -420,35 +449,32 @@ public class StarteMessungWindowVC implements Initializable {
         });
         choice_Signal_Multi.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
             signalType_Multi = newValue;
-            System.out.println("MIRI: Signal = " + signalType);
+            System.out.println("MIRI: Signal = " + signalType_Multi);
             //if web or rauschen set extraparameter visible else invisible
-            if (signalType_Multi.equals("Web")){
+            if (signalType_Multi.equals("Web")) {
                 input_warte_Multi.setVisible(true);
                 input_anz_Seiten_Multi.setVisible(true);
                 label_warte_multi.setVisible(true);
                 label_anzSeiten_multi.setVisible(true);
-            }
-            else{
+            } else {
                 input_warte_Multi.setVisible(false);
                 input_anz_Seiten_Multi.setVisible(false);
                 label_warte_multi.setVisible(false);
                 label_anzSeiten_multi.setVisible(false);
             }
-            if (signalType_Multi.equals("Rauschen")){
+            if (signalType_Multi.equals("Rauschen")) {
                 label_rauschen_multi.setVisible(true);
                 input_rauschen_multi.setVisible(true);
-            }
-            else{
+            } else {
                 label_rauschen_multi.setVisible(false);
                 input_rauschen_multi.setVisible(false);
             }
-            if (signalType_Multi.equals("VoIP")){
+            if (signalType_Multi.equals("VoIP")) {
                 label_min_multi.setVisible(true);
                 label_max_multi.setVisible(true);
                 input_min_Multi.setVisible(true);
                 input_max_Multi.setVisible(true);
-            }
-            else{
+            } else {
                 label_min_multi.setVisible(false);
                 label_max_multi.setVisible(false);
                 input_min_Multi.setVisible(false);
@@ -457,7 +483,11 @@ public class StarteMessungWindowVC implements Initializable {
         });
         choice_Signal_Profil.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
             signalType_Profil = newValue;
-            System.out.println("MIRI: Signal = " + signalType);
+            System.out.println("MIRI: Signal = " + signalType_Profil);
+        });
+        choice_Signal_einzel_windows.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
+            signalType_einzel_windows = newValue;
+            System.out.println("MIRI: Signal = " + signalType_einzel_windows);
         });
         choice_AnzahlGen.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
             numGenerator = newValue;
@@ -466,26 +496,24 @@ public class StarteMessungWindowVC implements Initializable {
         choice_type.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
             typeMess = newValue;
             System.out.println("MIRI: Art der Messung = " + typeMess);
-            if(typeMess.equals("Einzelsignal")){
+            if (typeMess.equals("Einzelsignal")) {
                 pane_Einzel.setVisible(true);
                 pane_Multi.setVisible(false);
                 pane_Profil.setVisible(false);
-            }
-            else if (typeMess.equals("Multisignal")){
+            } else if (typeMess.equals("Multisignal")) {
                 pane_Einzel.setVisible(false);
                 pane_Multi.setVisible(true);
                 pane_Profil.setVisible(false);
-            }
-            else if (typeMess.equals("Fertiges Profil")){
+            } else if (typeMess.equals("Fertiges Profil")) {
                 pane_Einzel.setVisible(false);
                 pane_Multi.setVisible(false);
                 pane_Profil.setVisible(true);
             }
         });
-        
+
     }
-    
-    protected void setChoices(){
+
+    protected void setChoices() {
         nutzername.add("verkehrsgenerator1");
         nutzername.add("verkehrsgenerator2");
         nutzername.add("verkehrsgenerator3");
@@ -498,39 +526,39 @@ public class StarteMessungWindowVC implements Initializable {
         nutzername.add("verkehrsgenerator10");
         nutzername.add("verkehrsgenerator11");
         nutzername.add("Server");
-        
-        ip.add("192.168.1.131");        
-        ip.add("192.168.1.132");        
-        ip.add("192.168.1.133");        
-        ip.add("192.168.1.134");        
-        ip.add("192.168.1.135");        
-        ip.add("192.168.1.136");        
-        ip.add("192.168.1.137");        
-        ip.add("192.168.1.138");
-        ip.add("192.168.1.139");   
-        ip.add("192.168.1.140");   
-        ip.add("192.168.1.141");  
-        ip.add("192.168.1.10");
-        
-    }
-    
-    protected void setAnimations(){
-        
-        
+                
+        if (targetsystem == "Linux"){
+            ip.add("192.168.1.131");
+            ip.add("192.168.1.132");
+            ip.add("192.168.1.133");
+            ip.add("192.168.1.134");
+            ip.add("192.168.1.135");
+            ip.add("192.168.1.136");
+            ip.add("192.168.1.137");
+            ip.add("192.168.1.138");
+            ip.add("192.168.1.139");
+            ip.add("192.168.1.140");
+            ip.add("192.168.1.141");
+            ip.add("192.168.1.10");
+        }
 
     }
-    
-    protected void getConnection(){
+
+    protected void setAnimations() {
+
+    }
+
+    protected void getConnection() {
         /*
         if(PI==verbunden){
             Image_Verbindung.setVisible(true);
         }
         else
             Image_Verbindung.setVisible(false);
-        */
+         */
     }
-    
-    protected boolean startWireshark(int duration, String name){
+
+    protected boolean startWireshark(int duration, String name) {
         //Windows?
         /*try {
             //tshark -i "EVIL" -a duration:10 -w h:\ws\test.pcap
@@ -550,8 +578,8 @@ public class StarteMessungWindowVC implements Initializable {
 
         return true;
     }
-    
-    protected void getPcap(){
+
+    protected void getPcap() {
         /*if(targetsystem.equals("Linux"){
             scp <quelle> user@host:ziel
             scp pfad/datei.pcapng ssh-1234-xxx@localhost:/Pfad/ziel/
@@ -560,12 +588,12 @@ public class StarteMessungWindowVC implements Initializable {
         else{
         
         }
-        */
+         */
     }
 
     @FXML
     private void handleImageHilfe(MouseEvent event) throws IOException {
-         menucontrol.handleImageHilfe();
+        menucontrol.handleImageHilfe();
     }
 
     @FXML
@@ -592,22 +620,19 @@ public class StarteMessungWindowVC implements Initializable {
     private void handlemenuHome(MouseEvent event) throws IOException {
         menucontrol.handlemenuHome();
     }
-    
-        
-            
+
     @FXML
     private void handleMenuImage(MouseEvent event) {
         grid_menu.setVisible(true);
         image_menu_off.setVisible(false);
         //setAnimation(menu, true);
     }
-    
+
     @FXML
     private void handleMenuInvis(MouseEvent event) {
         grid_menu.setVisible(false);
         image_menu_off.setVisible(true);
         //setAnimation(homeWindow, false);
     }
-    
-    
+
 }

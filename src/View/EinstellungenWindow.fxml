@@ -34,7 +34,8 @@
                   <Label layoutX="14.0" layoutY="50.0" text="Start-IP" />
                </children>
             </Pane>
-            <Button layoutX="247.0" layoutY="333.0" mnemonicParsing="false" text="Speichern" />
+            <Button layoutX="247.0" layoutY="333.0" mnemonicParsing="false" onMouseReleased="#handleSaveButton" text="Speichern" />
+            <Text fx:id="error_text" layoutX="181.0" layoutY="438.0" strokeType="OUTSIDE" strokeWidth="0.0" />
             </children>
         </Pane>
     </center>

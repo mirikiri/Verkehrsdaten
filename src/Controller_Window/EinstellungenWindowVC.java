@@ -29,6 +29,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import static datennetz_simulation.Datennetz_Simulation.start_IP;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -43,16 +48,6 @@ public class EinstellungenWindowVC implements Initializable {
     @FXML
     private GridPane grid_menu;
     @FXML
-    private Label label_Messung;
-    @FXML
-    private Label label_profil;
-    @FXML
-    private Label label_auswertung;
-    @FXML
-    private Label label_einstellung;
-    @FXML
-    private Label label_home;
-    @FXML
     private TextField input_IP;
     @FXML
     private RadioButton radio_Linux;
@@ -60,6 +55,8 @@ public class EinstellungenWindowVC implements Initializable {
     private RadioButton radio_Windows;
     @FXML
     private ImageView hilfeImage;
+    @FXML
+    private Text error_text;
     
     
     @Override
@@ -124,6 +121,34 @@ public class EinstellungenWindowVC implements Initializable {
         targetsystem = "Linux";
         System.out.println("MIRI: " + targetsystem);
     }
+
+    @FXML
+    private void handleSaveButton(MouseEvent event) {
+        //Überorüfen ob valid IP
+        if(validIP(input_IP.getCharacters().toString())){
+            start_IP = input_IP.getCharacters().toString();
+            error_text.setText("New IP is: " + start_IP);
+        }
+        else{
+            System.out.println("not a valid IP");
+            error_text.setText("not a valid IP");
+        }
+    }
     
+    public static boolean validIP(String ip) {
+        if (ip == null || ip.isEmpty()) 
+            return false;
+        ip = ip.trim();
+        if ((ip.length() < 6) & (ip.length() > 15)) 
+            return false;
+
+        try {
+            Pattern pattern = Pattern.compile("^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$");
+            Matcher matcher = pattern.matcher(ip);
+            return matcher.matches();
+        } catch (PatternSyntaxException ex) {
+            return false;
+        }
+    }
     
 }

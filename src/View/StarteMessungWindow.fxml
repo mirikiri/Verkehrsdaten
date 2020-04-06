@@ -255,6 +255,66 @@
                         </Label>
                     </children>
                 </Pane>
+            <Pane fx:id="pane_windows_einzel" layoutX="15.0" layoutY="120.0" prefHeight="287.0" prefWidth="391.0" visible="false">
+               <children>
+                  <ChoiceBox fx:id="choice_Signal_einzel_windows" layoutX="190.0" layoutY="15.0" prefWidth="150.0">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                           <!--String fx:value="Skype-Shared-Screen" /-->
+                           <String fx:value="Web" />
+                           <String fx:value="VoIP" />
+                           <!--String fx:value="YouTube 240p" /-->
+                           <!--String fx:value="YouTube 720p" /-->
+                           <!--String fx:value="YouTube 2160p" /-->
+                           <!--String fx:value="Excel" /-->
+                           <!--String fx:value="ES Office" /-->
+                           <String fx:value="Lasttest" />
+                           <!--String fx:value="Outlook Start" /-->
+                           <!--String fx:value="Print" /-->
+                           <String fx:value="Rauschen" />
+                           <!--String fx:value="Remote Desktop" /-->
+                           <!--String fx:value="Gaming" /-->
+                           <!--String fx:value="VoIP_Multi" /-->
+                           <String fx:value="Gleichverteilung" />
+                           <String fx:value="Gauss" />
+                           <String fx:value="IoT" />
+                           <String fx:value="Signal_Generator" />
+                           <String fx:value="Spotify" />
+                           <String fx:value="Allegro_Office" />
+                        </FXCollections>
+                     </items>
+                  </ChoiceBox>
+                  <TextField fx:id="input_Dauer_einzel_windows" layoutX="190.0" layoutY="55.0" />
+                  <Label layoutX="30.0" layoutY="15.0" stylesheets="@../CSS/MainWindow.css" text="Signal:">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="30.0" layoutY="55.0" stylesheets="@../CSS/MainWindow.css" text="Dauer/Minuten:">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <!--TextField fx:id="input_warte_einzel1" layoutX="190.0" layoutY="175.0" visible="false" /-->
+                  <!--TextField fx:id="input_anz_Seiten_einzel1" layoutX="190.0" layoutY="135.0" visible="false" /-->
+                  <!--Label fx:id="label_warte_einzel1" layoutX="30.0" layoutY="175.0" stylesheets="@../CSS/MainWindow.css" text="Wartezeit:" visible="false">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label-->
+                  <!--Label fx:id="label_anzSeiten_einzel1" layoutX="30.0" layoutY="135.0" stylesheets="@../CSS/MainWindow.css" text="Anzahl Seiten:" visible="false">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label-->
+                  <!--TextField fx:id="input_rauschen_einzel1" layoutX="190.0" layoutY="135.0" visible="false" />
+                  <Label fx:id="label_rauschen_einzel1" layoutX="30.0" layoutY="135.0" stylesheets="@../CSS/MainWindow.css" text="Skalierung:" visible="false">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label-->
+               </children>
+            </Pane>
             </children>
         </Pane>
     </center>

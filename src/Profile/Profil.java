@@ -6,6 +6,7 @@
 package Profile;
 
 import com.google.gson.Gson;
+import static datennetz_simulation.Datennetz_Simulation.start_IP;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -66,7 +67,7 @@ public class Profil {
      public void send1() throws SocketException, UnknownHostException, IOException, InterruptedException {
         DatagramSocket ds = new DatagramSocket();
 
-        InetAddress ip = InetAddress.getByName("192.168.0.58");
+        InetAddress ip = InetAddress.getByName(start_IP);
         System.out.println("Start");
 
         DatagramPacket DpSend;
@@ -84,7 +85,7 @@ public class Profil {
     public void send2() throws SocketException, UnknownHostException, IOException, InterruptedException {
         DatagramSocket ds = new DatagramSocket();
 
-        InetAddress ip = InetAddress.getByName("192.168.0.58");
+        InetAddress ip = InetAddress.getByName(start_IP);
         System.out.println("Start");
 
         DatagramPacket DpSend;
@@ -104,7 +105,7 @@ public class Profil {
      public void send3() throws SocketException, UnknownHostException, IOException, InterruptedException {
         DatagramSocket ds = new DatagramSocket();
 
-        InetAddress ip = InetAddress.getByName("192.168.0.58");
+        InetAddress ip = InetAddress.getByName(start_IP);
         System.out.println("Start");
 
         DatagramPacket DpSend;
