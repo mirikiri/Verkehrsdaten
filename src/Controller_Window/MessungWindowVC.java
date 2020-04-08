@@ -42,6 +42,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 import javafx.scene.chart.XYChart.Data;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.util.Callback;
@@ -285,7 +286,65 @@ public class MessungWindowVC implements Initializable {
     private ComboBox<Integer> burst_mittelwerteBox;
     @FXML
     private ToggleButton toggleCDF_UDP;
+    @FXML
+    private TabPane rootTabPane;
+    @FXML
+    private Tab zeitintervall0;
+    @FXML
+    private ChoiceBox<String> choice_Paketankunftsrate;
+    @FXML
+    private Tab zeitintervall1;
+    @FXML
+    private Tab zeitintervall2;
+    @FXML
+    private Tab zeitintervall3;
+    @FXML
+    private Tab zeitintervall4;
+    @FXML
+    private ChoiceBox<String> choice_Paketlänge;
+    @FXML
+    private Tab paketLengthHistogram;
+    @FXML
+    private Tab udp;
+    @FXML
+    private ChoiceBox<String> choice_CDF;
+    @FXML
+    private Tab tcp;
+    @FXML
+    private Tab tcp1;
+    @FXML
+    private Tab total;
 
+    private String cdf_choice;
+    private String laenge_choice;
+    private String ankunftsrate_choice;
+    @FXML
+    private AnchorPane anchor_0_01;
+    @FXML
+    private AnchorPane anchor_0_1;
+    @FXML
+    private AnchorPane anchor_1;
+    @FXML
+    private AnchorPane anchor_10;
+    @FXML
+    private AnchorPane anchor_60;
+    @FXML
+    private AnchorPane anchor_laenge_udp;
+    @FXML
+    private AnchorPane anchor_laenge_tcp;
+    @FXML
+    private AnchorPane anchor_laenge_others;
+    @FXML
+    private AnchorPane anchor_laenge_total;
+    @FXML
+    private AnchorPane anchor_cdf_udp;
+    @FXML
+    private AnchorPane anchor_cdf_tcp;
+    @FXML
+    private AnchorPane anchor_cdf_others;
+    @FXML
+    private AnchorPane anchor_cdf_total;
+    
     /**
      * Initializes the controller class.
      */
@@ -294,6 +353,92 @@ public class MessungWindowVC implements Initializable {
         mittelwerte = new ArrayList<>();
         borderPaneBursts.setCenter(burstChart);
         burstChart.getData().add(burst_series);
+        
+        choice_CDF.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
+            cdf_choice = newValue;
+            if (cdf_choice.equals("UDP - CDF")) {
+                anchor_cdf_udp.setVisible(true);
+                anchor_cdf_tcp.setVisible(false);
+                anchor_cdf_others.setVisible(false);
+                anchor_cdf_total.setVisible(false);
+            } else if (cdf_choice.equals("TCP - CDF")) {
+                anchor_cdf_udp.setVisible(false);
+                anchor_cdf_tcp.setVisible(true);
+                anchor_cdf_others.setVisible(false);
+                anchor_cdf_total.setVisible(false);
+            } else if (cdf_choice.equals("others - CDF")) {
+                anchor_cdf_udp.setVisible(false);
+                anchor_cdf_tcp.setVisible(false);
+                anchor_cdf_others.setVisible(true);
+                anchor_cdf_total.setVisible(false);
+            } else if (cdf_choice.equals("total - CDF")) {
+                anchor_cdf_udp.setVisible(false);
+                anchor_cdf_tcp.setVisible(false);
+                anchor_cdf_others.setVisible(false);
+                anchor_cdf_total.setVisible(true);                
+            }
+        });
+        choice_Paketlänge.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
+            laenge_choice = newValue;
+            if (laenge_choice.equals("UDP - Paketlänge")) {
+                anchor_laenge_udp.setVisible(true);
+                anchor_laenge_tcp.setVisible(false);
+                anchor_laenge_total.setVisible(false);
+                anchor_laenge_others.setVisible(false);
+            } else if (laenge_choice.equals("TCP - Paketlänge")) {
+                anchor_laenge_udp.setVisible(false);
+                anchor_laenge_tcp.setVisible(true);
+                anchor_laenge_total.setVisible(false);
+                anchor_laenge_others.setVisible(false);
+            } else if (laenge_choice.equals("others - Paketlänge")) {
+                anchor_laenge_udp.setVisible(false);
+                anchor_laenge_tcp.setVisible(false);
+                anchor_laenge_total.setVisible(true);
+                anchor_laenge_others.setVisible(false);
+            } else if (laenge_choice.equals("total - Paketlänge")) {
+                anchor_laenge_udp.setVisible(false);
+                anchor_laenge_tcp.setVisible(false);
+                anchor_laenge_total.setVisible(false);
+                anchor_laenge_others.setVisible(true);
+            }
+        });
+        choice_Paketankunftsrate.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
+            ankunftsrate_choice = newValue;
+            if (ankunftsrate_choice.equals("Paketankunftsrate 0,01s")) {
+                //pane_Einzel.setVisible(true);
+            } else if (ankunftsrate_choice.equals("Paketankunftsrate 0,01s")) {
+                anchor_0_01.setVisible(true);
+                anchor_0_1.setVisible(false);
+                anchor_1.setVisible(false);
+                anchor_10.setVisible(false);
+                anchor_60.setVisible(false);
+            } else if (ankunftsrate_choice.equals("Paketankunftsrate 0,1s")) {
+                anchor_0_01.setVisible(false);
+                anchor_0_1.setVisible(true);
+                anchor_1.setVisible(false);
+                anchor_10.setVisible(false);
+                anchor_60.setVisible(false);
+            } else if (ankunftsrate_choice.equals("Paketankunftsrate 1s")) {
+                anchor_0_01.setVisible(false);
+                anchor_0_1.setVisible(false);
+                anchor_1.setVisible(true);
+                anchor_10.setVisible(false);
+                anchor_60.setVisible(false);
+            } else if (ankunftsrate_choice.equals("Paketankunftsrate 10s")) {
+                anchor_0_01.setVisible(false);
+                anchor_0_1.setVisible(false);
+                anchor_1.setVisible(false);
+                anchor_10.setVisible(true);
+                anchor_60.setVisible(false);
+            } else if (ankunftsrate_choice.equals("Paketankunftsrate 60s")) {
+                anchor_0_01.setVisible(false);
+                anchor_0_1.setVisible(false);
+                anchor_1.setVisible(false);
+                anchor_10.setVisible(false);
+                anchor_60.setVisible(true);
+            } 
+        });
+        
     }
 
     public void startUp() {

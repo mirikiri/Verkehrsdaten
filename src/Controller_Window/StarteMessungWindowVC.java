@@ -207,6 +207,9 @@ public class StarteMessungWindowVC implements Initializable {
         System.out.println("MIRI: Starte Messung Button");
 
         if (targetsystem == "Linux") {
+            //**************************************************************************************************************************************
+            //Arbeit mit den Raspberry Pi Generatoren
+            //**************************************************************************************************************************************
             //alle Parameter einlesen
             if (typeMess.equals("Einzelsignal")) {
                 signalType = signalType_einzel;
@@ -228,29 +231,41 @@ public class StarteMessungWindowVC implements Initializable {
                 rauschen_skalierung = input_skal_Rauschen.getCharacters().toString().replaceAll("[^\\d]", "");
                 switch (numGenerator) {
                     case "1 Generator":
-                        num = 1; break;
+                        num = 1;
+                        break;
                     case "2 Generatoren":
-                        num = 2; break;
+                        num = 2;
+                        break;
                     case "3 Generatoren":
-                        num = 3; break;
+                        num = 3;
+                        break;
                     case "4 Generatoren":
-                        num = 4; break;
+                        num = 4;
+                        break;
                     case "5 Generatoren":
-                        num = 5; break;
+                        num = 5;
+                        break;
                     case "6 Generatoren":
-                        num = 6; break;
+                        num = 6;
+                        break;
                     case "7 Generatoren":
-                        num = 7; break;
+                        num = 7;
+                        break;
                     case "8 Generatoren":
-                        num = 8; break;
+                        num = 8;
+                        break;
                     case "9 Generatoren":
-                        num = 9; break;
+                        num = 9;
+                        break;
                     case "10 Generatoren":
-                        num = 10; break;
+                        num = 10;
+                        break;
                     case "11 Generatoren":
-                        num = 11; break;
+                        num = 11;
+                        break;
                     default:
-                        num = 1; break;
+                        num = 1;
+                        break;
                 }
             } else if (typeMess.equals("Fertiges Profil")) {
                 signalType = signalType_Profil;
@@ -290,22 +305,48 @@ public class StarteMessungWindowVC implements Initializable {
                     System.out.println("MIRI: orderforPi done");
                 }
             }
-        } else {
+        } 
+        
+        else {
+            //**************************************************************************************************************************************
             //Arbeitet mit einem weiteren Notebook
+            //**************************************************************************************************************************************
             duration = input_Dauer_einzel_windows.getCharacters().toString().replaceAll("[^\\d]", "");
+            dur = Integer.parseInt(duration);
             Gson gson = new Gson();
             Profil windows_profil = profile.getProfilOrder(signalType_einzel_windows);
             windows_profil.saveAndWrite(gson);
             System.out.println("MIRI: new profile for windows: " + signalType_einzel_windows);
-            try {
-                windows_profil.send2();
-            } catch (SocketException ex) {
-                Logger.getLogger(Datennetz_Simulation.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (UnknownHostException ex) {
-                Logger.getLogger(Datennetz_Simulation.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Datennetz_Simulation.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            
+            // Thread um Daten zu senden
+            Thread thread = new Thread() {
+                public void run() {
+                    try {
+                        windows_profil.send2();
+                    } catch (SocketException ex) {
+                        Logger.getLogger(Datennetz_Simulation.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (UnknownHostException ex) {
+                        Logger.getLogger(Datennetz_Simulation.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Datennetz_Simulation.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(StarteMessungWindowVC.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            };
+            // Thread für den Timer, der Senden startet und beendet
+            new Thread() {
+                public void run() {
+                    try {
+                        thread.start();
+                        Thread.sleep(dur*60*1000); //Umwandliung von Miunten in Millisekunden 
+                        thread.stop();
+                        System.out.println("MIRI: Orders done");
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(StarteMessungWindowVC.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }.start();
         }
         System.out.println("MIRI: Orders sent");
 
@@ -526,8 +567,8 @@ public class StarteMessungWindowVC implements Initializable {
         nutzername.add("verkehrsgenerator10");
         nutzername.add("verkehrsgenerator11");
         nutzername.add("Server");
-                
-        if (targetsystem == "Linux"){
+
+        if (targetsystem == "Linux") {
             ip.add("192.168.1.131");
             ip.add("192.168.1.132");
             ip.add("192.168.1.133");
