@@ -404,33 +404,33 @@ public class MessungWindowVC implements Initializable {
         });
         choice_Paketankunftsrate.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
             ankunftsrate_choice = newValue;
-            if (ankunftsrate_choice.equals("Paketankunftsrate 0,01s")) {
+            if (ankunftsrate_choice.equals("0,01s")) {
                 //pane_Einzel.setVisible(true);
-            } else if (ankunftsrate_choice.equals("Paketankunftsrate 0,01s")) {
+            } else if (ankunftsrate_choice.equals("0,01s")) {
                 anchor_0_01.setVisible(true);
                 anchor_0_1.setVisible(false);
                 anchor_1.setVisible(false);
                 anchor_10.setVisible(false);
                 anchor_60.setVisible(false);
-            } else if (ankunftsrate_choice.equals("Paketankunftsrate 0,1s")) {
+            } else if (ankunftsrate_choice.equals("0,1s")) {
                 anchor_0_01.setVisible(false);
                 anchor_0_1.setVisible(true);
                 anchor_1.setVisible(false);
                 anchor_10.setVisible(false);
                 anchor_60.setVisible(false);
-            } else if (ankunftsrate_choice.equals("Paketankunftsrate 1s")) {
+            } else if (ankunftsrate_choice.equals("1s")) {
                 anchor_0_01.setVisible(false);
                 anchor_0_1.setVisible(false);
                 anchor_1.setVisible(true);
                 anchor_10.setVisible(false);
                 anchor_60.setVisible(false);
-            } else if (ankunftsrate_choice.equals("Paketankunftsrate 10s")) {
+            } else if (ankunftsrate_choice.equals("10s")) {
                 anchor_0_01.setVisible(false);
                 anchor_0_1.setVisible(false);
                 anchor_1.setVisible(false);
                 anchor_10.setVisible(true);
                 anchor_60.setVisible(false);
-            } else if (ankunftsrate_choice.equals("Paketankunftsrate 60s")) {
+            } else if (ankunftsrate_choice.equals("60s")) {
                 anchor_0_01.setVisible(false);
                 anchor_0_1.setVisible(false);
                 anchor_1.setVisible(false);

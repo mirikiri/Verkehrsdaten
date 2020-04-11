@@ -658,461 +658,460 @@
             </content>
         </Tab>
         <Tab fx:id="zeitintervall0" text="Paketankunftsrate">
-         <content>
-            <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                      <AnchorPane fx:id="anchor_0_01" minHeight="0.0" minWidth="0.0" prefHeight="374.0" prefWidth="600.0">
-                          <children>
-                              <BorderPane layoutX="200.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                  <center>
-                                      <LineChart fx:id="z0_chart" createSymbols="false" legendVisible="false" title="Paketankunftsrate im Zeitintervall 0.01 s" BorderPane.alignment="CENTER">
-                                          <xAxis>
-                                              <NumberAxis label="t [s]" side="BOTTOM" />
-                                          </xAxis>
-                                          <yAxis>
-                                              <NumberAxis label="λ [1/ 0.01s]" side="LEFT" />
-                                          </yAxis>
-                                      </LineChart>
-                                  </center>
-                                  <left>
-                                      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="TOP_LEFT">
-                                          <items>
-                                              <Label alignment="TOP_LEFT" prefHeight="17.0" prefWidth="150.0" text="Zeit [s]    Paketanzahl" />
-                                              <ListView fx:id="z0_pakets" prefWidth="150.0" />
-                                          </items>
-                                      </SplitPane>
-                                  </left>
-                                  <right>
-                                      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
-                                          <items>
-                                              <Label alignment="TOP_LEFT" prefHeight="17.0" prefWidth="150.0" text="Methode      Hurst-Wert" />
-                                              <ListView fx:id="z0_hurst" prefHeight="200.0" prefWidth="150.0" />
-                                          </items>
-                                      </SplitPane>
-                                  </right>
-                                  <top>
-                                      <Pane prefHeight="30.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                                          <children>
-                                              <ChoiceBox fx:id="choice_Paketankunftsrate" layoutX="14.0" layoutY="4.0" prefWidth="150.0">
-                                                  <items>
-                                                      <FXCollections fx:factory="observableArrayList">
-                                                          <String fx:value="Paketankunftsrate 0,01s" />
-                                                          <String fx:value="Paketankunftsrate 0,1s" />
-                                                          <String fx:value="Paketankunftsrate 1s" />
-                                                          <String fx:value="Paketankunftsrate 10s" />
-                                                          <String fx:value="Paketankunftsrate 60s" />
-                                                      </FXCollections>
-                                                  </items>
-                                              </ChoiceBox>
-                                          </children>
-                                      </Pane>
-                                  </top>
-                              </BorderPane>
-                          </children>
-                      </AnchorPane>
-                      <AnchorPane fx:id="anchor_0_1" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" visible="false">
-                          <children>
-                              <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                  <center>
-                                      <LineChart fx:id="z1_chart" createSymbols="false" legendVisible="false" title="Paketankunftsrate im Zeitintervall 0.1 s" BorderPane.alignment="CENTER">
-                                          <xAxis>
-                                              <NumberAxis label="t [s]" side="BOTTOM" />
-                                          </xAxis>
-                                          <yAxis>
-                                              <NumberAxis label="λ [1/ 0.1s]" side="LEFT" />
-                                          </yAxis>
-                                      </LineChart>
-                                  </center>
-                                  <left>
-                                      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
-                                          <items>
-                                              <Label prefHeight="17.0" prefWidth="150.0" text="Zeit [s]    Paketanzahl" />
-                                              <ListView fx:id="z1_pakets" prefHeight="200.0" prefWidth="200.0" />
-                                          </items>
-                                      </SplitPane>
-                                  </left>
-                                  <right>
-                                      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
-                                          <items>
-                                              <Label prefWidth="150.0" text="Methode      Hurst-Wert" />
-                                              <ListView fx:id="z1_hurst" prefHeight="200.0" prefWidth="150.0" />
-                                          </items>
-                                      </SplitPane>
-                                  </right>
-                              </BorderPane>
-                          </children>
-                      </AnchorPane>
-                      <AnchorPane fx:id="anchor_1" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" visible="false">
-                          <children>
-                              <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                  <center>
-                                      <LineChart fx:id="z2_chart" createSymbols="false" legendVisible="false" title="Paketankunftsrate im Zeitintervall 1 s" BorderPane.alignment="CENTER">
-                                          <xAxis>
-                                              <NumberAxis label="t [s]" side="BOTTOM" />
-                                          </xAxis>
-                                          <yAxis>
-                                              <NumberAxis label="λ [1/s]" side="LEFT" />
-                                          </yAxis>
-                                      </LineChart>
-                                  </center>
-                                  <left>
-                                      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
-                                          <items>
-                                              <Label prefWidth="150.0" text="Zeit [s]    Paketanzahl" />
-                                              <ListView fx:id="z2_pakets" prefHeight="200.0" prefWidth="200.0" />
-                                          </items>
-                                      </SplitPane>
-                                  </left>
-                                  <right>
-                                      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
-                                          <items>
-                                              <Label prefWidth="150.0" text="Methode      Hurst-Wert" />
-                                              <ListView fx:id="z2_hurst" prefHeight="200.0" prefWidth="150.0" />
-                                          </items>
-                                      </SplitPane>
-                                  </right>
-                              </BorderPane>
-                          </children>
-                      </AnchorPane>
-                      <AnchorPane fx:id="anchor_10" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" visible="false">
-                          <children>
-                              <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                  <center>
-                                      <LineChart fx:id="z3_chart" createSymbols="false" legendVisible="false" title="Paketankunftsrate im Zeitintervall 10 s" BorderPane.alignment="CENTER">
-                                          <xAxis>
-                                              <NumberAxis label="t [s]" side="BOTTOM" />
-                                          </xAxis>
-                                          <yAxis>
-                                              <NumberAxis label="λ [1/ 10s]" side="LEFT" />
-                                          </yAxis>
-                                      </LineChart>
-                                  </center>
-                                  <left>
-                                      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
-                                          <items>
-                                              <Label prefWidth="150.0" text="Zeit [s]    Paketanzahl" />
-                                              <ListView fx:id="z3_pakets" prefHeight="200.0" prefWidth="200.0" />
-                                          </items>
-                                      </SplitPane>
-                                  </left>
-                                  <right>
-                                      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
-                                          <items>
-                                              <Label prefWidth="150.0" text="Methode      Hurst-Wert" />
-                                              <ListView fx:id="z3_hurst" prefHeight="200.0" prefWidth="150.0" />
-                                          </items>
-                                      </SplitPane>
-                                  </right>
-                              </BorderPane>
-                          </children>
-                      </AnchorPane>
-                      <AnchorPane fx:id="anchor_60" minHeight="0.0" minWidth="0.0" prefHeight="371.0" prefWidth="600.0" visible="false">
-                          <children>
-                              <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                  <center>
-                                      <LineChart fx:id="z4_chart" createSymbols="false" legendVisible="false" title="Paketankunftsrate im Zeitintervall 60 s" BorderPane.alignment="CENTER">
-                                          <xAxis>
-                                              <NumberAxis label="t [s]" side="BOTTOM" />
-                                          </xAxis>
-                                          <yAxis>
-                                              <NumberAxis label="λ [1/ 60s]" side="LEFT" />
-                                          </yAxis>
-                                      </LineChart>
-                                  </center>
-                                  <left>
-                                      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
-                                          <items>
-                                              <Label prefWidth="150.0" text="Zeit [s]    Paketanzahl" />
-                                              <ListView fx:id="z4_pakets" prefHeight="200.0" prefWidth="200.0" />
-                                          </items>
-                                      </SplitPane>
-                                  </left>
-                                  <right>
-                                      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
-                                          <items>
-                                              <Label prefWidth="150.0" text="Methode      Hurst-Wert" />
-                                              <ListView fx:id="z4_hurst" prefHeight="200.0" prefWidth="150.0" />
-                                          </items>
-                                      </SplitPane>
-                                  </right>
-                              </BorderPane>
-                          </children>
-                      </AnchorPane>
-               </children>
-            </Pane>
-         </content>
+            <content>
+                <BorderPane>
+                    <center>
+                        <AnchorPane BorderPane.alignment="CENTER">
+                            <children>
+                                <AnchorPane fx:id="anchor_0_01" minHeight="0.0" minWidth="0.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                                    <children>
+                                        <BorderPane layoutX="200.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <center>
+                                                <LineChart fx:id="z0_chart" createSymbols="false" legendVisible="false" title="Paketankunftsrate im Zeitintervall 0.01 s" BorderPane.alignment="CENTER">
+                                                    <xAxis>
+                                                        <NumberAxis label="t [s]" side="BOTTOM" />
+                                                    </xAxis>
+                                                    <yAxis>
+                                                        <NumberAxis label="λ [1/ 0.01s]" side="LEFT" />
+                                                    </yAxis>
+                                                </LineChart>
+                                            </center>
+                                            <left>
+                                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="TOP_LEFT">
+                                                    <items>
+                                                        <Label alignment="TOP_LEFT" prefHeight="17.0" prefWidth="150.0" text="Zeit [s]    Paketanzahl" />
+                                                        <ListView fx:id="z0_pakets" prefWidth="150.0" />
+                                                    </items>
+                                                </SplitPane>
+                                            </left>
+                                            <right>
+                                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                                                    <items>
+                                                        <Label alignment="TOP_LEFT" prefHeight="17.0" prefWidth="150.0" text="Methode      Hurst-Wert" />
+                                                        <ListView fx:id="z0_hurst" prefHeight="200.0" prefWidth="150.0" />
+                                                    </items>
+                                                </SplitPane>
+                                            </right>
+                                        </BorderPane>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane fx:id="anchor_0_1" minHeight="0.0" minWidth="0.0" visible="false" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                                    <children>
+                                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <center>
+                                                <LineChart fx:id="z1_chart" createSymbols="false" legendVisible="false" title="Paketankunftsrate im Zeitintervall 0.1 s" BorderPane.alignment="CENTER">
+                                                    <xAxis>
+                                                        <NumberAxis label="t [s]" side="BOTTOM" />
+                                                    </xAxis>
+                                                    <yAxis>
+                                                        <NumberAxis label="λ [1/ 0.1s]" side="LEFT" />
+                                                    </yAxis>
+                                                </LineChart>
+                                            </center>
+                                            <left>
+                                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                                                    <items>
+                                                        <Label prefHeight="17.0" prefWidth="150.0" text="Zeit [s]    Paketanzahl" />
+                                                        <ListView fx:id="z1_pakets" prefHeight="200.0" prefWidth="200.0" />
+                                                    </items>
+                                                </SplitPane>
+                                            </left>
+                                            <right>
+                                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                                                    <items>
+                                                        <Label prefWidth="150.0" text="Methode      Hurst-Wert" />
+                                                        <ListView fx:id="z1_hurst" prefHeight="200.0" prefWidth="150.0" />
+                                                    </items>
+                                                </SplitPane>
+                                            </right>
+                                        
+                                        </BorderPane>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane fx:id="anchor_1" minHeight="0.0" minWidth="0.0" visible="false" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                                    <children>
+                                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <center>
+                                                <LineChart fx:id="z2_chart" createSymbols="false" legendVisible="false" title="Paketankunftsrate im Zeitintervall 1 s" BorderPane.alignment="CENTER">
+                                                    <xAxis>
+                                                        <NumberAxis label="t [s]" side="BOTTOM" />
+                                                    </xAxis>
+                                                    <yAxis>
+                                                        <NumberAxis label="λ [1/s]" side="LEFT" />
+                                                    </yAxis>
+                                                </LineChart>
+                                            </center>
+                                            <left>
+                                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                                                    <items>
+                                                        <Label prefWidth="150.0" text="Zeit [s]    Paketanzahl" />
+                                                        <ListView fx:id="z2_pakets" prefHeight="200.0" prefWidth="200.0" />
+                                                    </items>
+                                                </SplitPane>
+                                            </left>
+                                            <right>
+                                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                                                    <items>
+                                                        <Label prefWidth="150.0" text="Methode      Hurst-Wert" />
+                                                        <ListView fx:id="z2_hurst" prefHeight="200.0" prefWidth="150.0" />
+                                                    </items>
+                                                </SplitPane>
+                                            </right>
+                                        </BorderPane>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane fx:id="anchor_10" minHeight="0.0" minWidth="0.0" visible="false" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                                    <children>
+                                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <center>
+                                                <LineChart fx:id="z3_chart" createSymbols="false" legendVisible="false" title="Paketankunftsrate im Zeitintervall 10 s" BorderPane.alignment="CENTER">
+                                                    <xAxis>
+                                                        <NumberAxis label="t [s]" side="BOTTOM" />
+                                                    </xAxis>
+                                                    <yAxis>
+                                                        <NumberAxis label="λ [1/ 10s]" side="LEFT" />
+                                                    </yAxis>
+                                                </LineChart>
+                                            </center>
+                                            <left>
+                                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                                                    <items>
+                                                        <Label prefWidth="150.0" text="Zeit [s]    Paketanzahl" />
+                                                        <ListView fx:id="z3_pakets" prefHeight="200.0" prefWidth="200.0" />
+                                                    </items>
+                                                </SplitPane>
+                                            </left>
+                                            <right>
+                                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                                                    <items>
+                                                        <Label prefWidth="150.0" text="Methode      Hurst-Wert" />
+                                                        <ListView fx:id="z3_hurst" prefHeight="200.0" prefWidth="150.0" />
+                                                    </items>
+                                                </SplitPane>
+                                            </right>
+                                        </BorderPane>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane fx:id="anchor_60" minHeight="0.0" minWidth="0.0" visible="false" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                                    <children>
+                                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <center>
+                                                <LineChart fx:id="z4_chart" createSymbols="false" legendVisible="false" title="Paketankunftsrate im Zeitintervall 60 s" BorderPane.alignment="CENTER">
+                                                    <xAxis>
+                                                        <NumberAxis label="t [s]" side="BOTTOM" />
+                                                    </xAxis>
+                                                    <yAxis>
+                                                        <NumberAxis label="λ [1/ 60s]" side="LEFT" />
+                                                    </yAxis>
+                                                </LineChart>
+                                            </center>
+                                            <left>
+                                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                                                    <items>
+                                                        <Label prefWidth="150.0" text="Zeit [s]    Paketanzahl" />
+                                                        <ListView fx:id="z4_pakets" prefHeight="200.0" prefWidth="200.0" />
+                                                    </items>
+                                                </SplitPane>
+                                            </left>
+                                            <right>
+                                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                                                    <items>
+                                                        <Label prefWidth="150.0" text="Methode      Hurst-Wert" />
+                                                        <ListView fx:id="z4_hurst" prefHeight="200.0" prefWidth="150.0" />
+                                                    </items>
+                                                </SplitPane>
+                                            </right>
+                                        </BorderPane>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </AnchorPane>
+                    </center>
+                    <top>
+                        <Pane prefHeight="30.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <ChoiceBox fx:id="choice_Paketankunftsrate" layoutX="80.0" layoutY="3.0" prefHeight="25.0" prefWidth="64.0">
+                                    <items>
+                                        <FXCollections fx:factory="observableArrayList">
+                                            <String fx:value=" 0,01s" />
+                                            <String fx:value="0,1s" />
+                                            <String fx:value="1s" />
+                                            <String fx:value="10s" />
+                                            <String fx:value="60s" />
+                                        </FXCollections>
+                                    </items>
+                                </ChoiceBox>
+                                <Label layoutX="6.0" layoutY="7.0" text="Zeitintervall:" />
+                            </children>
+                        </Pane>
+                    </top>
+                </BorderPane>
+            </content>
         </Tab>
         <Tab text="Paketlänge">
             <content>
-                <AnchorPane fx:id="anchor_laenge_udp" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                    <children>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                            <center>
-                                <LineChart fx:id="paket_length_chart_udp" animated="false" createSymbols="false" legendVisible="false" title="Histogramm Paketlänge UDP" BorderPane.alignment="CENTER">
-                                    <xAxis>
-                                        <NumberAxis label="Paketlänge [Byte]" side="BOTTOM" />
-                                    </xAxis>
-                                    <yAxis>
-                                        <NumberAxis label="Anzahl" side="LEFT" />
-                                    </yAxis>
-                                </LineChart>
-                            </center>
-                            <left>
-                                <SplitPane dividerPositions="0.14634146341463414" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                <BorderPane prefHeight="200.0" prefWidth="200.0">
+                    <top>
+                        <Pane prefHeight="30.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <ChoiceBox fx:id="choice_Paketlänge" layoutX="14.0" layoutY="4.0" prefWidth="150.0">
                                     <items>
-                                        <VBox prefWidth="158.0">
-                                            <children>
-                                                <ToggleButton fx:id="togglePketLengthUDP" mnemonicParsing="false" onAction="#toggleUDPZeroValues" text="verstecke 0 Werte">
-                                                    <VBox.margin>
-                                                        <Insets left="5.0" top="5.0" />
-                                                    </VBox.margin>
-                                                </ToggleButton>
-                                                <Label prefWidth="150.0" text="Länge [Byte]     Anzahl" />
-                                            </children>
-                                        </VBox>
-                                        <ListView fx:id="paket_length_data_udp" prefHeight="200.0" prefWidth="150.0" />
+                                        <FXCollections fx:factory="observableArrayList">
+                                            <String fx:value="UDP - Paketlänge" />
+                                            <String fx:value="TCP - Paketlänge" />
+                                            <String fx:value="others - Paketlänge" />
+                                            <String fx:value="total - Paketlänge" />
+                                        </FXCollections>
                                     </items>
-                                </SplitPane>
-                            </left>
-                            <top>
-                                <Pane prefHeight="30.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                </ChoiceBox>
+                            </children>
+                        </Pane>
+                    </top>
+                    <center>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <AnchorPane fx:id="anchor_laenge_udp" minHeight="0.0" minWidth="0.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
                                     <children>
-                                        <ChoiceBox fx:id="choice_Paketlänge" layoutX="14.0" layoutY="4.0" prefWidth="150.0">
-                                            <items>
-                                                <FXCollections fx:factory="observableArrayList">
-                                                    <String fx:value="UDP - Paketlänge" />
-                                                    <String fx:value="TCP - Paketlänge" />
-                                                    <String fx:value="others - Paketlänge" />
-                                                    <String fx:value="total - Paketlänge" />
-                                                </FXCollections>
-                                            </items>
-                                        </ChoiceBox>
+                                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <center>
+                                                <LineChart fx:id="paket_length_chart_udp" animated="false" createSymbols="false" legendVisible="false" title="Histogramm Paketlänge UDP" BorderPane.alignment="CENTER">
+                                                    <xAxis>
+                                                        <NumberAxis label="Paketlänge [Byte]" side="BOTTOM" />
+                                                    </xAxis>
+                                                    <yAxis>
+                                                        <NumberAxis label="Anzahl" side="LEFT" />
+                                                    </yAxis>
+                                                </LineChart>
+                                            </center>
+                                            <left>
+                                                <SplitPane dividerPositions="0.14634146341463414" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                                                    <items>
+                                                        <VBox prefWidth="158.0">
+                                                            <children>
+                                                                <ToggleButton fx:id="togglePketLengthUDP" mnemonicParsing="false" onAction="#toggleUDPZeroValues" text="verstecke 0 Werte">
+                                                                    <VBox.margin>
+                                                                        <Insets left="5.0" top="5.0" />
+                                                                    </VBox.margin>
+                                                                </ToggleButton>
+                                                                <Label prefWidth="150.0" text="Länge [Byte]     Anzahl" />
+                                                            </children>
+                                                        </VBox>
+                                                        <ListView fx:id="paket_length_data_udp" prefHeight="200.0" prefWidth="150.0" />
+                                                    </items>
+                                                </SplitPane>
+                                            </left>
+                                        </BorderPane>
                                     </children>
-                                </Pane>
-                            </top>
-                        </BorderPane>
-                    </children>
-                </AnchorPane>
-            </content>
-        </Tab>
-        <Tab text="tcp - Paketlänge">
-            <content>
-                <AnchorPane fx:id="anchor_laenge_tcp" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                    <children>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                            <center>
-                                <LineChart fx:id="paket_length_chart_tcp" animated="false" createSymbols="false" legendVisible="false" title="Histogramm Paketlänge TCP" BorderPane.alignment="CENTER">
-                                    <xAxis>
-                                        <NumberAxis label="Paketlänge [Byte]" side="BOTTOM" />
-                                    </xAxis>
-                                    <yAxis>
-                                        <NumberAxis label="Anzahl" side="LEFT" />
-                                    </yAxis>
-                                </LineChart>
-                            </center>
-                            <left>
-                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
-                                    <items>
-                                        <Label prefWidth="150.0" text="Länge [Byte]     Anzahl" />
-                                        <ListView fx:id="paket_length_data_tcp" prefHeight="200.0" prefWidth="150.0" />
-                                    </items>
-                                </SplitPane>
-                            </left>
-                        </BorderPane>
-                    </children>
-                </AnchorPane>
-            </content>
-        </Tab>
-        <Tab text="other - Paketlänge">
-            <content>
-                <AnchorPane fx:id="anchor_laenge_others" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                    <children>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                            <center>
-                                <LineChart fx:id="paket_length_chart_other" animated="false" createSymbols="false" legendVisible="false" title="Histogramm Paketlänge TCP" BorderPane.alignment="CENTER">
-                                    <xAxis>
-                                        <NumberAxis label="Paketlänge [Byte]" side="BOTTOM" />
-                                    </xAxis>
-                                    <yAxis>
-                                        <NumberAxis label="Anzahl" side="LEFT" />
-                                    </yAxis>
-                                </LineChart>
-                            </center>
-                            <left>
-                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
-                                    <items>
-                                        <Label prefWidth="150.0" text="Länge [Byte]     Anzahl" />
-                                        <ListView fx:id="paket_length_data_other" prefHeight="200.0" prefWidth="150.0" />
-                                    </items>
-                                </SplitPane>
-                            </left>
-                        </BorderPane>
-                    </children>
-                </AnchorPane>
-            </content>
-        </Tab>
-        <Tab fx:id="paketLengthHistogram" text="total - Paketlänge">
-            <content>
-                <AnchorPane fx:id="anchor_laenge_total" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                    <children>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                            <center>
-                                <LineChart fx:id="paket_length_chart_total" animated="false" createSymbols="false" legendVisible="false" title="Histogramm Paketlänge aller Pakete" BorderPane.alignment="CENTER">
-                                    <xAxis>
-                                        <NumberAxis label="Paketlänge [Byte]" side="BOTTOM" />
-                                    </xAxis>
-                                    <yAxis>
-                                        <NumberAxis label="Anzahl" side="LEFT" />
-                                    </yAxis>
-                                </LineChart>
-                            </center>
-                            <left>
-                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
-                                    <items>
-                                        <Label prefWidth="150.0" text="Länge [Byte]     Anzahl" />
-                                        <ListView fx:id="paket_length_data_total" prefHeight="200.0" prefWidth="150.0" />
-                                    </items>
-                                </SplitPane>
-                            </left>
-                        </BorderPane>
-                    </children>
-                </AnchorPane>
+                                </AnchorPane>
+                                <AnchorPane fx:id="anchor_laenge_tcp" minHeight="0.0" minWidth="0.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                                    <children>
+                                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <center>
+                                                <LineChart fx:id="paket_length_chart_tcp" animated="false" createSymbols="false" legendVisible="false" title="Histogramm Paketlänge TCP" BorderPane.alignment="CENTER">
+                                                    <xAxis>
+                                                        <NumberAxis label="Paketlänge [Byte]" side="BOTTOM" />
+                                                    </xAxis>
+                                                    <yAxis>
+                                                        <NumberAxis label="Anzahl" side="LEFT" />
+                                                    </yAxis>
+                                                </LineChart>
+                                            </center>
+                                            <left>
+                                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                                                    <items>
+                                                        <Label prefWidth="150.0" text="Länge [Byte]     Anzahl" />
+                                                        <ListView fx:id="paket_length_data_tcp" prefHeight="200.0" prefWidth="150.0" />
+                                                    </items>
+                                                </SplitPane>
+                                            </left>
+                                        </BorderPane>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane fx:id="anchor_laenge_others" minHeight="0.0" minWidth="0.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                                    <children>
+                                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <center>
+                                                <LineChart fx:id="paket_length_chart_other" animated="false" createSymbols="false" legendVisible="false" title="Histogramm Paketlänge TCP" BorderPane.alignment="CENTER">
+                                                    <xAxis>
+                                                        <NumberAxis label="Paketlänge [Byte]" side="BOTTOM" />
+                                                    </xAxis>
+                                                    <yAxis>
+                                                        <NumberAxis label="Anzahl" side="LEFT" />
+                                                    </yAxis>
+                                                </LineChart>
+                                            </center>
+                                            <left>
+                                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                                                    <items>
+                                                        <Label prefWidth="150.0" text="Länge [Byte]     Anzahl" />
+                                                        <ListView fx:id="paket_length_data_other" prefHeight="200.0" prefWidth="150.0" />
+                                                    </items>
+                                                </SplitPane>
+                                            </left>
+                                        </BorderPane>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane fx:id="anchor_laenge_total" minHeight="0.0" minWidth="0.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                                    <children>
+                                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <center>
+                                                <LineChart fx:id="paket_length_chart_total" animated="false" createSymbols="false" legendVisible="false" title="Histogramm Paketlänge aller Pakete" BorderPane.alignment="CENTER">
+                                                    <xAxis>
+                                                        <NumberAxis label="Paketlänge [Byte]" side="BOTTOM" />
+                                                    </xAxis>
+                                                    <yAxis>
+                                                        <NumberAxis label="Anzahl" side="LEFT" />
+                                                    </yAxis>
+                                                </LineChart>
+                                            </center>
+                                            <left>
+                                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                                                    <items>
+                                                        <Label prefWidth="150.0" text="Länge [Byte]     Anzahl" />
+                                                        <ListView fx:id="paket_length_data_total" prefHeight="200.0" prefWidth="150.0" />
+                                                    </items>
+                                                </SplitPane>
+                                            </left>
+                                        </BorderPane>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </AnchorPane>
+                    </center>
+                </BorderPane>
             </content>
         </Tab>
         <Tab fx:id="udp" text="CDF">
             <content>
-                <AnchorPane fx:id="anchor_cdf_udp" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                    <children>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                            <center>
-                                <LineChart fx:id="udp_chart" createSymbols="false" legendVisible="false" title="CDF nur UDP Pakete" BorderPane.alignment="CENTER">
-                                    <xAxis>
-                                        <NumberAxis label="Paketlänge [Byte]" side="BOTTOM" />
-                                    </xAxis>
-                                    <yAxis>
-                                        <NumberAxis label="CDF [%]" side="LEFT" />
-                                    </yAxis>
-                                </LineChart>
-                            </center>
-                            <left>
-                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
-                                    <items>
-                                        <VBox prefWidth="158.0">
-                                            <children>
-                                                <ToggleButton fx:id="toggleCDF_UDP" mnemonicParsing="false" onAction="#toggleUDP_CDFZeroValues" text="verstecke 0 Werte">
-                                                    <VBox.margin>
-                                                        <Insets left="5.0" top="5.0" />
-                                                    </VBox.margin>
-                                                </ToggleButton>
-                                                <Label prefHeight="17.0" prefWidth="150.0" text="Länge [Byte]      %" />
-                                            </children>
-                                        </VBox>
-                                        <ListView fx:id="udp_data" prefHeight="200.0" prefWidth="150.0" />
-                                    </items>
-                                </SplitPane>
-                            </left>
-                            <top>
-                                <Pane prefHeight="30.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                <BorderPane prefHeight="200.0" prefWidth="200.0">
+                    <center>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <AnchorPane fx:id="anchor_cdf_udp" minHeight="0.0" minWidth="0.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
                                     <children>
-                                        <ChoiceBox fx:id="choice_CDF" layoutX="14.0" layoutY="4.0" prefWidth="150.0"><items>
-                                                <FXCollections fx:factory="observableArrayList">
-                                                    <String fx:value="UDP - CDF" />
-                                                    <String fx:value="TCP - CDF" />
-                                                    <String fx:value="others - CDF" />
-                                                    <String fx:value="total - CDF" />
-                                                </FXCollections>
-                                            </items>
-                                        </ChoiceBox>
+                                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <center>
+                                                <LineChart fx:id="udp_chart" createSymbols="false" legendVisible="false" title="CDF nur UDP Pakete" BorderPane.alignment="CENTER">
+                                                    <xAxis>
+                                                        <NumberAxis label="Paketlänge [Byte]" side="BOTTOM" />
+                                                    </xAxis>
+                                                    <yAxis>
+                                                        <NumberAxis label="CDF [%]" side="LEFT" />
+                                                    </yAxis>
+                                                </LineChart>
+                                            </center>
+                                            <left>
+                                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                                                    <items>
+                                                        <VBox prefWidth="158.0">
+                                                            <children>
+                                                                <ToggleButton fx:id="toggleCDF_UDP" mnemonicParsing="false" onAction="#toggleUDP_CDFZeroValues" text="verstecke 0 Werte">
+                                                                    <VBox.margin>
+                                                                        <Insets left="5.0" top="5.0" />
+                                                                    </VBox.margin>
+                                                                </ToggleButton>
+                                                                <Label prefHeight="17.0" prefWidth="150.0" text="Länge [Byte]      %" />
+                                                            </children>
+                                                        </VBox>
+                                                        <ListView fx:id="udp_data" prefHeight="200.0" prefWidth="150.0" />
+                                                    </items>
+                                                </SplitPane>
+                                            </left>
+                                            <top>
+                                                <Pane prefHeight="30.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                                    <children>
+                                                        <ChoiceBox fx:id="choice_CDF" layoutX="14.0" layoutY="4.0" prefWidth="150.0">
+                                                            <items>
+                                                                <FXCollections fx:factory="observableArrayList">
+                                                                    <String fx:value="UDP - CDF" />
+                                                                    <String fx:value="TCP - CDF" />
+                                                                    <String fx:value="others - CDF" />
+                                                                    <String fx:value="total - CDF" />
+                                                                </FXCollections>
+                                                            </items>
+                                                        </ChoiceBox>
+                                                    </children>
+                                                </Pane>
+                                            </top>
+                                        </BorderPane>
                                     </children>
-                                </Pane>
-                            </top>
-                        </BorderPane>
-                    </children>
-                </AnchorPane>
-            </content>
-        </Tab>
-        <Tab fx:id="tcp" text="tcp - CDF">
-            <content>
-                <AnchorPane fx:id="anchor_cdf_tcp" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                    <children>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                            <center>
-                                <LineChart fx:id="tcp_chart" createSymbols="false" legendVisible="false" title="CDF nur TCP Pakete" BorderPane.alignment="CENTER">
-                                    <xAxis>
-                                        <NumberAxis label="Paketlänge [Byte]" side="BOTTOM" />
-                                    </xAxis>
-                                    <yAxis>
-                                        <NumberAxis label="CDF [%]" side="LEFT" />
-                                    </yAxis>
-                                </LineChart>
-                            </center>
-                            <left>
-                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
-                                    <items>
-                                        <Label prefWidth="150.0" text="Länge [Byte]      %" />
-                                        <ListView fx:id="tcp_data" prefHeight="200.0" prefWidth="150.0" />
-                                    </items>
-                                </SplitPane>
-                            </left>
-                        </BorderPane>
-                    </children>
-                </AnchorPane>
-            </content>
-        </Tab>
-        <Tab fx:id="tcp1" text="other - CDF">
-            <content>
-                <AnchorPane fx:id="anchor_cdf_others" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                    <children>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                            <center>
-                                <LineChart fx:id="other_chart" createSymbols="false" legendVisible="false" title="CDF nur TCP Pakete" BorderPane.alignment="CENTER">
-                                    <xAxis>
-                                        <NumberAxis label="Paketlänge [Byte]" side="BOTTOM" />
-                                    </xAxis>
-                                    <yAxis>
-                                        <NumberAxis label="CDF [%]" side="LEFT" />
-                                    </yAxis>
-                                </LineChart>
-                            </center>
-                            <left>
-                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
-                                    <items>
-                                        <Label prefWidth="150.0" text="Länge [Byte]      %" />
-                                        <ListView fx:id="other_data" prefHeight="200.0" prefWidth="150.0" />
-                                    </items>
-                                </SplitPane>
-                            </left>
-                        </BorderPane>
-                    </children>
-                </AnchorPane>
-            </content>
-        </Tab>
-        <Tab fx:id="total" text="total CDF">
-            <content>
-                <AnchorPane fx:id="anchor_cdf_total" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                    <children>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                            <center>
-                                <LineChart fx:id="total_chart" createSymbols="false" legendVisible="false" title="CDF aller Pakete" BorderPane.alignment="CENTER">
-                                    <xAxis>
-                                        <NumberAxis label="Paketlänge [Byte]" side="BOTTOM" />
-                                    </xAxis>
-                                    <yAxis>
-                                        <NumberAxis label="CDF [%]" side="LEFT" />
-                                    </yAxis>
-                                </LineChart>
-                            </center>
-                            <left>
-                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
-                                    <items>
-                                        <Label prefWidth="150.0" text="Länge [Byte]      %" />
-                                        <ListView fx:id="total_data" prefHeight="200.0" prefWidth="150.0" />
-                                    </items>
-                                </SplitPane>
-                            </left>
-                        </BorderPane>
-                    </children>
-                </AnchorPane>
+                                </AnchorPane>
+                                <AnchorPane fx:id="anchor_cdf_tcp" minHeight="0.0" minWidth="0.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                                    <children>
+                                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <center>
+                                                <LineChart fx:id="tcp_chart" createSymbols="false" legendVisible="false" title="CDF nur TCP Pakete" BorderPane.alignment="CENTER">
+                                                    <xAxis>
+                                                        <NumberAxis label="Paketlänge [Byte]" side="BOTTOM" />
+                                                    </xAxis>
+                                                    <yAxis>
+                                                        <NumberAxis label="CDF [%]" side="LEFT" />
+                                                    </yAxis>
+                                                </LineChart>
+                                            </center>
+                                            <left>
+                                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                                                    <items>
+                                                        <Label prefWidth="150.0" text="Länge [Byte]      %" />
+                                                        <ListView fx:id="tcp_data" prefHeight="200.0" prefWidth="150.0" />
+                                                    </items>
+                                                </SplitPane>
+                                            </left>
+                                        </BorderPane>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane fx:id="anchor_cdf_others" minHeight="0.0" minWidth="0.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                                    <children>
+                                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <center>
+                                                <LineChart fx:id="other_chart" createSymbols="false" legendVisible="false" title="CDF nur TCP Pakete" BorderPane.alignment="CENTER">
+                                                    <xAxis>
+                                                        <NumberAxis label="Paketlänge [Byte]" side="BOTTOM" />
+                                                    </xAxis>
+                                                    <yAxis>
+                                                        <NumberAxis label="CDF [%]" side="LEFT" />
+                                                    </yAxis>
+                                                </LineChart>
+                                            </center>
+                                            <left>
+                                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                                                    <items>
+                                                        <Label prefWidth="150.0" text="Länge [Byte]      %" />
+                                                        <ListView fx:id="other_data" prefHeight="200.0" prefWidth="150.0" />
+                                                    </items>
+                                                </SplitPane>
+                                            </left>
+                                        </BorderPane>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane fx:id="anchor_cdf_total" minHeight="0.0" minWidth="0.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                                    <children>
+                                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <center>
+                                                <LineChart fx:id="total_chart" createSymbols="false" legendVisible="false" title="CDF aller Pakete" BorderPane.alignment="CENTER">
+                                                    <xAxis>
+                                                        <NumberAxis label="Paketlänge [Byte]" side="BOTTOM" />
+                                                    </xAxis>
+                                                    <yAxis>
+                                                        <NumberAxis label="CDF [%]" side="LEFT" />
+                                                    </yAxis>
+                                                </LineChart>
+                                            </center>
+                                            <left>
+                                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                                                    <items>
+                                                        <Label prefWidth="150.0" text="Länge [Byte]      %" />
+                                                        <ListView fx:id="total_data" prefHeight="200.0" prefWidth="150.0" />
+                                                    </items>
+                                                </SplitPane>
+                                            </left>
+                                        </BorderPane>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </AnchorPane>
+                    </center>
+                </BorderPane>
             </content>
         </Tab>
         <Tab text="Bursts">

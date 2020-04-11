@@ -191,22 +191,22 @@ public class ProfileController {
                 profil = new Profil("voip_multi ", Backbone_Rauschen);
                 break;
             case "Gleichverteilung":
-                profil = new Profil("voip_multi ", Gleichverteilung);
+                profil = new Profil("Gleichverteilung ", Gleichverteilung);
                 break;
             case "Gauss":
-                profil = new Profil("voip_multi ", Gauss);
+                profil = new Profil("Gauss ", Gauss);
                 break;
             case "IoT":
-                profil = new Profil("voip_multi ", IoT);
+                profil = new Profil("IoT ", IoT);
                 break;
             case "Signal_Generator":
-                profil = new Profil("voip_multi ", Signal_Generator);
+                profil = new Profil("Signal_Generator ", Signal_Generator);
                 break;
             case "Spotify":
-                profil = new Profil("voip_multi ", Spotify);
+                profil = new Profil("Spotify ", Spotify);
                 break;
             case "Allegro_Office":
-                profil = new Profil("voip_multi ", Allegro_Office);
+                profil = new Profil("Allegro_Office ", Allegro_Office);
                 break;
             default:
                 System.out.println("Kein Signaltyp ausgewählt!");
