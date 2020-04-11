@@ -77,16 +77,6 @@ public class SimulationWindowVC implements Initializable {
     @FXML
     private GridPane grid_menu;
     @FXML
-    private Label label_Messung;
-    @FXML
-    private Label label_profil;
-    @FXML
-    private Label label_auswertung;
-    @FXML
-    private Label label_einstellung;
-    @FXML
-    private Label label_home;
-    @FXML
     private ImageView image_menu_off;
 
     /**

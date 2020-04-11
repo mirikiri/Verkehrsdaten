@@ -663,7 +663,7 @@
                     <center>
                         <AnchorPane BorderPane.alignment="CENTER">
                             <children>
-                                <AnchorPane fx:id="anchor_0_01" minHeight="0.0" minWidth="0.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                                <AnchorPane fx:id="anchor_0_01" minHeight="0.0" minWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <BorderPane layoutX="200.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <center>
@@ -695,7 +695,7 @@
                                         </BorderPane>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane fx:id="anchor_0_1" minHeight="0.0" minWidth="0.0" visible="false" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                                <AnchorPane fx:id="anchor_0_1" minHeight="0.0" minWidth="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <center>
@@ -728,7 +728,7 @@
                                         </BorderPane>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane fx:id="anchor_1" minHeight="0.0" minWidth="0.0" visible="false" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                                <AnchorPane fx:id="anchor_1" minHeight="0.0" minWidth="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <center>
@@ -760,7 +760,7 @@
                                         </BorderPane>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane fx:id="anchor_10" minHeight="0.0" minWidth="0.0" visible="false" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                                <AnchorPane fx:id="anchor_10" minHeight="0.0" minWidth="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <center>
@@ -792,7 +792,7 @@
                                         </BorderPane>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane fx:id="anchor_60" minHeight="0.0" minWidth="0.0" visible="false" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                                <AnchorPane fx:id="anchor_60" minHeight="0.0" minWidth="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <center>
@@ -870,7 +870,7 @@
                     <center>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                             <children>
-                                <AnchorPane fx:id="anchor_laenge_udp" minHeight="0.0" minWidth="0.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                                <AnchorPane fx:id="anchor_laenge_udp" minHeight="0.0" minWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <center>
@@ -903,7 +903,7 @@
                                         </BorderPane>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane fx:id="anchor_laenge_tcp" minHeight="0.0" minWidth="0.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                                <AnchorPane fx:id="anchor_laenge_tcp" minHeight="0.0" minWidth="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <center>
@@ -927,7 +927,7 @@
                                         </BorderPane>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane fx:id="anchor_laenge_others" minHeight="0.0" minWidth="0.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                                <AnchorPane fx:id="anchor_laenge_others" minHeight="0.0" minWidth="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <center>
@@ -951,7 +951,7 @@
                                         </BorderPane>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane fx:id="anchor_laenge_total" minHeight="0.0" minWidth="0.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                                <AnchorPane fx:id="anchor_laenge_total" minHeight="0.0" minWidth="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <center>
@@ -987,7 +987,7 @@
                     <center>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                             <children>
-                                <AnchorPane fx:id="anchor_cdf_udp" minHeight="0.0" minWidth="0.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                                <AnchorPane fx:id="anchor_cdf_udp" minHeight="0.0" minWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <center>
@@ -1017,26 +1017,10 @@
                                                     </items>
                                                 </SplitPane>
                                             </left>
-                                            <top>
-                                                <Pane prefHeight="30.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                                                    <children>
-                                                        <ChoiceBox fx:id="choice_CDF" layoutX="14.0" layoutY="4.0" prefWidth="150.0">
-                                                            <items>
-                                                                <FXCollections fx:factory="observableArrayList">
-                                                                    <String fx:value="UDP - CDF" />
-                                                                    <String fx:value="TCP - CDF" />
-                                                                    <String fx:value="others - CDF" />
-                                                                    <String fx:value="total - CDF" />
-                                                                </FXCollections>
-                                                            </items>
-                                                        </ChoiceBox>
-                                                    </children>
-                                                </Pane>
-                                            </top>
                                         </BorderPane>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane fx:id="anchor_cdf_tcp" minHeight="0.0" minWidth="0.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                                <AnchorPane fx:id="anchor_cdf_tcp" minHeight="0.0" minWidth="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <center>
@@ -1060,7 +1044,7 @@
                                         </BorderPane>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane fx:id="anchor_cdf_others" minHeight="0.0" minWidth="0.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                                <AnchorPane fx:id="anchor_cdf_others" minHeight="0.0" minWidth="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <center>
@@ -1084,7 +1068,7 @@
                                         </BorderPane>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane fx:id="anchor_cdf_total" minHeight="0.0" minWidth="0.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                                <AnchorPane fx:id="anchor_cdf_total" minHeight="0.0" minWidth="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <center>
@@ -1111,6 +1095,22 @@
                             </children>
                         </AnchorPane>
                     </center>
+               <top>
+                              <Pane prefHeight="30.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                  <children>
+                                      <ChoiceBox fx:id="choice_CDF" layoutX="14.0" layoutY="4.0" prefWidth="150.0">
+                                          <items>
+                                              <FXCollections fx:factory="observableArrayList">
+                                                  <String fx:value="UDP - CDF" />
+                                                  <String fx:value="TCP - CDF" />
+                                                  <String fx:value="others - CDF" />
+                                                  <String fx:value="total - CDF" />
+                                              </FXCollections>
+                                          </items>
+                                      </ChoiceBox>
+                                  </children>
+                              </Pane>
+               </top>
                 </BorderPane>
             </content>
         </Tab>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
@@ -15,30 +16,79 @@
       <Pane prefHeight="200.0" prefWidth="20.0" BorderPane.alignment="CENTER" />
    </right>
    <top>
-      <Pane prefHeight="25.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="60.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutX="23.0" layoutY="4.0" text="Hilfe" />
+            <Label id="U1" alignment="CENTER" layoutX="23.0" layoutY="4.0" stylesheets="@../CSS/MainWindow.css" text="Hilfe" />
          </children>
       </Pane>
    </top>
    <center>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ScrollPane prefHeight="337.0" prefWidth="560.0" BorderPane.alignment="CENTER">
          <content>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <FlowPane prefHeight="200.0" prefWidth="200.0">
+                   <FlowPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label text="Anleitung" wrapText="true" />
+                        <Label id="help2" stylesheets="@../CSS/MainWindow.css" text="Wie erstelle ich ein neues Profil?" wrapText="true">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding></Label>
                      </children>
                   </FlowPane>
                   <FlowPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="label_Anleitung" text="Label" />
+                        <Label fx:id="label_Anleitung_Profil" text="Label">
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding></Label>
+                     </children>
+                  </FlowPane>
+                   <FlowPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label id="help2" stylesheets="@../CSS/MainWindow.css" text="Wie starte ich eine Messung" wrapText="true">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding></Label>
                      </children>
                   </FlowPane>
                   <FlowPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="Label_Info" text="Label" />
+                        <Label fx:id="label_Anleitung_Messung" text="Label">
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding></Label>
+                     </children>
+                  </FlowPane>
+                   <FlowPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label id="help2" stylesheets="@../CSS/MainWindow.css" text="Wie nutze ich die Simulation zusätzlicher Last" wrapText="true">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding></Label>
+                     </children>
+                  </FlowPane>
+                  <FlowPane layoutX="10.0" layoutY="77.0" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="label_Anleitung_Simulation" text="Label">
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding></Label>
+                     </children>
+                  </FlowPane>
+                   <FlowPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label id="help2" stylesheets="@../CSS/MainWindow.css" text="Was ist in den vorgefertigten Profilen enthalten?" wrapText="true">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding></Label>
+                     </children>
+                  </FlowPane>
+                  <FlowPane layoutX="10.0" layoutY="160.0" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="label_Info" text="Label">
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding></Label>
                      </children>
                   </FlowPane>
                </children>

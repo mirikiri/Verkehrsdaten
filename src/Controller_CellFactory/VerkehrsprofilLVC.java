@@ -17,6 +17,8 @@ import Controller_Window.SimulationWindowVC;
 import java.util.function.UnaryOperator;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TextFormatter.Change;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 
 /**
  *

@@ -1,23 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 
-
-<HBox fx:id="box" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="box" alignment="CENTER_RIGHT" maxHeight="-Infinity" prefHeight="25.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="name" text="Label">
-         <HBox.margin>
-            <Insets left="5.0" top="4.0" />
-         </HBox.margin>
-      </Label>
-      <Label text=":">
-         <HBox.margin>
-            <Insets top="4.0" />
-         </HBox.margin>
-      </Label>
-      <TextField fx:id="input" text="0" />
+      <BorderPane prefWidth="180.0">
+         <left>
+            <Pane BorderPane.alignment="CENTER">
+               <children>
+                  <HBox>
+                     <children>
+                        <Label fx:id="name" text="Label" />
+                        <Label text=":  " />
+                     </children>
+                  </HBox>
+               </children>
+            </Pane>
+         </left>
+         <right>
+            <Pane BorderPane.alignment="CENTER">
+               <children>
+                  <TextField fx:id="input" alignment="CENTER_RIGHT" prefWidth="50.0" text="0" />
+               </children>
+            </Pane>
+         </right>
+      </BorderPane>
    </children>
 </HBox>
