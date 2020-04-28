@@ -40,6 +40,7 @@ public class Datennetz_Simulation extends Application {
     public static String targetsystem = "Linux";
     public static String start_IP = "192.168.0.58";
     public static ProfileController profilcontrol = new ProfileController();
+    public static String sendType;
     
     @Override
     public void start(Stage primaryStage) throws IOException {

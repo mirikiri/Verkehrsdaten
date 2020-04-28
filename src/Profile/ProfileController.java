@@ -16,6 +16,7 @@ import static Profile.Profil.profil_Type.Stresstest;
 import static Profile.Profil.profil_Type.VoIP;
 import static Profile.Profil.profil_Type.Web;
 import static datennetz_simulation.Datennetz_Simulation.targetsystem;
+import static datennetz_simulation.Datennetz_Simulation.sendType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,11 +30,9 @@ public class ProfileController {
     private String aufruf; //Variable um den Ausführbefehl für das Zielsystem (Linux oder Windows) anzupassen
     private Profil profil;
 
+    
     public List<String> gsetOrderList(String signalType, String duration, String minSize, String maxSize, String rauschen_skalierung, String web_anzahlSeiten, String web_wartezeit) {
-        
-            aufruf = "./";
-        
-
+        //Profile für Raspberry Pis
         piOrder.clear();
         switch (signalType) {
             case "Skype-Shared-Screen":
@@ -142,11 +141,12 @@ public class ProfileController {
     }
 
     public Profil getProfilOrder(String signalType) {
-        
+        //Profile für Windows
         
         switch (signalType) {
             case "Skype-Shared-Screen":
                 profil = new Profil("skypesc ", Backbone_Rauschen);
+                sendType = "send2";
                 break;
             case "Web":
                 profil = new Profil("web " , Web);

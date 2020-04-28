@@ -854,7 +854,7 @@
                     <top>
                         <Pane prefHeight="30.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                             <children>
-                                <ChoiceBox fx:id="choice_Paketlänge" layoutX="14.0" layoutY="4.0" prefWidth="150.0">
+                                <ChoiceBox fx:id="choice_Paketlänge" layoutX="69.0" layoutY="2.0" prefWidth="150.0">
                                     <items>
                                         <FXCollections fx:factory="observableArrayList">
                                             <String fx:value="UDP - Paketlänge" />
@@ -864,6 +864,7 @@
                                         </FXCollections>
                                     </items>
                                 </ChoiceBox>
+                        <Label layoutX="14.0" layoutY="6.0" prefHeight="17.0" prefWidth="55.0" text="Paketart:" />
                             </children>
                         </Pane>
                     </top>
@@ -1098,7 +1099,7 @@
                <top>
                               <Pane prefHeight="30.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                   <children>
-                                      <ChoiceBox fx:id="choice_CDF" layoutX="14.0" layoutY="4.0" prefWidth="150.0">
+                                      <ChoiceBox fx:id="choice_CDF" layoutX="69.0" layoutY="3.0" prefWidth="150.0">
                                           <items>
                                               <FXCollections fx:factory="observableArrayList">
                                                   <String fx:value="UDP - CDF" />
@@ -1108,6 +1109,7 @@
                                               </FXCollections>
                                           </items>
                                       </ChoiceBox>
+                        <Label layoutX="14.0" layoutY="8.0" prefHeight="17.0" prefWidth="55.0" text="Paketart:" />
                                   </children>
                               </Pane>
                </top>

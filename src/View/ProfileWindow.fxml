@@ -62,7 +62,7 @@
                         <Label layoutX="12.0" layoutY="134.0" stylesheets="@../CSS/MainWindow.css" text="Signal" />
                         <Label layoutX="14.0" layoutY="176.0" stylesheets="@../CSS/MainWindow.css" text="Anzahl" />
                         <TextField fx:id="input_anzahl" layoutX="130.0" layoutY="170.0" prefHeight="30.0" prefWidth="125.0" styleClass="TextField" stylesheets="@../CSS/MainWindow.css" />
-                        <TableView fx:id="table_inhalt" layoutX="10.0" layoutY="14.0" prefHeight="102.0" prefWidth="327.0">
+                        <TableView fx:id="table_inhalt" layoutX="10.0" layoutY="14.0" onMouseReleased="#entfItem" prefHeight="102.0" prefWidth="327.0">
                             <columns>
                                 <TableColumn fx:id="column_signal" prefWidth="237.0" text="Signal" />
                                 <TableColumn fx:id="column_Anzahl" prefWidth="50.0" text="Anzahl" />
@@ -71,6 +71,7 @@
                         </TableView>
                     </children>
                 </Pane>
+                <Text fx:id="savedinfo_Text" layoutX="111.0" layoutY="533.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="205.13671875" />
             </children>
         </Pane>
     </center>
@@ -178,7 +179,6 @@
                         </Label>
                     </children>
                 </GridPane>
-                <Text fx:id="savedinfo_Text" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="205.13671875" />
             </children>
         </Pane>
     </left>

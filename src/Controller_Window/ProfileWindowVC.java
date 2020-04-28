@@ -10,7 +10,9 @@ import Profile.tableProfil;
 import datennetz_simulation.Datennetz_Simulation;
 import static datennetz_simulation.Datennetz_Simulation.menucontrol;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -63,13 +66,15 @@ public class ProfileWindowVC implements Initializable {
     private FileChooser fileChooser_profil;
     private String path;
     private String fileName;
+    private String saveName;
     private String newSignal;
-    private Profil Order;
-    private int Anzahl;
+    private int anzahlInt;
+    private String anzahlString;
+    private int maxAnzahl;
     private int i;
-    
+    private ObservableList<tableProfil> list = FXCollections.observableArrayList();
+    private tableProfil newprof;
     private List<String> newProfileOrder = new ArrayList<String>();    
-    private List<String> newProfileDuration = new ArrayList<String>();
     
     @FXML
     private BorderPane rootPane;
@@ -77,26 +82,14 @@ public class ProfileWindowVC implements Initializable {
     private Text savedinfo_Text;
     @FXML
     private ImageView hilfeImage;
-
     @FXML
     private GridPane grid_menu;
-    @FXML
-    private Label label_Messung;
-    @FXML
-    private Label label_profil;
-    @FXML
-    private Label label_auswertung;
-    @FXML
-    private Label label_einstellung;
-    @FXML
-    private Label label_home;
     @FXML
     private ChoiceBox<String> choice_profil;
     @FXML
     private TextField input_name;
     @FXML
     private ChoiceBox<String> choice_signal;
-    private TextField input_dauer;
     @FXML
     private TextField input_anzahl;
     @FXML
@@ -111,13 +104,6 @@ public class ProfileWindowVC implements Initializable {
     private TableColumn<tableProfil, String> column_Anzahl;
     @FXML
     private TableColumn<tableProfil, ImageView> column_entfernen;
-    
-    /**
-     * Initializes the controller class.
-     */
-    private tableProfil test1 = new tableProfil("VoIP", "2");
-    private tableProfil test2 = new tableProfil("Youtube720p", "1");
-    private tableProfil test3 = new tableProfil("gaming", "1");
     @FXML
     private ImageView image_menu_off;
     @FXML
@@ -132,7 +118,8 @@ public class ProfileWindowVC implements Initializable {
         column_entfernen.setCellValueFactory( new PropertyValueFactory<tableProfil, ImageView>("entf"));
         column_Anzahl.setCellValueFactory( new PropertyValueFactory<tableProfil, String>("anzahl"));
         
-        table_inhalt.setItems(getData());
+        list.clear();
+        maxAnzahl = 0;
         
         choice_signal.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
             newSignal = newValue;
@@ -238,28 +225,73 @@ public class ProfileWindowVC implements Initializable {
     @FXML
     private void handle_hinzufuegen(MouseEvent event) {
         //alle Parameter einlesen
-        Anzahl = Integer.parseInt(input_anzahl.getCharacters().toString().replaceAll("[^\\d]", ""));    
-        for(i = 0; i <= Anzahl; i++){
-            newProfileOrder.add(newSignal);
-            newProfileDuration.add(input_dauer.getCharacters().toString().replaceAll("[^\\d]", ""));
+        anzahlString = input_anzahl.getCharacters().toString().replaceAll("[^\\d]", "");
+        anzahlInt = Integer.parseInt(anzahlString);
+        maxAnzahl += anzahlInt;
+        if(maxAnzahl>11){
+            System.out.println("maximale Anzahl bereits erreicht");
+            savedinfo_Text.setText("Zu viele Signale! Maximale Anzahl für das Raspberrysystem beträgt 11");
+            maxAnzahl -= anzahlInt;
         }
-        //neues Objekt Profil erstellen und zuweisen
-        //speichere neues Profil
+        else{
+            for(i = 0; i <= anzahlInt; i++){
+                newProfileOrder.add(newSignal);
+            }
+            //neues Objekt Profil erstellen und zuweisen
+            newprof = new tableProfil(newSignal, anzahlString);
+            list.add(newprof);
+            table_inhalt.setItems(list);
+        }
     }
 
 
     @FXML
-    private void handle_Speichern(ActionEvent event) {
-       
+    private void handle_Speichern(ActionEvent event) throws FileNotFoundException{
+        //speichere neues Profil
+        saveName = input_name.getCharacters().toString();
+        createList();
+        savedinfo_Text.setText("Neues Profil " + saveName + " gespeichert!");
+        //bei startemessungen hinzufügen
+        //choice_Signal_Profil.add(saveName);
+        
+        //eingaben zurücksetzen
+        list.clear();
+        maxAnzahl = 0;
+        table_inhalt.setItems(list);
     }
 
-    private ObservableList<tableProfil> getData() {
-        ObservableList<tableProfil> huch = FXCollections.observableArrayList();
-        huch.add(test1);
-        huch.add(test2);
-        huch.add(test3);
-        
-        return huch;
-    }
     
+    @FXML
+    public void entfItem(MouseEvent event)
+    {
+        int row=12;
+        int column=4;   
+        /*
+        if (event.getClickCount() == 2) //Checking double click
+        {
+            System.out.println(table_inhalt.getSelectionModel().getSelectedItem().getSignal());
+            System.out.println(table_inhalt.getSelectionModel().getSelectedItem().getAnzahl());
+            System.out.println(table_inhalt.getSelectionModel().getSelectedItem().getEntf());
+        }*/
+        //reihe und spalte einlesen
+        TableView test = (TableView) event.getSource();
+        //row = ;
+        //column = ;
+        //spalte auf image vergleichen
+        if(column == 2){
+            //reihe löschen
+            list.remove(row);
+            //neu anzeigen
+            table_inhalt.setItems(list);
+            System.out.println("Reihe " + row + " gelöscht");
+        }
+    }
+
+    public void createList() throws FileNotFoundException{
+        PrintWriter save = new PrintWriter(saveName+".txt");
+        for(int i =0; i< list.size(); i++){
+            save.println(list.get(i).getSignal());
+        }
+        save.close();
+    }
 }

@@ -51,6 +51,7 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static datennetz_simulation.Datennetz_Simulation.sendType;
 
 /**
  *
@@ -113,7 +114,7 @@ public class StarteMessungWindowVC implements Initializable {
     @FXML
     private Pane pane_Profil;
     @FXML
-    private ChoiceBox<String> choice_Signal_Profil;
+    public ChoiceBox<String> choice_Signal_Profil;
     @FXML
     private TextField input_skal_Rauschen;
     @FXML
@@ -322,7 +323,12 @@ public class StarteMessungWindowVC implements Initializable {
             Thread thread = new Thread() {
                 public void run() {
                     try {
-                        windows_profil.send2();
+                        if(sendType.equals("send1"))
+                            windows_profil.send1();
+                        else if (sendType.equals("send2"))
+                            windows_profil.send2();
+                        else
+                            windows_profil.send3();
                     } catch (SocketException ex) {
                         Logger.getLogger(Datennetz_Simulation.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (UnknownHostException ex) {

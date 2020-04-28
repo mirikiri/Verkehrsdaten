@@ -62,8 +62,11 @@ public class EinstellungenWindowVC implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         radio_Linux.setToggleGroup(group);
-        radio_Linux.setSelected(true);
         radio_Windows.setToggleGroup(group);
+        if(targetsystem.equals("Windows"))
+            radio_Windows.setSelected(true);
+        else if(targetsystem.equals("Linux"))
+            radio_Linux.setSelected(true);
     }    
 
     
