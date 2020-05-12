@@ -6,6 +6,7 @@
 package Profile;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -26,7 +27,8 @@ public class tableProfil{
         entf.setFitHeight(20);
         entf.setFitWidth(20);
     }
-
+    
+    
     public String getSignal() {
         return signal.get();
     }
@@ -51,4 +53,5 @@ public class tableProfil{
     public void setAnzahl(String anz) {
         this.anzahl = new SimpleStringProperty(anz);
     }
+    
 }

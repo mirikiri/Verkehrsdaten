@@ -53,6 +53,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import static datennetz_simulation.Datennetz_Simulation.profileMap;
+import static datennetz_simulation.Datennetz_Simulation.list_Signal_Profil;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 
 /**
  * FXML Controller class
@@ -74,7 +78,8 @@ public class ProfileWindowVC implements Initializable {
     private int i;
     private ObservableList<tableProfil> list = FXCollections.observableArrayList();
     private tableProfil newprof;
-    private List<String> newProfileOrder = new ArrayList<String>();    
+    private List<String> newProfileOrder = new ArrayList<String>();  
+    private List<String> newOrder = new ArrayList<String>();     
     
     @FXML
     private BorderPane rootPane;
@@ -113,12 +118,14 @@ public class ProfileWindowVC implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //temp tabelle
+        table_inhalt.setEditable(true);
         column_signal.setCellValueFactory( new PropertyValueFactory<tableProfil, String>("signal"));
         column_entfernen.setCellValueFactory( new PropertyValueFactory<tableProfil, ImageView>("entf"));
         column_Anzahl.setCellValueFactory( new PropertyValueFactory<tableProfil, String>("anzahl"));
+        column_entfernen.setEditable(true);
         
         list.clear();
+        newProfileOrder.clear();
         maxAnzahl = 0;
         
         choice_signal.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
@@ -229,7 +236,6 @@ public class ProfileWindowVC implements Initializable {
         anzahlInt = Integer.parseInt(anzahlString);
         maxAnzahl += anzahlInt;
         if(maxAnzahl>11){
-            System.out.println("maximale Anzahl bereits erreicht");
             savedinfo_Text.setText("Zu viele Signale! Maximale Anzahl für das Raspberrysystem beträgt 11");
             maxAnzahl -= anzahlInt;
         }
@@ -249,49 +255,62 @@ public class ProfileWindowVC implements Initializable {
     private void handle_Speichern(ActionEvent event) throws FileNotFoundException{
         //speichere neues Profil
         saveName = input_name.getCharacters().toString();
-        createList();
-        savedinfo_Text.setText("Neues Profil " + saveName + " gespeichert!");
-        //bei startemessungen hinzufügen
-        //choice_Signal_Profil.add(saveName);
-        
-        //eingaben zurücksetzen
-        list.clear();
-        maxAnzahl = 0;
-        table_inhalt.setItems(list);
+        if(saveName.equals("")){
+            savedinfo_Text.setText("Kein Name eingegeben");
+        }
+        else{
+            createList();
+            savedinfo_Text.setText("Neues Profil " + saveName + " gespeichert!");
+            //bei startemessungen hinzufügen
+            list_Signal_Profil.add(saveName);
+            //eingaben zurücksetzen
+            list.clear();
+            newProfileOrder.clear();
+            maxAnzahl = 0;
+            table_inhalt.setItems(list);
+        }
     }
 
     
     @FXML
-    public void entfItem(MouseEvent event)
-    {
-        int row=12;
-        int column=4;   
-        /*
-        if (event.getClickCount() == 2) //Checking double click
-        {
-            System.out.println(table_inhalt.getSelectionModel().getSelectedItem().getSignal());
-            System.out.println(table_inhalt.getSelectionModel().getSelectedItem().getAnzahl());
-            System.out.println(table_inhalt.getSelectionModel().getSelectedItem().getEntf());
-        }*/
-        //reihe und spalte einlesen
-        TableView test = (TableView) event.getSource();
-        //row = ;
-        //column = ;
-        //spalte auf image vergleichen
-        if(column == 2){
-            //reihe löschen
-            list.remove(row);
-            //neu anzeigen
-            table_inhalt.setItems(list);
-            System.out.println("Reihe " + row + " gelöscht");
+    private void entfItem(MouseEvent event) {
+
+        //check ob auf imageview geklickt wurde
+        System.out.println(table_inhalt.getSelectionModel().getSelectedCells());
+        if (table_inhalt.getSelectionModel().getSelectedCells().get(0).getColumn() == 2){
+            //reihe und spalte einlesen
+            for (int i = 0; i<list.size(); i++){
+                if(list.get(i) == table_inhalt.getSelectionModel().getSelectedItem())
+                    list.remove(i);
+            }
+            for (int i = 0; i<newProfileOrder.size(); i++){
+                if(newProfileOrder.get(i) == table_inhalt.getSelectionModel().getSelectedItem().getSignal())
+                    newProfileOrder.remove(i);
+            }
+                //neu anzeigen
+                table_inhalt.setItems(list);
+                System.out.println(table_inhalt.getSelectionModel().getSelectedItem().getSignal() + " gelöscht");
         }
     }
 
     public void createList() throws FileNotFoundException{
-        PrintWriter save = new PrintWriter(saveName+".txt");
-        for(int i =0; i< list.size(); i++){
+        //PrintWriter save = new PrintWriter(saveName+".txt");
+        newOrder.clear();
+        List<String> oldlist;
+        /*for(int i =0; i< list.size(); i++){
             save.println(list.get(i).getSignal());
         }
-        save.close();
+        save.close();*/
+        System.out.println("Miri: listenlänge: " + newProfileOrder.size());
+        //size passt nicht
+        for(int i =0; i< newProfileOrder.size(); i++){
+            oldlist = profileMap.get(newProfileOrder.get(i));
+            for(int j = 0; j<oldlist.size();j++){
+                newOrder.add(oldlist.get(j));
+            }
+        }
+        profileMap.put(saveName, newOrder);
+        
     }
+
 }

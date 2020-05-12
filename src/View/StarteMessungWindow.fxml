@@ -137,16 +137,6 @@
                 <Pane fx:id="pane_Profil" layoutX="15.0" layoutY="120.0" prefHeight="287.0" prefWidth="391.0" visible="false">
                     <children>
                         <ChoiceBox fx:id="choice_Signal_Profil" layoutX="190.0" layoutY="15.0" prefWidth="150.0">
-                            <items>
-                                <FXCollections fx:factory="observableArrayList">
-                                    <String fx:value="Industrie 1" />
-                                    <String fx:value="Industrie 2" />
-                                    <String fx:value="Industrie 3" />
-                                    <String fx:value="Privat" />
-                                    <String fx:value="Multimedia 1" />
-                                    <String fx:value="Multimedia 2" />
-                                </FXCollections>
-                            </items>
                         </ChoiceBox>
                         <TextField fx:id="input_Dauer_Profil" layoutX="190.0" layoutY="55.0" />
                         <TextField fx:id="input_skal_Rauschen" layoutX="190.0" layoutY="95.0" />

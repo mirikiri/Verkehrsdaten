@@ -52,6 +52,9 @@ import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static datennetz_simulation.Datennetz_Simulation.sendType;
+import static datennetz_simulation.Datennetz_Simulation.list_Signal_Profil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -90,6 +93,7 @@ public class StarteMessungWindowVC implements Initializable {
     private List<String> ip = new ArrayList<String>();
     private int i = 0;
     private static final SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy_HH.mm.ss");
+    private ObservableList<String> list_profiles;
 
     private ProfileController profile = new ProfileController();
 
@@ -588,7 +592,8 @@ public class StarteMessungWindowVC implements Initializable {
             ip.add("192.168.1.141");
             ip.add("192.168.1.10");
         }
-
+        list_profiles = FXCollections.observableArrayList(list_Signal_Profil);
+        choice_Signal_Profil.setItems(list_profiles);
     }
 
     protected void setAnimations() {
